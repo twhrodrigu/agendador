@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Agendador de Entrevistas</title>
+  </head>
+  <body>
+    <header>
+      <% if @user %>
+        <span>Ola <%= @user.email %>
+      <% else %>
+        <a href="/auth">LOGIN</a>
+      <% end %>
+    </header>
+    <main>
+    <h1>Agendador de Entrevistas</h1>
+    <% if @user %>
+      <%= yield %>
+    <% end %>
+    </main>
+  </body>
+</html>
