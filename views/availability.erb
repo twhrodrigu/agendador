@@ -1,1 +1,7 @@
-<div><%= @available.inspect %></div>
+<ul>
+  <% @available.each do |a|%>
+    <li>
+      <%= a %>
+    </li>
+  <% end %>
+</ul>

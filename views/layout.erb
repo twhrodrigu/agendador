@@ -6,7 +6,9 @@
   <body>
     <header>
       <% if @user %>
-        <span>Ola <%= @user.email %>
+        <span>Ola <%= @user.email %></span>
+        <br/>
+        <a href="/">NOVA PESQUISA"</a>
       <% else %>
         <a href="/auth">LOGIN</a>
       <% end %>
