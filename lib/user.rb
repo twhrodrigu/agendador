@@ -30,8 +30,9 @@ class User
   def self.all(params)
     get_consultants.
       select { |e| e['consultant']['home_office'] == params[:office] &&
-                   e['consultant']['primary_role'] == params[:role] }.
-      map { |e| { :id => "#{e['consultant']['employee_id']}@thoughtworks.com" } }
+                   e['consultant']['primary_role'] == params[:role] &&
+                   login_name_for(e['consultant']['employee_id']) }.
+      map { |e| { :id => "#{login_name_for(e['consultant']['employee_id'])}@thoughtworks.com" } }
   end
 
   def self.roles
@@ -41,4 +42,10 @@ class User
   def self.get_consultants
     @@consultants ||= JSON.parse(open('resources/consultants.json').read)
   end
+
+  def self.login_name_for(employee_id)
+    @@employee_id_login_name_map ||= JSON.parse(open('resources/employee_id-login_name.json').read)["pairs"]
+    @@employee_id_login_name_map[employee_id]
+  end
+
 end
