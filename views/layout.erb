@@ -8,6 +8,8 @@
       <% if @user %>
         <span>Ola <%= @user.email %></span>
         <br/>
+        <span>AccessToken <%= @user.token %></span>
+        <br/>
         <a href="/">NOVA PESQUISA"</a>
       <% else %>
         <a href="/auth">LOGIN</a>
