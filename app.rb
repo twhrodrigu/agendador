@@ -28,7 +28,8 @@ def client
 end
  
 module AgendaEntrevista
-  class WEB < Sinatra::Base
+  class WEB < Sinatra::Application
+
     get '/' do
       # TODO: implement before_filter to get user
       @user = session[:current_user]
