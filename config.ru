@@ -1,3 +1,5 @@
 require './app'
+require './api'
 
-run Sinatra::Application
+use Rack::Session::Cookie
+run Rack::Cascade.new [AgendaEntrevista::API, AgendaEntrevista::WEB]

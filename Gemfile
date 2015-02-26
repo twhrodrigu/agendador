@@ -6,6 +6,7 @@ gem 'oauth2'
 
 gem 'byebug'
 gem 'shotgun'
+gem 'grape'
 
 gem 'rspec'
 gem 'webmock'

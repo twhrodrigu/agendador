@@ -4,7 +4,6 @@ require 'json'
 require './lib/user'
 require './lib/calendar'
  
-enable :sessions
  
 # Scopes are space separated strings
 SCOPES = [
@@ -28,33 +27,37 @@ def client
               })
 end
  
-get '/' do
-  # TODO: implement before_filter to get user
-  @user = session[:current_user]
-  @roles = User.roles
-  erb :index
-end
- 
-get '/availability' do
-  @user = session[:current_user]
-  @available = Calendar.availability(@user.token, params)
-  erb :availability
-end
+module AgendaEntrevista
+  class WEB < Sinatra::Base
+    get '/' do
+      # TODO: implement before_filter to get user
+      @user = session[:current_user]
+      @roles = User.roles
+      erb :index
+    end
 
-get "/auth" do
-  redirect client.auth_code.authorize_url(:redirect_uri => redirect_uri,:scope => SCOPES,:access_type => "offline")
-end
- 
-get '/oauth2callback' do
-  access_token = client.auth_code.get_token(params[:code], :redirect_uri => redirect_uri)
-  email = access_token.get('https://www.googleapis.com/userinfo/email?alt=json').parsed()["data"]["email"]
-  session[:current_user] = User.new(:email => email, :token => access_token.token)
-  redirect '/'
-end
- 
-def redirect_uri
-  uri = URI.parse(request.url)
-  uri.path = '/oauth2callback'
-  uri.query = nil
-  uri.to_s
+    get '/availability' do
+      @user = session[:current_user]
+      @available = Calendar.availability(@user.token, params)
+      erb :availability
+    end
+
+    get "/auth" do
+      redirect client.auth_code.authorize_url(:redirect_uri => redirect_uri,:scope => SCOPES,:access_type => "offline")
+    end
+
+    get '/oauth2callback' do
+      access_token = client.auth_code.get_token(params[:code], :redirect_uri => redirect_uri)
+      email = access_token.get('https://www.googleapis.com/userinfo/email?alt=json').parsed()["data"]["email"]
+      session[:current_user] = User.new(:email => email, :token => access_token.token)
+      redirect '/'
+    end
+
+    def redirect_uri
+      uri = URI.parse(request.url)
+      uri.path = '/oauth2callback'
+      uri.query = nil
+      uri.to_s
+    end
+  end
 end
