@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="AgendaEntrevista">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <link type="text/css" rel="stylesheet" href="css/agenda-entrevista.css" media="screen,projection">
+
+    <style type="text/css" media="screen,projection">
+      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+      }
+    </style>
+
     <title>HTML Rocks</title>
   </head>
-  <body>
+  <body ng-cloack>
+    <ul class="side-nav fixed">
+     <li class="bold">
+       <a class="waves-effect waves-teal" href="#">waves-effect waves-teal</a>
+     </li> 
+    </ul>
+    <div class="card-panel teal lighten-2">
+      This is Materializecss and Angularjs built using Browserify
+    </div>
+    <script src="app-bundled.js"></script>
   </body>
 </html>
