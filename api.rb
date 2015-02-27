@@ -1,4 +1,5 @@
 require 'grape'
+require './lib/collaborator.rb'
 
 module AgendaEntrevista
   class API < Grape::API
@@ -26,18 +27,23 @@ module AgendaEntrevista
 
     end
 
-    desc "Return list of roles available"
+    desc "Returns list of roles inside ThoughtWorks"
     get :roles do
       User.roles
     end
 
-    desc "Return consultants based on the office and roles"
+    desc "Returns list of consultants based on the office and roles"
     params do
       requires :office, type: String, desc: "The office where they work"
       requires :role, type: String, desc: "The role they belong"
     end
     get :consultants do
       User.all(permitted_params)
+    end
+
+    desc "Returns list of people who contributed to the project sorted by #commits"
+    get :collaborators do
+      Collaborator.all
     end
 
   end
