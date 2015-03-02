@@ -1,5 +1,5 @@
 require 'grape'
-require './lib/collaborator.rb'
+require './lib/gitlog.rb'
 
 module AgendaEntrevista
   class API < Grape::API
@@ -43,7 +43,7 @@ module AgendaEntrevista
 
     desc "Returns list of people who contributed to the project sorted by #commits"
     get :collaborators do
-      Collaborator.all
+      GitLog.shortlog
     end
 
   end
