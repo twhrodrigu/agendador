@@ -1,0 +1,33 @@
+{
+  "name": "AgendaEntrevista",
+  "main": "src/app.js",
+  "scripts": {
+    "less": "lessc less/app.less build/app.css",
+    "start": "watchify -o build/bundle.js .",
+    "browserify": "browserify -o build/bundle.js .",
+    "build": "NODE_ENV=production browserify . | uglifyjs -cm > build/bundle.min.js"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "envify": "^3.0.0",
+    "reactify": "^1.0",
+    "uglify-js": "~2.4.15",
+    "watchify": "^2.4",
+    "less": "^2.4"
+  },
+  "dependencies": {
+    "flux": "^2.0.1",
+    "keymirror": "~0.1.0",
+    "object-assign": "^1.0.0",
+    "material-ui": "^0.7.0",
+    "material-ui-sass": "^0.5.3",
+    "react": "^0.12.2",
+    "react-tap-event-plugin": "^0.1.4"
+  },
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
+  }
+}
