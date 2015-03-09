@@ -12,6 +12,10 @@ module AgendaEntrevista
       end
     end
 
+    before do
+        header "Access-Control-Allow-Origin", "*"
+    end
+
     resource :calendar do
 
       desc "Returns people available for a period"

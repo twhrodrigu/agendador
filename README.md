@@ -29,12 +29,9 @@ Inside the **public** folder:
 1. Install [nodejs](http://nodejs.org/)  
 2. Install Dependencies  
   ```npm install```
-3. Compile the stylesheets  
-  ```npm run sass```  
-  *( repeat if you change something inside /sass )*
-4. Compile the javascript  
-  ```npm run browserify```  
-  *( repeat if you change something inside /js )*
+3. Compile the javascript  
+  ```npm run build```  
+  *( repeat if you change something inside /public )*
 
 
 **Backend**
@@ -47,6 +44,12 @@ Inside the **public** folder:
   ```bundle exec shotgun```
 
 
-Well done, the app is running here [http://127.0.0.1:9393/](http://127.0.0.1:9393/)
+Well done, the app is running here [http://127.0.0.1:9393/index.html](http://127.0.0.1:9393/index.html)
 
+
+## Frontend Tools
+
+[ReactJS](http://facebook.github.io/react/): Javascript Components Framework
+[WebPack](webpack.github.io): Javascript Module Loader
+[ReactJS MaterialUI](material-ui.com): Component Library based on Material Design
 

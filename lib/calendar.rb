@@ -3,7 +3,7 @@ require 'net/https'
 
 
 module Calendar
-  TIMEZONE_OFFSET = "-02:00:00" # because of 'horario de verao", usually is -03:00:00 (for POA)
+  TIMEZONE_OFFSET = "00:00:00"
 
   def self.format(time, duration_in_hours=0)
     (DateTime.parse("#{time}#{TIMEZONE_OFFSET}") + duration_in_hours/24.0).to_s
@@ -27,6 +27,7 @@ module Calendar
       req.add_field('content-type', 'application/json')
       req['Authorization'] = "Bearer #{api_token}"
       req.body = JSON.dump(request)
+      puts "Req Body: #{req.body}"
       responses << Net::HTTP.start(
         uri.host, uri.port,
         :use_ssl => uri.scheme == 'https',

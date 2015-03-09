@@ -2,32 +2,24 @@
   "name": "AgendaEntrevista",
   "main": "src/app.js",
   "scripts": {
-    "less": "lessc less/app.less build/app.css",
-    "start": "watchify -o build/bundle.js .",
-    "browserify": "browserify -o build/bundle.js .",
-    "build": "NODE_ENV=production browserify . | uglifyjs -cm > build/bundle.min.js"
+    "serve": "webpack-dev-server --color --progress --inline",
+    "build": "webpack --color --progress --profile"
   },
   "devDependencies": {
-    "browserify": "^9.0.3",
-    "envify": "^3.0.0",
-    "reactify": "^1.0",
-    "uglify-js": "~2.4.15",
-    "watchify": "^2.4",
-    "less": "^2.4"
+    "css-loader": "^0.9.1",
+    "less-loader": "^2.1.0",
+    "style-loader": "^0.8.3",
+    "jsx-loader": "^0.12.2",
+    "webpack": "^1.7.2",
+    "webpack-dev-server": "^1.7.0"
   },
   "dependencies": {
-    "flux": "^2.0.1",
-    "keymirror": "~0.1.0",
-    "object-assign": "^1.0.0",
-    "material-ui": "^0.7.0",
-    "material-ui-sass": "^0.5.3",
+    "hellojs": "^1.5.0",
+    "is-retina": "^1.0.3",
+    "material-ui": "^0.7",
+    "md5": "^1.0.0",
+    "moment": "^2.9.0",
     "react": "^0.12.2",
-    "react-tap-event-plugin": "^0.1.4"
-  },
-  "browserify": {
-    "transform": [
-      "reactify",
-      "envify"
-    ]
+    "react-router": "^0.12.4"
   }
 }

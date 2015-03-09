@@ -30,6 +30,8 @@ end
 module AgendaEntrevista
   class WEB < Sinatra::Application
 
+    set :protection, :except => :frame_options
+
     get '/' do
       # TODO: implement before_filter to get user
       @user = session[:current_user]
