@@ -49,7 +49,7 @@ Well done, the app is running here [http://127.0.0.1:9393/index.html](http://127
 
 ## Frontend Tools
 
-[ReactJS](http://facebook.github.io/react/): Javascript Components Framework
-[WebPack](webpack.github.io): Javascript Module Loader
+[ReactJS](http://facebook.github.io/react/): Javascript Components Framework  
+[WebPack](webpack.github.io): Javascript Module Loader  
 [ReactJS MaterialUI](material-ui.com): Component Library based on Material Design
 
