@@ -10,3 +10,4 @@ gem 'grape'
 
 gem 'rspec'
 gem 'webmock'
+gem 'puma'
