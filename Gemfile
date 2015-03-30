@@ -11,3 +11,6 @@ gem 'grape'
 gem 'rspec'
 gem 'webmock'
 gem 'puma'
+
+gem "omniauth"
+gem "omniauth-saml"
