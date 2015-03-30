@@ -12,12 +12,6 @@ var React = require('react'),
     PeopleAvailable = require('./components/PeopleAvailable'),
     Login = require('./components/Login');
 
-var About = React.createClass({
-  render: function () {
-    return <h2>Sobre</h2>;
-  }
-});
-
 React.initializeTouchEvents();
 Router
   .create({
