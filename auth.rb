@@ -22,7 +22,7 @@ module AgendaEntrevista
       app.set :session_secret, ENV['SECRET_TOKEN'] || SecureRandom.hex
       app.use OmniAuth::Builder do
         provider :saml,
-          :issuer                             => "Agendador de Entrevistas",
+          :issuer                             => ENV['SAML_ISSUER'],
           :idp_sso_target_url                 => ENV['SAML_TARGET_URL'],
           :idp_cert_fingerprint               => ENV['SAML_FINGERPRINT'],
           :name_identifier_format             => "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
