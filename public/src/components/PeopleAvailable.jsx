@@ -16,8 +16,8 @@ var PeopleAvailable = React.createClass({
 
   componentDidMount: function() {
     request
-      .get('/v1/roles')
-      .end(function (r) {
+      .get('http://127.0.0.1:9393/v1/roles')
+      .end(function (e, r) {
         this.setState({
           roles: r.body.map((role, idx) => ({payload: idx, text: role}))
         });
@@ -88,11 +88,11 @@ var PeopleAvailable = React.createClass({
 
     this.setState({people: [], loading: true});
     request
-      .get('/v1/calendar/available')
+      .get('http://127.0.0.1:9393/v1/calendar/available')
       .query({ token: token })
       .query({ start: start })
       .query({ role: role })
-      .end(function (r) {
+      .end(function (e, r) {
         people = r.body.map((email) => ({email: email, name: email}))
         this.setState({people: people, loading: false});
       }.bind(this));
