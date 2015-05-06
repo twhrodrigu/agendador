@@ -35,6 +35,8 @@ module Calendar
         https.request(req)
       end
     end
+
+    puts "Responses: #{responses}"
     responses.map {|e| JSON.parse(e.body)["calendars"] }.
       reduce(&:merge).
       select { |k,v| v["busy"].empty? && v["errors"].nil? }.
