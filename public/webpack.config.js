@@ -14,5 +14,13 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
+  },
+  devServer: {
+    info: true,
+    hot: false,
+    inline: true,
+    proxy: {
+      "/v1/*": "http://localhost:9393"
+    }
   }
 }
