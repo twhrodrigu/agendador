@@ -36,7 +36,8 @@ class User
   end
 
   def self.roles
-    @@roles ||= get_consultants.map { |e| e['consultant']['primary_role'] }.uniq
+#    @@roles ||= get_consultants.map { |e| e['consultant']['primary_role'] }.uniq
+    @@roles ||= JSON.parse(open('resources/roles.json').read)
   end
 
   def self.get_consultants
