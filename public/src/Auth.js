@@ -1,7 +1,7 @@
 var hello = require('hellojs');
 var google = hello('google');
 
-var GOOGLE_CLIENT_ID = '200648859316-f7ogeg7cp9l1in66n8pfn0dege2r0vhk.apps.googleusercontent.com';
+var GOOGLE_CLIENT_ID = '101903171697-jba2hj18g9vajpk191akp6mbhdcf6nvt.apps.googleusercontent.com';
 var SCOPES = [
   'https://www.googleapis.com/auth/userinfo.email',
   'https://www.googleapis.com/auth/calendar.readonly'
