@@ -24,11 +24,17 @@ module AgendaEntrevista
         requires :start, type: DateTime, desc: "The start of the interval for the query"
         optional :hours, type: Integer, desc: "The number of hours should be available", default: 1
         optional :role, type: String, desc: "The role of interest", default: 'Dev'
+        optional :office, type: String,  desc: "The office of interest", default: 'Porto Alegre'
       end
       get :available do
         Calendar.availability(params[:token], permitted_params)
       end
 
+    end
+
+    desc "Returns list of offices inside ThoughtWorks"
+    get :offices do
+      User.offices
     end
 
     desc "Returns list of roles inside ThoughtWorks"

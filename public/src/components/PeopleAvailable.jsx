@@ -22,6 +22,14 @@ var PeopleAvailable = React.createClass({
           roles: r.body.map((role, idx) => ({payload: idx, text: role}))
         });
       }.bind(this));
+
+      request
+        .get('/v1/offices')
+        .end(function (e, r) {
+          this.setState({
+            offices: r.body.map((office, idx) => ({payload: idx, text: office}))
+          });
+        }.bind(this));
   },
 
   getInitialState: function() {
@@ -29,8 +37,10 @@ var PeopleAvailable = React.createClass({
       selectedDate: DateInput.now(),
       selectedTime: DateInput.now(),
       selectedRoleIndex: 0,
+      selectedOfficeIndex: 0,
       roles: [],
-      people: []
+      people: [],
+      offices:[]
     }
   },
 
@@ -56,9 +66,14 @@ var PeopleAvailable = React.createClass({
               <DropDownMenu autoWidth={false} menuItems={this.state.roles} onChange={this._handleRoleChange} />
             }
           </ToolbarGroup>
-          <ToolbarGroup key={1} float="right">
-          <RaisedButton label={this.state.loading? 'Buscando':'Buscar'} 
-                        primary={true} 
+          <ToolbarGroup key={1} float="left">
+            {this.state.offices.length > 0 &&
+              <DropDownMenu autoWidth={false} menuItems={this.state.offices} onChange={this._handleOfficeChange} />
+            }
+          </ToolbarGroup>
+          <ToolbarGroup key={2} float="right">
+          <RaisedButton label={this.state.loading? 'Buscando':'Buscar'}
+                        primary={true}
                         onTouchTap={this._handleTapSearch}/>
           </ToolbarGroup>
         </Toolbar>
@@ -72,6 +87,9 @@ var PeopleAvailable = React.createClass({
   _handleRoleChange: function (e, idx, item) {
     this.setState({selectedRoleIndex: idx})
   },
+  _handleOfficeChange: function (e, idx, item) {
+    this.setState({selectedOfficeIndex: idx})
+  },
 
   _handleTimeChange: function(e) {
     this.setState({selectedTime: DateInput.parseTime(e.target.value)});
@@ -84,7 +102,8 @@ var PeopleAvailable = React.createClass({
   _handleTapSearch: function(e) {
     var token = Auth.getToken(),
         start = DateInput.setTime(this.state.selectedDate, this.state.selectedTime).toISOString(),
-        role = this.state.roles[this.state.selectedRoleIndex].text;
+        role = this.state.roles[this.state.selectedRoleIndex].text,
+        office = this.state.offices[this.state.selectedOfficeIndex].text;
 
     this.setState({people: [], loading: true});
     request
@@ -92,6 +111,7 @@ var PeopleAvailable = React.createClass({
       .query({ token: token })
       .query({ start: start })
       .query({ role: role })
+      .query({ office: office })
       .end(function (e, r) {
         people = r.body.map((email) => ({email: email, name: email}))
         this.setState({people: people, loading: false});
