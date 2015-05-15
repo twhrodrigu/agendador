@@ -37,9 +37,4 @@ class User
     end
   end
 
-  def self.login_name_for(employee_id)
-    @@employee_id_login_name_map ||= JSON.parse(open('resources/employee_id-login_name.json').read)["pairs"]
-    @@employee_id_login_name_map[employee_id]
-  end
-
 end
