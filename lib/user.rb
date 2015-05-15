@@ -3,6 +3,8 @@ require 'net/http'
 
 class User
   attr_accessor :email, :token
+  @total_pages
+
   def initialize(params)
     self.email = params[:email]
     self.token = params[:token]
@@ -23,7 +25,26 @@ class User
   end
 
   def self.get_consultants(office)
-    uri = URI('https://jigsaw.thoughtworks.com/api/people?staffing_office='+office)
+    page_number = 1
+    consultants_json = []
+
+    loop do
+      partial_consultants = execute_request(page_number, office)
+
+      partial_consultants.each do |consultant|
+        consultants_json << consultant
+      end
+
+      page_number += 1
+
+      break if (page_number > @total_pages)
+    end
+
+    consultants_json
+  end
+
+  def self.execute_request(page_number, office)
+    uri = URI("https://jigsaw.thoughtworks.com/api/people?staffing_office=#{office}&page=#{page_number}")
 
     request = Net::HTTP::Get.new uri
     request['Content-Type'] = 'application/json'
@@ -33,6 +54,7 @@ class User
     Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
       response = http.request(request)
 
+      @total_pages ||= response['X-Total-Pages'].to_i
       JSON.parse(response.body)
     end
   end
