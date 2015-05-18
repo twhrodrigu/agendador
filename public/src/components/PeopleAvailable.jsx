@@ -61,25 +61,25 @@ var PeopleAvailable = React.createClass({
               required/>
         </div>
         <Toolbar>
-          <ToolbarGroup key={1} float="left">
+          <ToolbarGroup key={0} float="left">
             {this.state.roles.length > 0 &&
               <DropDownMenu autoWidth={false} menuItems={this.state.roles} onChange={this._handleRoleChange} />
             }
           </ToolbarGroup>
-          <ToolbarGroup key={2} float="left">
+          <ToolbarGroup key={1} float="left">
             {this.state.offices.length > 0 &&
               <DropDownMenu autoWidth={false} menuItems={this.state.offices} onChange={this._handleOfficeChange} />
             }
           </ToolbarGroup>
-          <ToolbarGroup key={3} float="right">
+          <ToolbarGroup key={2} float="right">
           <RaisedButton label={this.state.loading? 'Buscando':'Buscar'}
                         primary={true}
                         onTouchTap={this._handleTapSearch}/>
+          {this.state.people.length > 0 &&
+            <PeopleList people={this.state.people}/>
+          }
           </ToolbarGroup>
         </Toolbar>
-        {this.state.people.length > 0 &&
-          <PeopleList people={this.state.people}/>
-        }
       </div>
     )
   },
