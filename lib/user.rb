@@ -25,7 +25,7 @@ class User
   end
 
   def self.offices
-    @@roles ||= JSON.parse(open('resources/offices.json').read)
+    @@offices ||= JSON.parse(open('resources/offices.json').read)
   end
 
   def self.get_consultants(office)

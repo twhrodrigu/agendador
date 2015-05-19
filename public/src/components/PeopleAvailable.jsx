@@ -75,11 +75,11 @@ var PeopleAvailable = React.createClass({
           <RaisedButton label={this.state.loading? 'Buscando':'Buscar'}
                         primary={true}
                         onTouchTap={this._handleTapSearch}/>
-          {this.state.people.length > 0 &&
-            <PeopleList people={this.state.people}/>
-          }
           </ToolbarGroup>
         </Toolbar>
+        {this.state.people.length > 0 &&
+          <PeopleList people={this.state.people}/>
+        }
       </div>
     )
   },
