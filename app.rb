@@ -1,3 +1,4 @@
+require 'keen'
 require 'sinatra'
 require 'oauth2'
 require 'json'
@@ -10,6 +11,9 @@ module AgendaEntrevista
   class WEB < Sinatra::Application
     use Rack::Session::Cookie
     register AgendaEntrevista::Auth
+    configure :production do
+      require 'newrelic_rpm'
+    end
 
     set :protection, :except => :frame_options
     set :bind, '0.0.0.0'
@@ -20,6 +24,7 @@ module AgendaEntrevista
     end
 
     post '/auth/saml/callback' do
+      Keen.publish("logins", permitted_params)
       auth = request.env['omniauth.auth']
       session[:auth] = JSON.dump(auth)
       redirect to(params[:RelayState] || '/')
