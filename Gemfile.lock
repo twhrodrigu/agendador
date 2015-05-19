@@ -74,6 +74,8 @@ GEM
       rack (>= 1.0.0)
     rack-protection (1.5.3)
       rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
     rspec (3.2.0)
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)
@@ -125,6 +127,7 @@ DEPENDENCIES
   omniauth
   omniauth-saml
   puma
+  rack-test
   rspec
   shotgun
   sinatra
