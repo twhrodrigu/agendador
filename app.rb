@@ -24,9 +24,9 @@ module AgendaEntrevista
     end
 
     post '/auth/saml/callback' do
-      Keen.publish("logins", permitted_params)
       auth = request.env['omniauth.auth']
       session[:auth] = JSON.dump(auth)
+      Keen.publish("logins", JSON.dump(auth))
       redirect to(params[:RelayState] || '/')
     end
   end
