@@ -14,14 +14,13 @@ module AgendaEntrevista
 
       def keen_params
         {
-          :headers => headers,
           :params => permitted_params
         }
       end
     end
 
     before do
-        header "Access-Control-Allow-Origin", "*"
+      header "Access-Control-Allow-Origin", "*"
     end
 
     resource :calendar do
