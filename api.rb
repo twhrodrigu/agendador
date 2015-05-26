@@ -40,7 +40,7 @@ module AgendaEntrevista
         optional :office, type: String,  desc: "The office of interest", default: 'Porto Alegre'
       end
       get :available do
-        Keen.publish("get_celandar_available", keen_params)
+        publish("get_celandar_available", keen_params)
         Calendar.availability(params[:token], permitted_params)
       end
 
@@ -64,13 +64,13 @@ module AgendaEntrevista
       requires :role, type: String, desc: "The role they belong"
     end
     get :consultants do
-      Keen.publish("get_consultants", keen_params)
+      publish("get_consultants", keen_params)
       User.all(permitted_params)
     end
 
     desc "Returns list of people who contributed to the project sorted by #commits"
     get :collaborators do
-      Keen.publish("get_collaborators", keen_params)
+      publish("get_collaborators", keen_params)
       GitLog.shortlog
     end
 
