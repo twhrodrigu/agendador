@@ -48,7 +48,7 @@ module AgendaEntrevista
 
     desc "Returns list of offices inside ThoughtWorks"
     get :offices do
-      Keen.publish("get_officess", keen_params)
+      publish("get_officess", keen_params)
       User.offices
     end
 

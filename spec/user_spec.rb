@@ -19,4 +19,12 @@ describe "User tests" do
     expect(last_response.body).to eq(['BA','DEV'].to_json)
   end
 
+  it 'return consultant offices' do
+    JSON.stub(:parse).and_return(['Porto Alegre','São Paulo'])
+
+    get '/v1/offices'
+
+    expect(last_response.body).to eq(['Porto Alegre','São Paulo'].to_json)
+  end
+
 end
