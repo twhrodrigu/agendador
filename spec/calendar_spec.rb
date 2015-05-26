@@ -17,7 +17,9 @@ describe Calendar do
     WebMock.stub_request(:post, "https://www.googleapis.com/calendar/v3/freeBusy").to_return({:body => freeBusyJson, :status => 200})
     User.stub(:all).and_return([{ :id => 'tfelix@thoughtworks.com' }])
 
-    expect(Calendar.availability('',{:start => '2015-02-25', :role => 'Dev', :office => 'Porto Alegre'}, 1)).to eq(["tfelix@thoughtworks.com"])
+    expect(Calendar.availability('',{:start => '2015-02-25T12:00:00', :role => 'Dev', :office => 'Porto Alegre'}, 1)).to eq(["tfelix@thoughtworks.com"])
   end
+
+
 
 end
