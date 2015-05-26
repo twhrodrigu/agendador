@@ -17,6 +17,12 @@ module AgendaEntrevista
           :params => permitted_params
         }
       end
+
+      def publish(event_collection, params)
+        if ENV['RACK_ENV'] == 'production'
+          Keen.publish(event_collection, params)
+        end
+      end
     end
 
     before do
@@ -48,7 +54,7 @@ module AgendaEntrevista
 
     desc "Returns list of roles inside ThoughtWorks"
     get :roles do
-      Keen.publish("get_roles", keen_params)
+      publish("get_roles", keen_params)
       User.roles
     end
 
