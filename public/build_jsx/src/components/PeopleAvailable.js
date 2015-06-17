@@ -15,7 +15,7 @@ var React = require('react'),
 
 
 
-var PeopleAvailable = React.createClass({
+var PeopleAvailable = React.createClass({displayName: "PeopleAvailable",
   mixins: [ Authentication ],
 
   componentDidMount: function() {
@@ -50,37 +50,37 @@ var PeopleAvailable = React.createClass({
 
   render: function () {
     return (
-      <div className="tempo-livre-page">
-        <div className="search-form">
-          <TextField hintText="Dia"
-              type="date"
-              value={DateInput.formatDate(this.state.selectedDate)}
-              floatingLabelText="Dia"
-              onChange={this._handleDateChange}
-              required/>
-          <InputTime />
-        </div>
-        <Toolbar>
-          <ToolbarGroup float="left">
-            {this.state.roles.length > 0 &&
-              <DropDownMenu autoWidth={false} menuItems={this.state.roles} onChange={this._handleRoleChange} />
-            }
-          </ToolbarGroup>
-          <ToolbarGroup float="left">
-            {this.state.offices.length > 0 &&
-              <DropDownMenu autoWidth={false} menuItems={this.state.offices} onChange={this._handleOfficeChange} />
-            }
-          </ToolbarGroup>
-          <ToolbarGroup float="right">
-          <RaisedButton label={this.state.loading? 'Buscando':'Buscar'}
-                        primary={true}
-                        onTouchTap={this._handleTapSearch}/>
-          </ToolbarGroup>
-        </Toolbar>
-        {this.state.people.length > 0 &&
-          <PeopleList people={this.state.people}/>
-        }
-      </div>
+      React.createElement("div", {className: "tempo-livre-page"}, 
+        React.createElement("div", {className: "search-form"}, 
+          React.createElement(TextField, {hintText: "Dia", 
+              type: "date", 
+              value: DateInput.formatDate(this.state.selectedDate), 
+              floatingLabelText: "Dia", 
+              onChange: this._handleDateChange, 
+              required: true}), 
+          React.createElement(InputTime, null)
+        ), 
+        React.createElement(Toolbar, null, 
+          React.createElement(ToolbarGroup, {float: "left"}, 
+            this.state.roles.length > 0 &&
+              React.createElement(DropDownMenu, {autoWidth: false, menuItems: this.state.roles, onChange: this._handleRoleChange})
+            
+          ), 
+          React.createElement(ToolbarGroup, {float: "left"}, 
+            this.state.offices.length > 0 &&
+              React.createElement(DropDownMenu, {autoWidth: false, menuItems: this.state.offices, onChange: this._handleOfficeChange})
+            
+          ), 
+          React.createElement(ToolbarGroup, {float: "right"}, 
+          React.createElement(RaisedButton, {label: this.state.loading? 'Buscando':'Buscar', 
+                        primary: true, 
+                        onTouchTap: this._handleTapSearch})
+          )
+        ), 
+        this.state.people.length > 0 &&
+          React.createElement(PeopleList, {people: this.state.people})
+        
+      )
     )
   },
 
