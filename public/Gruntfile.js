@@ -37,5 +37,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', ['react']);
     grunt.registerTask('test', ['build', 'karma']);
+    grunt.registerTask('serve', ['build', 'watch']);
 
 };
