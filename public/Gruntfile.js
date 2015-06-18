@@ -3,6 +3,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-react');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     // Do grunt-related things in here
     grunt.initConfig({
@@ -18,6 +19,13 @@ module.exports = function(grunt) {
                         ext: '.js'
                     }
                 ]
+            }
+        },
+        watch: {
+            files: ['**/*.jsx'],
+            tasks: ['build'],
+            options: {
+                event: ['changed'],
             }
         },
         karma: {
