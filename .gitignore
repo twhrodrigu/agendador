@@ -4,3 +4,4 @@ node_modules
 agenda-entrevista.css
 app-bundled.js
 .vagrant
+public/dist/
