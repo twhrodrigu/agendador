@@ -3,13 +3,42 @@
   "main": "src/app.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack --color --progress --profile"
+    "build": "webpack --color --progress --profile",
+    "test": "node ./node_modules/jest-cli/bin/jest.js"
+  },
+  "jest": {
+    "rootDir": ".",
+    "scriptPreprocessor": "./src/__tests__/preprocessor.js",
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "jsx"
+    ],
+    "modulePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "unmockedModulePathPatterns": [
+      "react"
+    ],
+    "testDirectoryName": "__tests__",
+    "testPathDirs" : [
+      "./src/__tests__"
+    ],
+    "testFileExtensions": [
+      "jsx",
+      "js"
+    ],
+    "testPathIgnorePatterns": [
+      "preprocessor.js"
+    ]
   },
   "devDependencies": {
     "css-loader": "^0.9.1",
-    "less-loader": "^2.1.0",
-    "style-loader": "^0.8.3",
+    "jest-cli": "^0.4.13",
     "jsx-loader": "^0.12.2",
+    "less-loader": "^2.1.0",
+    "react-tools": "^0.13.3",
+    "style-loader": "^0.8.3",
     "webpack": "^1.7.2",
     "webpack-dev-server": "^1.7.0"
   },
