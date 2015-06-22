@@ -1,6 +1,6 @@
 ---
 - hosts: all
   roles:
-    - rbenv
+    - ruby
     - common
     - nodejs
