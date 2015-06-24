@@ -6,3 +6,4 @@ app-bundled.js
 .vagrant
 public/dist/
 *.log
+.DS_Store
