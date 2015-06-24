@@ -1,6 +1,4 @@
-- name: install bundler
-  command: bash -lc 'gem install bundler'
 
-- name: install project dependencies
-  command: bash -lc 'bundle install' chdir=/vagrant/agenda-mvp/
+- name: install Ruby dependencies
+  command: bash -lc 'bundle install' chdir={{ base_path }}
   sudo_user: vagrant
