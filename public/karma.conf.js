@@ -1,83 +1,78 @@
-// Karma configuration
-// Generated on Wed Jun 10 2015 15:11:27 GMT-0300 (BRT)
+'use strict';
 
-module.exports = function(config) {
+var path = require('path');
+
+module.exports = function (config) {
   config.set({
-
-    // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
-
-
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
-
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      '**/*.jsx': ['react']
-    },
-
-    // list of files / patterns to load in the browser
     files: [
-      'dist/main.bundle.js',
-      'node_modules/react/dist/react-with-addons.js',
-      // {pattern: 'node_modules/requirejs/*.js', included: false},
-      // {pattern: 'node_modules/react/*.js', included: false},
-      // {pattern: 'node_modules/react/dist/react-with-addons.js', included: false},
-      // {pattern: 'src/**/*.js', included: false},
-      // {pattern: 'src/**/*.jsx', included: false},
-      '__tests__/*.jsx'
-      //
-
-      // 'build_jsx/src/components/**/*.js'
-
-      // 'test-main.js'
+      'test/test.bundle.jsx'
     ],
-
-    // list of files to exclude
-    exclude: [
-    ],
-
-    reactPreprocessor: {
-      harmony: true,
-      es6module: true
+    preprocessors: {
+      'test/test.bundle.jsx': ['webpack']
     },
-
-
-
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
-
-
-    // web server port
-    port: 9876,
-
-
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
-
-
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    webpack: {
+      cache: false,
+      loaders: [
+        {
+          test: /\.jsx$/,
+          loader: 'jsx-loader?insertPragma=React.DOM&harmony'
+        }, {
+          test: /\.css$/,
+          loader: 'style!css'
+        }, {
+          test: /\.gif/,
+          loader: 'url-loader?limit=10000&minetype=image/gif'
+        }, {
+          test: /\.jpg/,
+          loader: 'url-loader?limit=10000&minetype=image/jpg'
+        }, {
+          test: /\.png/,
+          loader: 'url-loader?limit=10000&minetype=image/png'
+        }, {
+          test: /\.js$/,
+          loader: 'jsx-loader'
+        },  {
+          test: /\.less/,
+          loader: 'style-loader!css-loader!less-loader'
+        },  {
+          test: /\.css$/,
+          loader: 'style-loader!css-loader'
+        }, {
+          test: /\.(woff|woff2)$/,
+          loader: 'url-loader?limit=8192'
+        }
+      ],
+      resolve: {
+        alias: {
+          'styles': path.join(process.cwd(), './src/less/'),
+          'components': path.join(process.cwd(), './src/components/')
+        },
+        extensions: ['', '.js', '.jsx']
+      }
+    },
+    webpackServer: {
+      stats: {
+        colors: true
+      }
+    },
+    exclude: [],
+    port: 8080,
     logLevel: config.LOG_INFO,
-
-
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
-
-
-
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
-
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    colors: true,
+    autoWatch: false,
+    // Start these browsers, currently available:
+    // - Chrome
+    // - ChromeCanary
+    // - Firefox
+    // - Opera
+    // - Safari (only Mac)
+    // - PhantomJS
+    // - IE (only Windows)
+    browsers: ['PhantomJS'],
+    reporters: ['progress'],
+    captureTimeout: 60000,
+    singleRun: true
   });
 };

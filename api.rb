@@ -40,7 +40,7 @@ module AgendaEntrevista
         optional :office, type: String,  desc: "The office of interest", default: 'Porto Alegre'
       end
       get :available do
-        publish("get_celandar_available", keen_params)
+        publish("get_calendar_available", keen_params)
         Calendar.availability(params[:token], permitted_params)
       end
 
@@ -48,7 +48,7 @@ module AgendaEntrevista
 
     desc "Returns list of offices inside ThoughtWorks"
     get :offices do
-      publish("get_officess", keen_params)
+      publish("get_offices", keen_params)
       User.offices
     end
 

@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 var React = require('react'),
     mui = require('material-ui'),
     DropDownMenu = mui.DropDownMenu;

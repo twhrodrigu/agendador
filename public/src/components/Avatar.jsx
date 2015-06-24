@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 var React = require('react'),
     Gravatar = require('./Gravatar'),
     mui = require('material-ui'),
@@ -33,8 +34,8 @@ var Avatar = React.createClass({
     var classes = this.getClasses('person-avatar');
 
     return (
-      <Paper zDepth={this.props.zDepth} 
-             circle={this.props.circle} 
+      <Paper zDepth={this.props.zDepth}
+             circle={this.props.circle}
              style={avatarStyle}
              className={classes}>
         <Gravatar email={this.props.email}
