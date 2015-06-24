@@ -1,5 +1,7 @@
 
 - hosts: all
+  vars:
+    base_path: /vagrant/agenda-mvp
   roles:
     - ruby
     - common

@@ -12,4 +12,4 @@
   shell: sudo ln -s `which nodejs` /usr/local/bin/node
 
 - name: install nodejs dependencies (package.json)
-  npm: path=/vagrant/agenda-mvp/public
+  npm: path={{ base_path }}/public

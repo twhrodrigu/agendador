@@ -2,6 +2,7 @@
 # vi: set ft=ruby :
 
 VAGRANTFILE_API_VERSION = "2"
+BASE_PATH = "/vagrant/agenda-mvp/"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
@@ -12,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.verbose = 'vv'
   end
 
-  config.vm.synced_folder ".", "/vagrant/agenda-mvp/"
+  config.vm.synced_folder ".", BASE_PATH
 
   config.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true
   config.vm.network "forwarded_port", guest: 9393, host: 9393, auto_correct: true
