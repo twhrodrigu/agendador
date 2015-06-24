@@ -1,3 +1,4 @@
-- name: install project dependencies
+
+- name: install Ruby dependencies
   command: bash -lc 'bundle install' chdir=/vagrant/agenda-mvp/
   sudo_user: vagrant

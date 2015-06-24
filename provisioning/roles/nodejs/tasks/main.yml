@@ -1,8 +1,15 @@
+
+- name: Update Debian apt cache
+  apt: update_cache=yes cache_valid_time=86400
+
 - name: install npm
   apt: name=npm state=present
 
 - name: install nodejs
   apt: name=nodejs state=present
 
-- name: install node dependencies
+- name: add a "node" symlink to keep compatibilty with legacy nodejs packages
+  shell: sudo ln -s `which nodejs` /usr/local/bin/node
+
+- name: install nodejs dependencies (package.json)
   npm: path=/vagrant/agenda-mvp/public
