@@ -1,6 +1,2 @@
-- name: install bundler
-  command: bash -lc 'gem install bundler'
-
-- name: install project dependencies
-  command: bash -lc 'bundle install' chdir=/vagrant/agenda-mvp/
-  sudo_user: vagrant
+---
+- apt: name=vim update_cache=yes

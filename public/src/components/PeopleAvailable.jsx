@@ -1,4 +1,3 @@
-
 var React = require('react'),
     PeopleList = require('./PeopleList'),
     Authentication = require('../mixins/Authentication'),
@@ -6,14 +5,11 @@ var React = require('react'),
     Auth = require('../Auth'),
     request = require('superagent'),
     mui = require('material-ui'),
-    InputTime = require('./InputTime'),
     TextField = mui.TextField,
     Toolbar = mui.Toolbar,
     ToolbarGroup = mui.ToolbarGroup,
     RaisedButton = mui.RaisedButton,
     DropDownMenu = mui.DropDownMenu;
-
-
 
 var PeopleAvailable = React.createClass({
   mixins: [ Authentication ],
@@ -58,20 +54,24 @@ var PeopleAvailable = React.createClass({
               floatingLabelText="Dia"
               onChange={this._handleDateChange}
               required/>
-          <InputTime />
+          <TextField hintText="Horário" type="time"
+          defaultValue={DateInput.formatTime(this.state.selectedTime)}
+              floatingLabelText="Horário"
+              onChange={this._handleTimeChange}
+              required/>
         </div>
         <Toolbar>
-          <ToolbarGroup float="left">
+          <ToolbarGroup key={0} float="left">
             {this.state.roles.length > 0 &&
               <DropDownMenu autoWidth={false} menuItems={this.state.roles} onChange={this._handleRoleChange} />
             }
           </ToolbarGroup>
-          <ToolbarGroup float="left">
+          <ToolbarGroup key={1} float="left">
             {this.state.offices.length > 0 &&
               <DropDownMenu autoWidth={false} menuItems={this.state.offices} onChange={this._handleOfficeChange} />
             }
           </ToolbarGroup>
-          <ToolbarGroup float="right">
+          <ToolbarGroup key={2} float="right">
           <RaisedButton label={this.state.loading? 'Buscando':'Buscar'}
                         primary={true}
                         onTouchTap={this._handleTapSearch}/>

@@ -43,7 +43,7 @@ describe "User tests" do
          with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'e9c735405f523e81f2f2884ea116411f', 'Content-Type'=>'application/json', 'Host'=>'jigsaw.thoughtworks.com', 'User-Agent'=>'Ruby', 'X-Service-Version'=>'2'}).
          to_return(:status => 200, :body => json, :headers => {})
 
-    get '/v1/consultants', params = {:office => "Porto%20Alegre", :role => "Dev"}
+    get '/v1/consultants', params = {:office => "Porto Alegre", :role => "Dev"}
 
     expect(last_response.body).to eq([{:id => "aconsultant@thoughtworks.com"},{:id => "bconsultant@thoughtworks.com"}].to_json)
   end
