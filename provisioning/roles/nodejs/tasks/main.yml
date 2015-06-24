@@ -11,5 +11,8 @@
 - name: add a "node" symlink to keep compatibilty with legacy nodejs packages
   shell: sudo ln -s `which nodejs` /usr/local/bin/node
 
+- name: install grunt
+  apt: name=grunt-cli global=yes state=present
+
 - name: install nodejs dependencies (package.json)
   npm: path={{ base_path }}/public
