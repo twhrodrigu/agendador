@@ -92,11 +92,11 @@ module.exports = function (grunt) {
     watch: {
       webpack: {
         files: ['<%= pkg.src %>/**/*.js',
-          '<%= pkg.src %>/less/**/*.css',
+          '<%= pkg.src %>/less/**/*.less',
           '!<%= pkg.src %>/<%= pkg.mainOutput %>.js',
           '<%= pkg.src %>/**/*.jsx'
         ],
-        tasks: ['webpack:development']
+        tasks: ['webpack:development', 'karma']
       },
       livereload: {
         options: {
