@@ -22,3 +22,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.cache.scope = :box
   end
 end
+
+#Create swap partition
+Vagrant.configure("2") do |config|
+  config.vm.provision "shell", path: "createSwap.sh"
+end

@@ -4,6 +4,6 @@ node_modules
 agenda-entrevista.css
 app-bundled.js
 .vagrant
-public/dist/
+public/dist
 *.log
 .DS_Store
