@@ -93,7 +93,8 @@ module.exports = function (grunt) {
       webpack: {
         files: ['<%= pkg.src %>/**/*.js',
           '<%= pkg.src %>/less/**/*.css',
-          '!<%= pkg.src %>/<%= pkg.mainOutput %>.js'
+          '!<%= pkg.src %>/<%= pkg.mainOutput %>.js',
+          '<%= pkg.src %>/**/*.jsx'
         ],
         tasks: ['webpack:development']
       },
