@@ -1,0 +1,7 @@
+
+- name: install ruby dependencies
+  command: bash -lc 'bundle install' chdir={{ base_path }}
+  sudo_user: vagrant
+
+- name: install nodejs dependencies (package.json)
+  npm: path={{ base_path }}/public

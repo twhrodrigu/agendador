@@ -14,5 +14,3 @@
 - name: install grunt
   npm: name=grunt-cli global=yes state=present
 
-- name: install nodejs dependencies (package.json)
-  npm: path={{ base_path }}/public

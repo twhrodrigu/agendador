@@ -1,8 +1,8 @@
 
 - hosts: all
   vars:
-    base_path: /vagrant/agenda-mvp
+    base_path: /vagrant/agendador
   roles:
     - ruby
-    - common
     - nodejs
+    - app

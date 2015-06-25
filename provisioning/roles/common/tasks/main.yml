@@ -1,4 +1,0 @@
-
-- name: install Ruby dependencies
-  command: bash -lc 'bundle install' chdir={{ base_path }}
-  sudo_user: vagrant
