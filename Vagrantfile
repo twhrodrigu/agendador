@@ -25,5 +25,5 @@ end
 
 #Create swap partition
 Vagrant.configure("2") do |config|
-  config.vm.provision "shell", path: "createSwap.sh"
+  config.vm.provision "shell", path: "provisioning/scripts/createSwap.sh"
 end
