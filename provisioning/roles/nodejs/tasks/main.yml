@@ -20,8 +20,18 @@
 - name: install phantomjs
   npm: name=phantomjs global=yes state=present
 
+- name: install karma phantom launcher
+  npm: name=karma-phantomjs-launcher global=yes state=present
+  
+
 - name: install karma-webpack
   npm: name=karma-webpack global=yes state=present
+  
+- name: install karma-jasmine
+  npm: name=karma-jasmine global=yes state=present
+
+- name: install karma-jasmine-matchers
+  npm: name=karma-jasmine-matchers global=yes state=present
   
 - name: install libconfig for phantomjs
   apt: name=libfontconfig state=present
