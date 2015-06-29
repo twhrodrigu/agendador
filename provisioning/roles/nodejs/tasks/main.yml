@@ -14,3 +14,15 @@
 - name: install grunt
   npm: name=grunt-cli global=yes state=present
 
+- name: install karma-cli
+  npm: name=karma-cli global=yes state=present
+
+- name: install phantomjs
+  npm: name=phantomjs global=yes state=present
+
+- name: install karma-webpack
+  npm: name=karma-webpack global=yes state=present
+  
+- name: install libconfig for phantomjs
+  apt: name=libfontconfig state=present
+  sudo: yes
