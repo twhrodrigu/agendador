@@ -5,45 +5,23 @@ var path = require('path');
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'jasmine-matchers'],
     files: [
-      'test/test.bundle.jsx'
+      'node_modules/phantomjs-polyfill/bind-polyfill.js',
+      'src/__tests__/**/*spec.jsx'
     ],
     preprocessors: {
-      'test/test.bundle.jsx': ['webpack']
+      'src/__tests__/**/*.jsx': ['webpack']
     },
     webpack: {
-      cache: false,
-      loaders: [
-        {
-          test: /\.jsx$/,
-          loader: 'jsx-loader?insertPragma=React.DOM&harmony'
-        }, {
-          test: /\.css$/,
-          loader: 'style!css'
-        }, {
-          test: /\.gif/,
-          loader: 'url-loader?limit=10000&minetype=image/gif'
-        }, {
-          test: /\.jpg/,
-          loader: 'url-loader?limit=10000&minetype=image/jpg'
-        }, {
-          test: /\.png/,
-          loader: 'url-loader?limit=10000&minetype=image/png'
-        }, {
-          test: /\.js$/,
-          loader: 'jsx-loader'
-        },  {
-          test: /\.less/,
-          loader: 'style-loader!css-loader!less-loader'
-        },  {
-          test: /\.css$/,
-          loader: 'style-loader!css-loader'
-        }, {
-          test: /\.(woff|woff2)$/,
-          loader: 'url-loader?limit=8192'
-        }
-      ],
+      context: __dirname + '/public/src',
+      module: {
+        loaders: [{ 
+          test: /\.jsx?$/, exclude: /node_modules/, loader: "jsx-loader?harmony"}
+      ]}, 
+      resolveLoader:{
+        root: __dirname + "/node_modules/" 
+      },
       resolve: {
         alias: {
           'styles': path.join(process.cwd(), './src/less/'),
@@ -73,6 +51,12 @@ module.exports = function (config) {
     browsers: ['PhantomJS'],
     reporters: ['progress'],
     captureTimeout: 60000,
-    singleRun: true
+    singleRun: true,
+     plugins: [
+      'karma-webpack',
+      'karma-jasmine',
+      'karma-jasmine-matchers',
+      'karma-phantomjs-launcher',
+      ]
   });
 };
