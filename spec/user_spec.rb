@@ -12,7 +12,7 @@ describe "User tests" do
   end
 
   it 'return consultant roles' do
-    JSON.stub(:parse).and_return(['BA','DEV'])
+    allow(JSON).to receive(:parse).and_return(['BA','DEV'])
 
     get '/v1/roles'
 
@@ -20,7 +20,7 @@ describe "User tests" do
   end
 
   it 'return consultant offices' do
-    JSON.stub(:parse).and_return(['Porto Alegre','São Paulo'])
+    allow(JSON).to receive(:parse).and_return(['Porto Alegre','São Paulo'])
 
     get '/v1/offices'
 
