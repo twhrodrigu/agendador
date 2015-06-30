@@ -8,7 +8,7 @@ require './auth'
 
 
 module AgendaEntrevista
-  class WEB < Sinatra::Application
+  class Web < Sinatra::Application
     use Rack::Session::Cookie
     register AgendaEntrevista::Auth
     configure :production do
