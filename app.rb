@@ -7,10 +7,10 @@ require './lib/calendar'
 require './auth'
 
 
-module AgendaEntrevista
+module Agendador
   class Web < Sinatra::Application
     use Rack::Session::Cookie
-    register AgendaEntrevista::Auth
+    register Agendador::Auth
     configure :production do
       require 'newrelic_rpm'
     end

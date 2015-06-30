@@ -1,4 +1,4 @@
 require './app'
 require './api'
 
-run Rack::Cascade.new [AgendaEntrevista::API, AgendaEntrevista::Web]
+run Rack::Cascade.new [Agendador::API, Agendador::Web]

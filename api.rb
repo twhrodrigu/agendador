@@ -2,7 +2,7 @@ require 'grape'
 require 'keen'
 require './lib/gitlog.rb'
 
-module AgendaEntrevista
+module Agendador
   class API < Grape::API
     version 'v1', using: :path
     format :json

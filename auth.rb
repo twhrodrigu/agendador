@@ -3,7 +3,7 @@ require 'omniauth'
 require 'omniauth-saml'
 require 'securerandom'
 
-module AgendaEntrevista
+module Agendador
   module Auth
     module Helpers
       def protected!

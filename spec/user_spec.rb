@@ -8,7 +8,7 @@ describe "User tests" do
   include Rack::Test::Methods
 
   def app
-    AgendaEntrevista::API
+    Agendador::API
   end
 
   it 'return consultant roles' do
