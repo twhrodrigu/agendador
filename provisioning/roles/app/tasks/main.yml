@@ -1,0 +1,13 @@
+
+- name: install ruby dependencies
+  command: bash -lc 'bundle install' chdir={{ base_path }}
+  sudo_user: vagrant
+
+- name: install nodejs dependencies (package.json)
+  npm: path={{ base_path }}/public
+
+- name: Adding the path in the bashrc files
+  lineinfile: dest=/home/vagrant/.bashrc line='export LC_ALL=en_US.UTF-8' insertafter='EOF' regexp='export LC_ALL=en_US.UTF-8' state=present
+
+- name: Adding the path in the bashrc files
+  lineinfile: dest=/home/vagrant/.bashrc line='export LANG=en_US.UTF-8' insertafter='EOF' regexp='export LANG=en_US.UTF-8' state=present

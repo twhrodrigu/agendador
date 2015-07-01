@@ -1,0 +1,8 @@
+
+- hosts: all
+  vars:
+    base_path: /vagrant/agendador
+  roles:
+    - ruby
+    - nodejs
+    - app

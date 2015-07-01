@@ -1,28 +1,22 @@
----
-- name: Ensure the system can use the HTTPS transport for APT
-  stat: path=/usr/lib/apt/methods/https
-  register: apt_https_transport
 
-- name: Install HTTPS transport for APT
-  apt: pkg=apt-transport-https state=installed
-  when: not apt_https_transport.stat.exists
+- name: Update Debian apt cache
+  apt: update_cache=yes cache_valid_time=86400
 
-- name: Import the NodeSource GPG key into apt
-  apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
+- name: install npm
+  apt: name=npm state=present
 
-- name: Add NodeSource deb repository
-  apt_repository: repo='deb https://deb.nodesource.com/node {{ ansible_distribution_release }} main' state=present
+- name: install nodejs
+  apt: name=nodejs state=present
 
-- name: Add NodeSource deb-src repository
-  apt_repository: repo='deb-src https://deb.nodesource.com/node {{ ansible_distribution_release }} main' state=present
+- name: add a "node" symlink to keep compatibilty with legacy nodejs packages
+  shell: sudo ln -s -f `which nodejs` /usr/local/bin/node
 
-- name: Add NodeSource repository preferences
-  template:
-    src: etc/apt/preferences.d/deb_nodesource_com_node.pref.2
-    dest: /etc/apt/preferences.d/deb_nodesource_com_node.pref
+- name: run npm install
+  shell: "cd /vagrant/agendador/public && npm install"
 
-- name: Install packages required to build ruby (Debian).
-  apt: "pkg={{ item }} state=installed update_cache=yes"
-  with_items:
-    - build-essential
-    - nodejs
+- name: install grunt
+  npm: name=grunt-cli global=yes state=present
+
+- name: install libconfig for phantomjs
+  apt: name=libfontconfig state=present
+  sudo: yes
