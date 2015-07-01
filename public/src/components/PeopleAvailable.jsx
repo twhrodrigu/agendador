@@ -38,8 +38,8 @@ var PeopleAvailable = React.createClass({
 
   getInitialState: function() {
     return {
-      selectedDate: DateInput.now(),
-      selectedTime: DateInput.now(),
+      selectedDate: DateInput.parseDate(DateInput.now()),
+      selectedTime: DateInput.parseTime(DateInput.now()),
       selectedRoleIndex: 0,
       selectedOfficeIndex: 0,
       roles: [],

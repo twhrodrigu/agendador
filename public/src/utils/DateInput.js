@@ -24,11 +24,11 @@ module.exports = {
   },
 
   parseDate: function(str) {
-    return this.parse(str, INPUT_DATE_FORMAT);
+    return this.formatDate(str);
   },
 
   parseTime: function(str) {
-    return this.parse(str, INPUT_TIME_FORMAT);
+    return this.formatTime(str);
   },
 
   setTime: function(d,t){
