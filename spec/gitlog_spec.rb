@@ -19,5 +19,3 @@ describe GitLog do
     end
   end
 end
-
-
