@@ -1,5 +1,4 @@
 require 'grape'
-require 'keen'
 require './lib/gitlog.rb'
 
 module Agendador
@@ -10,18 +9,6 @@ module Agendador
     helpers do
       def permitted_params
           @permitted_params ||= declared(params, include_missing: false)
-      end
-
-      def keen_params
-        {
-          :params => permitted_params
-        }
-      end
-
-      def publish(event_collection, params)
-        if ENV['RACK_ENV'] == 'production'
-          Keen.publish(event_collection, params)
-        end
       end
     end
 
@@ -40,7 +27,6 @@ module Agendador
         optional :office, type: String,  desc: "The office of interest", default: 'Porto Alegre'
       end
       get :available do
-        publish("get_calendar_available", keen_params)
         Calendar.availability(params[:token], permitted_params)
       end
 
@@ -48,13 +34,11 @@ module Agendador
 
     desc "Returns list of offices inside ThoughtWorks"
     get :offices do
-      publish("get_offices", keen_params)
       User.offices
     end
 
     desc "Returns list of roles inside ThoughtWorks"
     get :roles do
-      publish("get_roles", keen_params)
       User.roles
     end
 
@@ -64,15 +48,12 @@ module Agendador
       requires :role, type: String, desc: "The role they belong"
     end
     get :consultants do
-      publish("get_consultants", keen_params)
       User.all(permitted_params)
     end
 
     desc "Returns list of people who contributed to the project sorted by #commits"
     get :collaborators do
-      publish("get_collaborators", keen_params)
       GitLog.shortlog
     end
-
   end
 end

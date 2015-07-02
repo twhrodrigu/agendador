@@ -11,7 +11,6 @@ gem "puma"
 gem "omniauth"
 gem "omniauth-saml"
 
-gem "keen"
 gem "newrelic_rpm"
 
 group :test do

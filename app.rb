@@ -1,4 +1,3 @@
-require 'keen'
 require 'sinatra'
 require 'oauth2'
 require 'json'
