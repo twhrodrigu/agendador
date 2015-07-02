@@ -1,10 +1,9 @@
 tmp
 *.swp
-node_modules
-agenda-entrevista.css
-app-bundled.js
-.vagrant
-public/dist/
-public/bower_components/
 *.log
 .DS_Store
+
+node_modules/
+public/dist/
+
+.vagrant/

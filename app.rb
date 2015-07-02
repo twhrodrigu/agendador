@@ -1,4 +1,3 @@
-require 'keen'
 require 'sinatra'
 require 'oauth2'
 require 'json'
@@ -7,13 +6,10 @@ require './lib/calendar'
 require './auth'
 
 
-module AgendaEntrevista
-  class WEB < Sinatra::Application
+module Agendador
+  class Web < Sinatra::Application
     use Rack::Session::Cookie
-    register AgendaEntrevista::Auth
-    configure :production do
-      require 'newrelic_rpm'
-    end
+    register Agendador::Auth
 
     set :protection, :except => :frame_options
     set :bind, '0.0.0.0'

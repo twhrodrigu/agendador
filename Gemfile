@@ -4,16 +4,19 @@ gem "sinatra"
 gem "json"
 gem "oauth2"
 
-gem "byebug"
 gem "shotgun"
 gem "grape"
-
-gem "rspec"
-gem "webmock"
 gem "puma"
 
 gem "omniauth"
 gem "omniauth-saml"
-gem 'rack-test'
-gem "keen"
-gem "newrelic_rpm"
+
+group :test do
+    gem "rspec"
+    gem "webmock"
+    gem 'rack-test'
+end
+
+group :development, :test do
+    gem "byebug"    
+end
