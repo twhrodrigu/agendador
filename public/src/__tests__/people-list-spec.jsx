@@ -2,8 +2,6 @@
  * @jsx React.DOM
  */
 
-jest.dontMock('../components/PeopleList');
-
 var React = require('react/addons'),
     PeopleList = require('../components/PeopleList'),
     ReactTestUtils = React.addons.TestUtils;
