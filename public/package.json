@@ -50,7 +50,8 @@
     "jasmine-expect": "~2.0.0-beta1",
     "jasmine-matchers": "~0.2.3",
     "karma-jasmine-matchers": "~2.0.0-beta1",
-    "phantomjs": "~1.9.17"
+    "phantomjs": "~1.9.17",
+    "gulp-karma": "0.0.4"
   },
   "dependencies": {
     "hellojs": "^1.5.0",

@@ -1,10 +1,7 @@
 var gulp = require('gulp');
-var react = require('gulp-react');
-var inject = require('gulp-inject');
-var bowerFiles = require('main-bower-files');
-var run = require('gulp-run');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
+var karma = require('karma').server;
 
 gulp.task('watch', function() {
     gulp.watch(['src/**/*.jsx', 'src/**/*.js', 'less/**/*.less']).on('change', function(file) {
@@ -16,6 +13,10 @@ gulp.task('webpack', function() {
     webpack(webpackConfig, function(error, status) {
 
     });
+});
+
+gulp.task('test', function(done) {
+	karma.start( {configFile: __dirname + "/karma.conf.js", singleRun: true }, done );
 });
 
 
