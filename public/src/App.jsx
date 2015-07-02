@@ -1,4 +1,4 @@
-require('../less/app.less');
+require('./less/app.less');
 require('react-tap-event-plugin')();
 
 var React = require('react'),
@@ -26,4 +26,3 @@ Router
   .run(function (Handler) {
     React.render(<Handler/>, document.body)
   })
-

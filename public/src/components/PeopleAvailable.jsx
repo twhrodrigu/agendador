@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 var React = require('react'),
     PeopleList = require('./PeopleList'),
     Authentication = require('../mixins/Authentication'),
@@ -5,11 +6,14 @@ var React = require('react'),
     Auth = require('../Auth'),
     request = require('superagent'),
     mui = require('material-ui'),
+    InputTime = require('./InputTime'),
     TextField = mui.TextField,
     Toolbar = mui.Toolbar,
     ToolbarGroup = mui.ToolbarGroup,
     RaisedButton = mui.RaisedButton,
     DropDownMenu = mui.DropDownMenu;
+
+
 
 var PeopleAvailable = React.createClass({
   mixins: [ Authentication ],
@@ -34,8 +38,8 @@ var PeopleAvailable = React.createClass({
 
   getInitialState: function() {
     return {
-      selectedDate: DateInput.now(),
-      selectedTime: DateInput.now(),
+      selectedDate: DateInput.parseDate(DateInput.now()),
+      selectedTime: DateInput.parseTime(DateInput.now()),
       selectedRoleIndex: 0,
       selectedOfficeIndex: 0,
       roles: [],
@@ -54,24 +58,20 @@ var PeopleAvailable = React.createClass({
               floatingLabelText="Dia"
               onChange={this._handleDateChange}
               required/>
-          <TextField hintText="Horário" type="time"
-          defaultValue={DateInput.formatTime(this.state.selectedTime)}
-              floatingLabelText="Horário"
-              onChange={this._handleTimeChange}
-              required/>
+          <InputTime />
         </div>
         <Toolbar>
-          <ToolbarGroup key={0} float="left">
+          <ToolbarGroup float="left">
             {this.state.roles.length > 0 &&
               <DropDownMenu autoWidth={false} menuItems={this.state.roles} onChange={this._handleRoleChange} />
             }
           </ToolbarGroup>
-          <ToolbarGroup key={1} float="left">
+          <ToolbarGroup float="left">
             {this.state.offices.length > 0 &&
               <DropDownMenu autoWidth={false} menuItems={this.state.offices} onChange={this._handleOfficeChange} />
             }
           </ToolbarGroup>
-          <ToolbarGroup key={2} float="right">
+          <ToolbarGroup float="right">
           <RaisedButton label={this.state.loading? 'Buscando':'Buscar'}
                         primary={true}
                         onTouchTap={this._handleTapSearch}/>

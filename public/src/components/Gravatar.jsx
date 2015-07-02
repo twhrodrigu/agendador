@@ -1,28 +1,17 @@
+/** @jsx React.DOM */
 var React = require('react'),
     md5 = require('md5'),
-    querystring = require('querystring');
+    querystring = require('querystring'),
+    isRetina = require('is-retina');
 
-var isRetina = function() {
-  var mediaQuery;
-  if (typeof window !== "undefined" && window !== null) {
-    mediaQuery = "(-webkit-min-device-pixel-ratio: 1.25), (min--moz-device-pixel-ratio: 1.25), (-o-min-device-pixel-ratio: 5/4), (min-resolution: 1.25dppx)";
-    if (window.devicePixelRatio > 1.25) {
-      return true;
-    }
-    if (window.matchMedia && window.matchMedia(mediaQuery).matches) {
-      return true;
-    }
-  }
-  return false;
-}
 
 var Gravatar = React.createClass({
   propTypes: {
     email: React.PropTypes.string.isRequired,
     size: React.PropTypes.number.isRequired,
-    default: React.PropTypes.number.isRequired,
-    rating: React.PropTypes.number.isRequired,
-    https: React.PropTypes.number.isRequired
+    default: React.PropTypes.string.isRequired,
+    rating: React.PropTypes.string.isRequired,
+    https: React.PropTypes.bool.isRequired
   },
 
   getDefaultProps: function() {
@@ -49,9 +38,9 @@ var Gravatar = React.createClass({
     var src = base + md5.digest_s(this.props.email) + "?" + query
 
     return (
-      <img className="react-gravatar" 
-        src={src} alt={this.props.email} 
-        height={this.props.size} 
+      <img className="react-gravatar"
+        src={src} alt={this.props.email}
+        height={this.props.size}
         width={this.props.size} />
     )
   }
