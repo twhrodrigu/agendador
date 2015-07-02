@@ -21,7 +21,7 @@ var PeopleList = React.createClass({
     function peopleItem(person, idx) {
       return (
         <li key={idx} className='people-list-tile'>
-          <Avatar size="40" className='people-tile-avatar' email={person.email}/>
+          <Avatar size={40} className='people-tile-avatar' email={person.email}/>
           <span className='people-tile-text'>{person.email}</span>
         </li>
       )
