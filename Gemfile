@@ -11,8 +11,6 @@ gem "puma"
 gem "omniauth"
 gem "omniauth-saml"
 
-gem "newrelic_rpm"
-
 group :test do
     gem "rspec"
     gem "webmock"
