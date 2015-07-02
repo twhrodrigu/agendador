@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 var React = require('react'),
     Auth = require('../Auth'),
     mui = require('material-ui'),

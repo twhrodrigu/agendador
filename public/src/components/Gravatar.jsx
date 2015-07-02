@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 var React = require('react'),
     md5 = require('md5'),
     querystring = require('querystring');
@@ -49,9 +50,9 @@ var Gravatar = React.createClass({
     var src = base + md5.digest_s(this.props.email) + "?" + query
 
     return (
-      <img className="react-gravatar" 
-        src={src} alt={this.props.email} 
-        height={this.props.size} 
+      <img className="react-gravatar"
+        src={src} alt={this.props.email}
+        height={this.props.size}
         width={this.props.size} />
     )
   }
