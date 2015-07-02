@@ -1,5 +1,4 @@
 require 'grape'
-require './lib/gitlog.rb'
 
 module Agendador
   class API < Grape::API
@@ -49,11 +48,6 @@ module Agendador
     end
     get :consultants do
       User.all(permitted_params)
-    end
-
-    desc "Returns list of people who contributed to the project sorted by #commits"
-    get :collaborators do
-      GitLog.shortlog
     end
   end
 end
