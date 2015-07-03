@@ -11,6 +11,8 @@ module Calendar
 
   def self.availability(api_token, params, duration_in_hours=1)
     consultants = User.all(:office => params[:office].tr('Ãã ', 'Aa+')  , :role => params[:role])
+    puts consultants
+
     requests = []
     while !consultants.empty? do
       requests << {

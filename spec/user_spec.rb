@@ -31,11 +31,13 @@ describe "User tests" do
     json = [
       {
         "role" => {"name"=>"Dev"},
-        "loginName" => "aconsultant"
+        "loginName" => "aconsultant",
+        "preferredName" => "Consultant A"
       },
       {
         "role" => {"name"=>"Dev"},
-        "loginName" => "bconsultant"
+        "loginName" => "bconsultant",
+        "preferredName" => "Consultant B"
       }
     ].to_json
 
@@ -45,7 +47,7 @@ describe "User tests" do
 
     get '/v1/consultants', params = {:office => "Porto%20Alegre", :role => "Dev"}
 
-    expect(last_response.body).to eq([{:id => "aconsultant@thoughtworks.com"},{:id => "bconsultant@thoughtworks.com"}].to_json)
+    expect(last_response.body).to eq([{id: "aconsultant@thoughtworks.com", name: "Consultant A"},{id: "bconsultant@thoughtworks.com", name: "Consultant B"}].to_json)
   end
 
 end

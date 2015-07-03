@@ -13,10 +13,14 @@ class User
   def self.all(params)
     get_consultants(params[:office]).
       select { |e|
-        e['role']['name'] == params[:role]}.
+        e['role']['name'] == params[:role]
+      }.
       map { |e|
         login = e['loginName']
-        { :id => "#{login}@thoughtworks.com" }
+        { 
+          :id => "#{login}@thoughtworks.com",
+          :name => e['preferredName']
+        }
       }
   end
 
