@@ -23,6 +23,7 @@ var PeopleList = React.createClass({
         <li key={idx} className='people-list-tile'>
           <Avatar size={40} className='people-tile-avatar' email={person.email}/>
           <span className='people-tile-text'>{person.email}</span>
+          <span className='people-tile-text'>{person.name}</span>
         </li>
       )
     }

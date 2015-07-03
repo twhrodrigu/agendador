@@ -11,7 +11,6 @@ module Calendar
 
   def self.availability(api_token, params, duration_in_hours=1)
     consultants = User.all(:office => params[:office].tr('Ãã ', 'Aa+')  , :role => params[:role])
-    puts consultants
 
     requests = []
     while !consultants.empty? do
@@ -38,10 +37,25 @@ module Calendar
       end
     end
 
-    puts "Responses: #{responses}"
+    responses.each do |resp|
+      json_data = JSON.parse(resp.body)
+      puts "Responses: #{json_data}"
+    end
+
+
     responses.map {|e| JSON.parse(e.body)["calendars"] }.
       reduce(&:merge).
-      select { |k,v| v["busy"].empty? && v["errors"].nil? }.
-      map {|k,v| k }
+      select { |email_key, user_info| user_info["busy"].empty? && user_info["errors"].nil? }.
+      map {|email_key, user_info| email_key }
+  end
+
+  def self.filterConsultants(consultants, emails)
+    filteredConsultants = []
+
+    emails.each do |email|
+      filteredConsultants.append({email: email, name: consultants[email]})
+    end
+
+    filteredConsultants
   end
 end

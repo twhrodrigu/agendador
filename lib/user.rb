@@ -18,8 +18,7 @@ class User
       map { |e|
         login = e['loginName']
         { 
-          :id => "#{login}@thoughtworks.com",
-          :name => e['preferredName']
+          "#{login}@thoughtworks.com" => e['preferredName']
         }
       }
   end
