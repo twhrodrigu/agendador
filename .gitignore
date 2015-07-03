@@ -5,5 +5,6 @@ tmp
 
 node_modules/
 public/dist/
+public/src/config.js
 
 .vagrant/

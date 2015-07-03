@@ -1,7 +1,9 @@
 var hello = require('hellojs');
 var google = hello('google');
+var env_var = require('./config.js');
 
-var GOOGLE_CLIENT_ID = '101903171697-jba2hj18g9vajpk191akp6mbhdcf6nvt.apps.googleusercontent.com';
+var GOOGLE_CLIENT_ID = env_var;
+
 var SCOPES = [
   'https://www.googleapis.com/auth/userinfo.email',
   'https://www.googleapis.com/auth/calendar.readonly'
