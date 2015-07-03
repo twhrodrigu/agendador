@@ -9,17 +9,31 @@ describe Calendar do
   end
 
   it 'return people available from google calendar' do
-    freeBusyJson = JSON.dump({"calendars" => {
-      "tfelix@thoughtworks.com" => {"busy" => []}
-    }})
+    freeBusyJson = JSON.dump(
+      {
+        "calendars" => {
+          "aconsultant@thoughtworks.com" => {"busy" => []}
+        }
+      }
+    )
 
     WebMock.disable_net_connect!(allow_localhost: true)
     WebMock.stub_request(:post, "https://www.googleapis.com/calendar/v3/freeBusy").to_return({:body => freeBusyJson, :status => 200})
-    allow(User).to receive(:all).and_return([{ :id => 'tfelix@thoughtworks.com' }])
+    allow(User).to receive(:all).and_return([{ :id => 'aconsultant@thoughtworks.com' }])
 
-    expect(Calendar.availability('',{:start => '2015-02-25T12:00:00', :role => 'Dev', :office => 'Porto Alegre'}, 1)).to eq(["tfelix@thoughtworks.com"])
+    expect(Calendar.availability('',{:start => '2015-02-25T12:00:00', :role => 'Dev', :office => 'Porto Alegre'}, 1)).to eq([{email: "aconsultant@thoughtworks.com", name:"Consultant A"}])
   end
 
+  it 'should return an array of people with name and email' do
+    consultants = [
+      {"aconsultant@thoughtworks.com" => "Consultant A"},
+      {"bconsultant@thoughtworks.com" => "Consultant B"}
+    ]
 
+    emails = ['aconsultant@thoughtworks.com']
+
+    filteredConsultants = Calendar.filterConsultants(consultants, emails)
+    expect(filteredConsultants).to eq([{email: "aconsultant@thoughtworks.com", name: "Consultant A"}])
+  end
 
 end
