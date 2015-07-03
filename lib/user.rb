@@ -18,7 +18,8 @@ class User
       map { |e|
         login = e['loginName']
         { 
-          "#{login}@thoughtworks.com" => e['preferredName']
+          email: "#{login}@thoughtworks.com",
+          name: e['preferredName']
         }
       }
   end
