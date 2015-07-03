@@ -113,9 +113,7 @@ var PeopleAvailable = React.createClass({
       .query({ role: role })
       .query({ office: office })
       .end(function (e, r) {
-        people = r.body.map(
-          (email) => ({email: email, name: name})
-        )
+        people = r.body;
         this.setState({people: people, loading: false});
       }.bind(this));
 

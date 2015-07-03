@@ -19,11 +19,16 @@ var PeopleList = React.createClass({
     var classes = this.getClasses('people-list');
 
     function peopleItem(person, idx) {
+
+      console.log("person >>>>>>>>>>", person);
+
       return (
         <li key={idx} className='people-list-tile'>
-          <Avatar size={40} className='people-tile-avatar' email={person.email}/>
-          <span className='people-tile-text'>{person.email}</span>
-          <span className='people-tile-text'>{person.name}</span>
+          <Avatar size={40} className='people-tile-avatar' email={person.id}/>
+          <span>
+            <div className='people-tile-text'>{person.id}</div>
+            <div className='people-tile-text'>{person.name}</div>
+          </span>
         </li>
       )
     }
