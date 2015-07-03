@@ -49,20 +49,31 @@ There is a guide about [how to create the Google API token](https://my.thoughtwo
 Inside the **public** folder:
 
 1. To watch file modifications and generate a new main.bundle.js, you need to run the command:
-  ```gulp```
+```
+gulp
+```
 
 2. To install new js dependencies without 'vagrant provisioning', you only need to run:
-  ```npm install```
+```
+npm install
+```
 
 3. To run JS tests, you need to run:
-  ```gulp test```
+```
+gulp test
+```
 
 **Backend**
 
 1. To install new gems without 'vagrant provisioning', you only need to run:
-  ```bundle install```
+```
+bundle install
+```
+
 3. Run the Server  
-  ```bundle exec shotgun -o 0.0.0.0```
+```
+bundle exec shotgun -o 0.0.0.0
+```
 
 
 Well done, the app is running here [http://localhost:9393/index.html](http://localhost:9393/index.html)
