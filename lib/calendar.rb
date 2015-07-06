@@ -23,7 +23,7 @@ module Calendar
 
     responses = []
     requests.each do |request|
-      uri = URI("https://www.googleapis.com/calendar/v3/freeBusy?key=#{ENV['G_API_KEY']}&alt=json")
+      uri = URI("https://www.googleapis.com/calendar/v3/freeBusy?key=#{ENV['GOOGLE_API_KEY']}&alt=json")
       req = Net::HTTP::Post.new(uri.path)
       req.add_field('content-type', 'application/json')
       req['Authorization'] = "Bearer #{api_token}"

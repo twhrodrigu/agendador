@@ -29,7 +29,7 @@ gulp.task('webpack', function() {
 });
 
 gulp.task('set-variables', function(){
-    fs.writeFileSync('src/config.js', "module.exports = '" + process.env.G_API_CLIENT + "';");
+    fs.writeFileSync('src/config.js', "module.exports = '" + process.env.GOOGLE_API_CLIENT + "';");
 });
 
 gulp.task('test', function(done) {

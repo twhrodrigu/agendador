@@ -21,9 +21,9 @@ If you are using vagrant to set your keys, you only have to change the `~/.bashr
 #### Google Calendar API
 
 ```
-export G_API_CLIENT={{your google api client}}
-export G_API_SECRET={{your google api secret}}
-export G_API_KEY={{your google api key}}
+export GOOGLE_API_CLIENT={{your google api client}}
+export GOOGLE_API_SECRET={{your google api secret}}
+export GOOGLE_API_KEY={{your google api key}}
 ```
 
 There is a guide on [how to create the Google API tokens](https://my.thoughtworks.com/docs/DOC-30275).
