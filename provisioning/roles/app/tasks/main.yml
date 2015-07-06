@@ -10,16 +10,16 @@
   lineinfile: dest={{ bashrc_path }} line='export LC_ALL=en_US.UTF-8' insertafter='EOF' regexp='export LC_ALL=en_US.UTF-8' state=present
 
 - name: declares GOOGLE_API_CLIENT
-  lineinfile: dest={{ bashrc_path }} line='export GOOGLE_API_CLIENT=your_client_id' insertafter='EOF' regexp='export GOOGLE_API_CLIENT' state=present
+  lineinfile: dest={{ bashrc_path }} line='export GOOGLE_API_CLIENT={{ lookup("env", "GOOGLE_API_CLIENT") }}' insertafter='EOF' regexp='export GOOGLE_API_CLIENT' state=present
 
 - name: declares GOOGLE_API_SECRET
-  lineinfile: dest={{ bashrc_path }} line='export GOOGLE_API_SECRET=your_secret' insertafter='EOF' regexp='export GOOGLE_API_SECRET' state=present
+  lineinfile: dest={{ bashrc_path }} line='export GOOGLE_API_SECRET={{ lookup("env", "GOOGLE_API_SECRET") }}' insertafter='EOF' regexp='export GOOGLE_API_SECRET' state=present
 
 - name: declares GOOGLE_API_KEY
-  lineinfile: dest={{ bashrc_path }} line='export GOOGLE_API_KEY=your_key' insertafter='EOF' regexp='export GOOGLE_API_KEY' state=present
+  lineinfile: dest={{ bashrc_path }} line='export GOOGLE_API_KEY={{ lookup("env", "GOOGLE_API_KEY") }}' insertafter='EOF' regexp='export GOOGLE_API_KEY' state=present
 
 - name: declares JIGSAW_API_SECRET
-  lineinfile: dest={{ bashrc_path }} line='export JIGSAW_API_SECRET=your_secret' insertafter='EOF' regexp='export JIGSAW_API_SECRET' state=present
+  lineinfile: dest={{ bashrc_path }} line='export JIGSAW_API_SECRET={{ lookup("env", "JIGSAW_API_SECRET") }}' insertafter='EOF' regexp='export JIGSAW_API_SECRET' state=present
 
 - name: declares SAML_ISSUER
   lineinfile: dest={{ bashrc_path }} line="export SAML_ISSUER='{{ default_saml_issuer }}'" insertafter='EOF' regexp='export SAML_ISSUER' state=present
@@ -28,4 +28,4 @@
   lineinfile: dest={{ bashrc_path }} line="export SAML_TARGET_URL={{ default_saml_target_url }}" insertafter='EOF' regexp='export SAML_TARGET_URL' state=present
 
 - name: declares SAML_FINGERPRINT
-  lineinfile: dest={{ bashrc_path }} line='export SAML_FINGERPRINT=your_fingerprint' insertafter='EOF' regexp='export SAML_FINGERPRINT' state=present
+  lineinfile: dest={{ bashrc_path }} line='export SAML_FINGERPRINT={{ lookup("env", "SAML_FINGERPRINT") }}' insertafter='EOF' regexp='export SAML_FINGERPRINT' state=present
