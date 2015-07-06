@@ -14,9 +14,29 @@ O/A recruiter então é direcionado para uma página com uma lista de todas as p
 
 ## Dev Setup
 
-**Google Calendar Variables**
+### Environment Variables
 
-**Provisioning**
+If you are using vagrant to set your keys, you only have to change the `~/.bashrc` file and set your own values.
+
+#### Google Calendar API
+
+```
+export G_API_CLIENT={{your google api client}}
+export G_API_SECRET={{your google api secret}}
+export G_API_KEY={{your google api key}}
+```
+
+There is a guide on [how to create the Google API tokens](https://my.thoughtworks.com/docs/DOC-30275).
+
+#### Jigsaw API
+
+```
+export JIGSAW_API_SECRET={{your jigsaw api secret}}
+```
+
+The JIGSAW authorization token is unique for each environment/user and must be requested directly to the Staffing Team on `jigsaw-support@thoughtworks.com`.
+
+### Provisioning
 
 To run the provisioning, we are using Vagrant with Ansible. To build your machine, you have to install a virtualization software like VirtualBox. Also, you have to install Vagrant and Ansible in your local machine.
 
@@ -26,25 +46,12 @@ To run Vagrant:
 2. vagrant ssh - to access the virtual machine provisioned
 
 Extras:
-vagrant halt - to stop the virtual machine after a vagrant ssh command
-vagrant destroy - to destroy the virtual machine instance created by vagrant up
-vagrant provisioning - once your machine is already up and you need to run new tasks, you don't need to destroy the virtual machine and up again.
 
+- `vagrant halt`: to stop the virtual machine after a vagrant ssh command
+- `vagrant destroy`: to destroy the virtual machine instance created by vagrant up
+- `vagrant provisioning`: once your machine is already up and you need to run new tasks, you don't need to destroy the virtual machine and up again.
 
-Make sure you have exported the following environment variables accordingly:
-
-```
-export G_API_CLIENT={{YOUR_CLIENT_ID}}
-export G_API_SECRET={{YOUR_API_SECRET}}
-export G_API_KEY={{YOUR_API_KEY}}
-```
-
-If you are using vagrant to set your keys, you only have to change the ~/.bashrc file with your Google credentials.
-
-Don't know how to create the tokens?  
-There is a guide about [how to create the Google API token](https://my.thoughtworks.com/docs/DOC-30275)
-
-**Frontend**
+### Frontend
 
 Inside the **public** folder:
 
@@ -63,7 +70,7 @@ npm install
 gulp test
 ```
 
-**Backend**
+### Backend
 
 1. To install new gems without 'vagrant provisioning', you only need to run:
 ```
@@ -74,7 +81,6 @@ bundle install
 ```
 bundle exec shotgun -o 0.0.0.0
 ```
-
 
 Well done, the app is running here [http://localhost:9393/index.html](http://localhost:9393/index.html)
 

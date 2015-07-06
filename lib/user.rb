@@ -56,7 +56,7 @@ class User
 
     request = Net::HTTP::Get.new uri
     request['Content-Type'] = 'application/json'
-    request['Authorization'] = 'e9c735405f523e81f2f2884ea116411f'
+    request['Authorization'] = ENV['JIGSAW_API_SECRET']
     request['X-Service-Version'] = '2'
 
     Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|

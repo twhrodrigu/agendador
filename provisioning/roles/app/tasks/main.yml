@@ -20,3 +20,6 @@
 
 - name: Adding the G_API_KEY the bashrc files
   lineinfile: dest=/home/vagrant/.bashrc line='export G_API_KEY=your_api_key' insertafter='EOF' regexp='export G_API_KEY' state=present
+
+- name: Adding the JIGSAW_API_SECRET the bashrc files
+  lineinfile: dest=/home/vagrant/.bashrc line='export JIGSAW_API_SECRET=your_secret' insertafter='EOF' regexp='export JIGSAW_API_SECRET' state=present
