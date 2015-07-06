@@ -16,7 +16,7 @@ O/A recruiter então é direcionado para uma página com uma lista de todas as p
 
 ### Environment Variables
 
-If you are using vagrant to set your keys, you only have to change the `~/.bashrc` file and set your own values.
+If you are using vagrant to set your keys, you only have to change the `~/.profile` file in your host machine and set your own values.
 
 #### Google Calendar API
 
@@ -44,11 +44,11 @@ The JIGSAW authorization token is unique for each environment/user and must be r
 
 We use SAML to authenticate through Okta. You should define the following environment variables:
 
-`
+```
 export SAML_ISSUER='Agendador de Entrevistas'
-export SAML_TARGET_URL='http://localhost:9393/saml/auth'
+export SAML_TARGET_URL=http://localhost:9393/saml/auth
 export SAML_FINGERPRINT={{your saml fingerprint}}
-`
+```
 
 The `SAML_TARGET_URL` should change if you are deploying to a location other than `localhost` on port 9393.
 
