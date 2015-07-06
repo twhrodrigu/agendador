@@ -20,21 +20,37 @@ If you are using vagrant to set your keys, you only have to change the `~/.bashr
 
 #### Google Calendar API
 
+You should define the following environment variables to connect to the Google API:
+
 ```
 export GOOGLE_API_CLIENT={{your google api client}}
 export GOOGLE_API_SECRET={{your google api secret}}
 export GOOGLE_API_KEY={{your google api key}}
 ```
 
-There is a guide on [how to create the Google API tokens](https://my.thoughtworks.com/docs/DOC-30275).
+Read [this guide](https://my.thoughtworks.com/docs/DOC-30275) on how to create the Google API tokens.
 
 #### Jigsaw API
+
+You should define the following environment variable to connect to the Jigsaw API:
 
 ```
 export JIGSAW_API_SECRET={{your jigsaw api secret}}
 ```
 
 The JIGSAW authorization token is unique for each environment/user and must be requested directly to the Staffing Team on `jigsaw-support@thoughtworks.com`.
+
+#### SAML
+
+We use SAML to authenticate through Okta. You should define the following environment variables:
+
+`
+export SAML_ISSUER='Agendador de Entrevistas'
+export SAML_TARGET_URL='http://localhost:9393/saml/auth'
+export SAML_FINGERPRINT={{your saml fingerprint}}
+`
+
+The `SAML_TARGET_URL` should change if you are deploying to a location other than `localhost` on port 9393.
 
 ### Provisioning
 

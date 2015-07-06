@@ -13,7 +13,12 @@
 - name: declares Google API environment variables
   lineinfile: dest={{ bashrc_path }} line='export GOOGLE_API_CLIENT=your_client_id' insertafter='EOF' regexp='export GOOGLE_API_CLIENT' state=present
   lineinfile: dest={{ bashrc_path }} line='export GOOGLE_API_SECRET=your_secret' insertafter='EOF' regexp='export GOOGLE_API_SECRET' state=present
-  lineinfile: dest={{ bashrc_path }} line='export GOOGLE_API_KEY=your_api_key' insertafter='EOF' regexp='export GOOGLE_API_KEY' state=present
+  lineinfile: dest={{ bashrc_path }} line='export GOOGLE_API_KEY=your_key' insertafter='EOF' regexp='export GOOGLE_API_KEY' state=present
 
 - name: declares Jigsaw API environment variables
   lineinfile: dest={{ bashrc_path }} line='export JIGSAW_API_SECRET=your_secret' insertafter='EOF' regexp='export JIGSAW_API_SECRET' state=present
+
+- name: declares SAML environment variables
+  lineinfile: dest={{ bashrc_path }} line="export SAML_ISSUER='Agendador de Entrevistas'" insertafter='EOF' regexp='export SAML_ISSUER' state=present
+  lineinfile: dest={{ bashrc_path }} line="export SAML_TARGET_URL='http://localhost:9393/saml/auth'" insertafter='EOF' regexp='export SAML_TARGET_URL' state=present
+  lineinfile: dest={{ bashrc_path }} line='export SAML_FINGERPRINT=your_fingerprint' insertafter='EOF' regexp='export SAML_FINGERPRINT' state=present
