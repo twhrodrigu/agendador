@@ -6,20 +6,14 @@
 - name: install nodejs dependencies (package.json)
   npm: path={{ base_path }}/public
 
-- name: Adding the path in the bashrc files
-  lineinfile: dest=/home/vagrant/.bashrc line='export LC_ALL=en_US.UTF-8' insertafter='EOF' regexp='export LC_ALL=en_US.UTF-8' state=present
+- name: set shell encoding to UTF-8
+  lineinfile: dest={{ bashrc_path }} line='export LC_ALL=en_US.UTF-8' insertafter='EOF' regexp='export LC_ALL=en_US.UTF-8' state=present
+  lineinfile: dest={{ bashrc_path }} line='export LANG=en_US.UTF-8' insertafter='EOF' regexp='export LANG=en_US.UTF-8' state=present
 
-- name: Adding the path in the bashrc files
-  lineinfile: dest=/home/vagrant/.bashrc line='export LANG=en_US.UTF-8' insertafter='EOF' regexp='export LANG=en_US.UTF-8' state=present
+- name: declares Google API environment variables
+  lineinfile: dest={{ bashrc_path }} line='export GOOGLE_API_CLIENT=your_client_id' insertafter='EOF' regexp='export GOOGLE_API_CLIENT' state=present
+  lineinfile: dest={{ bashrc_path }} line='export GOOGLE_API_SECRET=your_secret' insertafter='EOF' regexp='export GOOGLE_API_SECRET' state=present
+  lineinfile: dest={{ bashrc_path }} line='export GOOGLE_API_KEY=your_api_key' insertafter='EOF' regexp='export GOOGLE_API_KEY' state=present
 
-- name: Adding the GOOGLE_API_CLIENT the bashrc files
-  lineinfile: dest=/home/vagrant/.bashrc line='export GOOGLE_API_CLIENT=your_client_id' insertafter='EOF' regexp='export GOOGLE_API_CLIENT' state=present
-
-- name: Adding the GOOGLE_API_SECRET the bashrc files
-  lineinfile: dest=/home/vagrant/.bashrc line='export GOOGLE_API_SECRET=your_secret' insertafter='EOF' regexp='export GOOGLE_API_SECRET' state=present
-
-- name: Adding the GOOGLE_API_KEY the bashrc files
-  lineinfile: dest=/home/vagrant/.bashrc line='export GOOGLE_API_KEY=your_api_key' insertafter='EOF' regexp='export GOOGLE_API_KEY' state=present
-
-- name: Adding the JIGSAW_API_SECRET the bashrc files
-  lineinfile: dest=/home/vagrant/.bashrc line='export JIGSAW_API_SECRET=your_secret' insertafter='EOF' regexp='export JIGSAW_API_SECRET' state=present
+- name: declares Jigsaw API environment variables
+  lineinfile: dest={{ bashrc_path }} line='export JIGSAW_API_SECRET=your_secret' insertafter='EOF' regexp='export JIGSAW_API_SECRET' state=present
