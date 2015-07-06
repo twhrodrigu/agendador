@@ -18,7 +18,7 @@ class User
       map { |e|
         login = e['loginName']
         { 
-          email: "#{login}@thoughtworks.com",
+          id: "#{login}@thoughtworks.com",
           name: e['preferredName']
         }
       }

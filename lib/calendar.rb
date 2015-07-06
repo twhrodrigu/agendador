@@ -55,7 +55,7 @@ module Calendar
     filteredConsultants = []
 
     consultants.each do |consultant|
-      filteredConsultants.append(consultant) if emails.include?(consultant[:email])
+      filteredConsultants.append(consultant) if emails.include?(consultant[:id])
     end
 
     filteredConsultants

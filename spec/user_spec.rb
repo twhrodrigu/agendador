@@ -47,7 +47,7 @@ describe "User tests" do
 
     get '/v1/consultants', params = {:office => "Porto%20Alegre", :role => "Dev"}
 
-    expect(last_response.body).to eq([{email: "aconsultant@thoughtworks.com", name: "Consultant A"},{email: "bconsultant@thoughtworks.com", name: "Consultant B"}].to_json)
+    expect(last_response.body).to eq([{id: "aconsultant@thoughtworks.com", name: "Consultant A"},{id: "bconsultant@thoughtworks.com", name: "Consultant B"}].to_json)
   end
 
 end
