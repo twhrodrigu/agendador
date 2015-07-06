@@ -6,11 +6,8 @@
 - name: install nodejs dependencies (package.json)
   npm: path={{ base_path }}/public
 
-- name: set shell locale
+- name: set shell locale encoding
   lineinfile: dest={{ bashrc_path }} line='export LC_ALL=en_US.UTF-8' insertafter='EOF' regexp='export LC_ALL=en_US.UTF-8' state=present
-
-- name: set shell language
-  lineinfile: dest={{ bashrc_path }} line='export LANG=en_US.UTF-8' insertafter='EOF' regexp='export LANG=en_US.UTF-8' state=present
 
 - name: declares GOOGLE_API_CLIENT
   lineinfile: dest={{ bashrc_path }} line='export GOOGLE_API_CLIENT=your_client_id' insertafter='EOF' regexp='export GOOGLE_API_CLIENT' state=present
