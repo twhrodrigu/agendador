@@ -58,7 +58,7 @@ var PeopleAvailable = React.createClass({
               floatingLabelText="Dia"
               onChange={this._handleDateChange}
               required/>
-          <InputTime />
+          <InputTime onChange={this._handleTimeChange} />
         </div>
         <Toolbar>
           <ToolbarGroup float="left">
@@ -91,8 +91,8 @@ var PeopleAvailable = React.createClass({
     this.setState({selectedOfficeIndex: idx})
   },
 
-  _handleTimeChange: function(e) {
-    this.setState({selectedTime: DateInput.parseTime(e.target.value)});
+  _handleTimeChange: function(e, idx, item) {
+    this.setState({selectedTime: DateInput.parseTime(item.text)});
   },
 
   _handleDateChange: function(e) {

@@ -1,6 +1,6 @@
 var moment = require('moment');
 var INPUT_DATE_FORMAT = 'YYYY-MM-DD';
-var INPUT_TIME_FORMAT = 'HH:mm:ss';
+var INPUT_TIME_FORMAT = 'HH:mm';
 
 module.exports = {
   now: function () {
@@ -8,7 +8,7 @@ module.exports = {
   },
 
   format: function(d, mask) {
-    return moment(d).format(mask);
+    return moment(d,mask);
   },
 
   parse: function(d, mask){
