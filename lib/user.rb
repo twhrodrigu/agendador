@@ -2,13 +2,7 @@ require 'json'
 require 'net/http'
 
 class User
-  attr_accessor :email, :token
   @total_pages
-
-  def initialize(params)
-    self.email = params[:email]
-    self.token = params[:token]
-  end
 
   def self.all(params)
     get_consultants(params[:office]).
