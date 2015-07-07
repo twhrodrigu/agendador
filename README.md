@@ -40,18 +40,6 @@ export JIGSAW_API_SECRET={{your jigsaw api secret}}
 
 The JIGSAW authorization token is unique for each environment/user and must be requested directly to the Staffing Team on `jigsaw-support@thoughtworks.com`.
 
-#### SAML
-
-We use SAML to authenticate through Okta. You should define the following environment variables:
-
-```
-export SAML_ISSUER='Agendador de Entrevistas'
-export SAML_TARGET_URL=http://localhost:9393/saml/auth
-export SAML_FINGERPRINT={{your saml fingerprint}}
-```
-
-The `SAML_TARGET_URL` should change if you are deploying to a location other than `localhost` on port 9393.
-
 ### Provisioning
 
 To run the provisioning, we are using Vagrant with Ansible. To build your machine, you have to install a virtualization software like VirtualBox. Also, you have to install Vagrant and Ansible in your local machine.

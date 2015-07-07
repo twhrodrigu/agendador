@@ -20,12 +20,3 @@
 
 - name: declares JIGSAW_API_SECRET
   lineinfile: dest={{ bashrc_path }} line='export JIGSAW_API_SECRET={{ lookup("env", "JIGSAW_API_SECRET") }}' insertafter='EOF' regexp='export JIGSAW_API_SECRET' state=present
-
-- name: declares SAML_ISSUER
-  lineinfile: dest={{ bashrc_path }} line="export SAML_ISSUER='{{ default_saml_issuer }}'" insertafter='EOF' regexp='export SAML_ISSUER' state=present
-
-- name: declares SAML_TARGET_URL
-  lineinfile: dest={{ bashrc_path }} line="export SAML_TARGET_URL={{ default_saml_target_url }}" insertafter='EOF' regexp='export SAML_TARGET_URL' state=present
-
-- name: declares SAML_FINGERPRINT
-  lineinfile: dest={{ bashrc_path }} line='export SAML_FINGERPRINT={{ lookup("env", "SAML_FINGERPRINT") }}' insertafter='EOF' regexp='export SAML_FINGERPRINT' state=present

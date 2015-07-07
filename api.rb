@@ -1,4 +1,6 @@
 require 'grape'
+require './lib/user'
+require './lib/calendar'
 
 module Agendador
   class API < Grape::API

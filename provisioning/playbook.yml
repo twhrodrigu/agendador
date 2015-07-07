@@ -3,8 +3,6 @@
   vars:
     base_path: /vagrant/agendador
     bashrc_path: /home/vagrant/.bashrc
-    default_saml_issuer: 'Agendador de Entrevistas'
-    default_saml_target_url: http://localhost:9393/saml/auth
   roles:
     - ruby
     - nodejs
