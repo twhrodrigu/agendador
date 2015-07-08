@@ -12,6 +12,18 @@ module ConsultantService
     @@roles ||= JSON.parse(open('resources/roles.json').read)
   end
 
+  def self.consultants(params)
+    staffing_office = params[:staffing_office]
+    role = params[:role]
+    if role
+      consultants_by_staffing_office_and_role(staffing_office, role)
+    else
+      consultants_by_staffing_office(staffing_office)
+    end
+  end
+
+  private
+
   def self.consultants_by_staffing_office(staffing_office)
     current_page = 1
     all_consultants = []
@@ -26,7 +38,12 @@ module ConsultantService
     return all_consultants
   end
 
-  private
+  def self.consultants_by_staffing_office_and_role(staffing_office, role)
+    all_consultants = consultants_by_staffing_office(staffing_office)
+    all_consultants.select { |consultant|
+      consultant.role == role
+    }
+  end
 
   def self.paginated_consultants_by_staffing_office(staffing_office, page) 
     response = execute_request(staffing_office, page)
