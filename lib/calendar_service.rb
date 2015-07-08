@@ -2,7 +2,7 @@ require 'time'
 require 'net/https'
 require 'byebug'
 
-module Calendar
+module CalendarService
   TIMEZONE_OFFSET = "00:00:00"
 
   def self.availability(token:, consultants:, start:, hours: 1)

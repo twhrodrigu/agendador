@@ -1,7 +1,7 @@
 require 'grape'
 require './lib/consultant_service'
 require './lib/consultant'
-require './lib/calendar'
+require './lib/calendar_service'
 require 'json'
 
 module Agendador
@@ -32,7 +32,7 @@ module Agendador
       end
       get :available do
         consultants = ConsultantService.consultants staffing_office: params[:office].tr('Ãã ', 'Aa+'), role: params[:role]
-        available_consultants = Calendar.availability token: params[:token], consultants: consultants, start: params[:start], hours: params[:hours]
+        available_consultants = CalendarService.availability token: params[:token], consultants: consultants, start: params[:start], hours: params[:hours]
         json_consultants = []
         available_consultants.each do |consultant|
           json_consultants.push(consultant.as_json)
