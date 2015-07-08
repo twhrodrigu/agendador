@@ -31,7 +31,7 @@ describe 'consultants by staffing office and role' do
 
     @office = 'Belo Horizonte'
 
-    @request_header = {
+    @request_headers = {
       'Authorization'=>'e9c735405f523e81f2f2884ea116411f',
       'Content-Type'=>'application/json',
       'Host'=>'jigsaw.thoughtworks.com',
@@ -42,7 +42,7 @@ describe 'consultants by staffing office and role' do
   it 'should retrieve first page of consultants by staffing office' do
     json_first_page = [to_json(@alice), to_json(@bob)].to_json
     WebMock.stub_request(:get, jigsaw_url(@office, 1)).
-      with(:headers => @request_header).to_return(:status => 200, :body => json_first_page, :headers => {
+      with(:headers => @request_headers).to_return(:status => 200, :body => json_first_page, :headers => {
         'X-Total-Pages'=>'1'
     })
 
@@ -56,11 +56,11 @@ describe 'consultants by staffing office and role' do
 
     json_first_page = [to_json(@alice), to_json(@bob)].to_json
     WebMock.stub_request(:get, jigsaw_url(@office, 1)).
-      with(:headers => @request_header).to_return(:status => 200, :body => json_first_page, :headers => response_headers)
+      with(:headers => @request_headers).to_return(:status => 200, :body => json_first_page, :headers => response_headers)
 
     json_second_page = [to_json(@eve)].to_json
     WebMock.stub_request(:get, jigsaw_url(@office, 2)).
-      with(:headers => @request_header).to_return(:status => 200, :body => json_second_page, :headers => response_headers)
+      with(:headers => @request_headers).to_return(:status => 200, :body => json_second_page, :headers => response_headers)
 
     expect((ConsultantService.consultants staffing_office: @office)).to contain_exactly(@alice, @bob, @eve)
   end
@@ -72,11 +72,11 @@ describe 'consultants by staffing office and role' do
 
     json_first_page = [to_json(@alice), to_json(@bob)].to_json
     WebMock.stub_request(:get, jigsaw_url(@office, 1)).
-      with(:headers => @request_header).to_return(:status => 200, :body => json_first_page, :headers => response_headers)
+      with(:headers => @request_headers).to_return(:status => 200, :body => json_first_page, :headers => response_headers)
 
     json_second_page = [to_json(@eve)].to_json
     WebMock.stub_request(:get, jigsaw_url(@office, 2)).
-      with(:headers => @request_header).to_return(:status => 200, :body => json_second_page, :headers => response_headers)
+      with(:headers => @request_headers).to_return(:status => 200, :body => json_second_page, :headers => response_headers)
 
     role = 'Dev'
     expect((ConsultantService.consultants staffing_office: @office, role: role)).to contain_exactly(@bob)
