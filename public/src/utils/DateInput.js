@@ -1,6 +1,6 @@
 var moment = require('moment');
 var INPUT_DATE_FORMAT = 'YYYY-MM-DD';
-var INPUT_TIME_FORMAT = 'HH:mm:ss';
+var INPUT_TIME_FORMAT = 'HH:mm';
 
 module.exports = {
   now: function () {
@@ -19,16 +19,12 @@ module.exports = {
     return this.format(d, INPUT_DATE_FORMAT);
   },
 
-  formatTime: function(t) {
-    return this.format(t, INPUT_TIME_FORMAT);
-  },
-
   parseDate: function(str) {
     return this.formatDate(str);
   },
 
   parseTime: function(str) {
-    return this.formatTime(str);
+    return moment(str, INPUT_TIME_FORMAT);
   },
 
   setTime: function(d,t){

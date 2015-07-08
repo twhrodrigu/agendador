@@ -11,7 +11,8 @@ var React = require('react'),
     Toolbar = mui.Toolbar,
     ToolbarGroup = mui.ToolbarGroup,
     RaisedButton = mui.RaisedButton,
-    DropDownMenu = mui.DropDownMenu;
+    DropDownMenu = mui.DropDownMenu,
+    moment = require('moment');
 
 
 
@@ -58,7 +59,7 @@ var PeopleAvailable = React.createClass({
               floatingLabelText="Dia"
               onChange={this._handleDateChange}
               required/>
-          <InputTime />
+          <InputTime ref={this._startTimeDidMount} onChange={this._handleTimeChange} />
         </div>
         <Toolbar>
           <ToolbarGroup float="left">
@@ -91,17 +92,22 @@ var PeopleAvailable = React.createClass({
     this.setState({selectedOfficeIndex: idx})
   },
 
-  _handleTimeChange: function(e) {
-    this.setState({selectedTime: DateInput.parseTime(e.target.value)});
+  _handleTimeChange: function(e, idx, item) {
+    this.setState({selectedTime: DateInput.parseTime(item.text)});
   },
 
   _handleDateChange: function(e) {
     this.setState({selectedDate: DateInput.parseDate(e.target.value)});
   },
 
+  _startTimeDidMount:  function(e) {
+    this.setState({selectedTime: DateInput.parseTime(e.state.menuItems[0].text)});
+  },
+
   _handleTapSearch: function(e) {
+    var start = DateInput.setTime(this.state.selectedDate, this.state.selectedTime);
     var token = Auth.getToken(),
-        start = DateInput.setTime(this.state.selectedDate, this.state.selectedTime).toISOString(),
+        start_time_timezone = moment(start).format(),
         role = this.state.roles[this.state.selectedRoleIndex].text,
         office = this.state.offices[this.state.selectedOfficeIndex].text;
 
@@ -109,7 +115,7 @@ var PeopleAvailable = React.createClass({
     request
       .get('/v1/calendar/available')
       .query({ token: token })
-      .query({ start: start })
+      .query({ start: start_time_timezone })
       .query({ role: role })
       .query({ office: office })
       .end(function (e, r) {
