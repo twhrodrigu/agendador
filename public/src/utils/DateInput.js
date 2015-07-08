@@ -8,7 +8,7 @@ module.exports = {
   },
 
   format: function(d, mask) {
-    return moment(d,mask);
+    return moment(d).format(mask);
   },
 
   parse: function(d, mask){
@@ -19,16 +19,12 @@ module.exports = {
     return this.format(d, INPUT_DATE_FORMAT);
   },
 
-  formatTime: function(t) {
-    return this.format(t, INPUT_TIME_FORMAT);
-  },
-
   parseDate: function(str) {
     return this.formatDate(str);
   },
 
   parseTime: function(str) {
-    return this.formatTime(str);
+    return moment(str, INPUT_TIME_FORMAT);
   },
 
   setTime: function(d,t){

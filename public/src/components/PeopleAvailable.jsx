@@ -11,7 +11,8 @@ var React = require('react'),
     Toolbar = mui.Toolbar,
     ToolbarGroup = mui.ToolbarGroup,
     RaisedButton = mui.RaisedButton,
-    DropDownMenu = mui.DropDownMenu;
+    DropDownMenu = mui.DropDownMenu,
+    moment = require('moment');
 
 
 
@@ -100,8 +101,9 @@ var PeopleAvailable = React.createClass({
   },
 
   _handleTapSearch: function(e) {
+    var start = DateInput.setTime(this.state.selectedDate, this.state.selectedTime);
     var token = Auth.getToken(),
-        start = DateInput.setTime(this.state.selectedDate, this.state.selectedTime).toISOString(),
+        start_time_timezone = moment(start).format(),
         role = this.state.roles[this.state.selectedRoleIndex].text,
         office = this.state.offices[this.state.selectedOfficeIndex].text;
 
@@ -109,7 +111,7 @@ var PeopleAvailable = React.createClass({
     request
       .get('/v1/calendar/available')
       .query({ token: token })
-      .query({ start: start })
+      .query({ start: start_time_timezone })
       .query({ role: role })
       .query({ office: office })
       .end(function (e, r) {
