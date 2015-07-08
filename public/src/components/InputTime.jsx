@@ -6,13 +6,9 @@ var React = require('react'),
 var InputTime = React.createClass({
 
   getInitialState: function() {
-    var items = [];
-    for (var i = 7; i <= 19; i++) {
-        items.push({payload : i, text: i + ':00' });
-        items.push({payload : i, text: i + ':30' });
-    }
+    var menuItems = _generateTimeValues();
 
-    return { menuItems: items }
+    return { menuItems: menuItems }
   },
 
   render: function(){
@@ -24,5 +20,15 @@ var InputTime = React.createClass({
   }
 
 });
+
+function _generateTimeValues() {
+ var timeValues = [];
+    for (var i = 7; i <= 19; i++) {
+        timeValues.push({payload : i, text: i + ':00' });
+        timeValues.push({payload : i, text: i + ':30' });
+    }
+    return timeValues
+
+};
 
 module.exports = InputTime;
