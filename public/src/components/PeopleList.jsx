@@ -22,10 +22,10 @@ var PeopleList = React.createClass({
 
       return (
         <li key={idx} className='people-list-tile'>
-          <Avatar size={40} className='people-tile-avatar' email={person.id}/>
+          <Avatar size={40} className='people-tile-avatar' email={person.email}/>
           <div className='people-tile-text'>
             <div className='people-tile-text-name'>{person.name}</div>
-            <div className='people-tile-text-email'>{person.id}</div>
+            <div className='people-tile-text-email'>{person.email}</div>
           </div>
         </li>
       )

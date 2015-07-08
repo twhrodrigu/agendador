@@ -18,16 +18,22 @@ describe 'Consultant' do
     expect(consultant.email).to eq('johndoe@thoughtworks.com')
   end
 
-  it 'should initialize from json' do
+  it 'should deserialize from jigsaw json' do
     json = {
       'loginName' => 'alice',
       'preferredName' => 'Alice',
       'role' => {'name'=> 'Dev'}
     }
 
-    alice = Consultant.from_json json
+    alice = Consultant.from_jigsaw_json json
     expect(alice.name).to eq('Alice')
     expect(alice.login).to eq('alice')
     expect(alice.role).to eq('Dev')
+  end
+
+  it 'should serialize to json' do
+    bob = Consultant.new login: 'bob', role: 'Dev', name: 'Bob'
+    # expect(bob.as_json).to eq('{"login":"bob","email":"bob@thoughtworks.com","name":"Bob","role":"Dev"}')
+    expect(bob.as_json).to eq({login: bob.login, email: bob.email, name: bob.name, role: bob.role})
   end
 end

@@ -12,8 +12,12 @@ class Consultant
     "#{login}@thoughtworks.com"
   end
 
-  def self.from_json(json)
+  def self.from_jigsaw_json(json)
     Consultant.new login: json['loginName'], name: json['preferredName'], role: json['role']['name']
+  end
+
+  def as_json
+    {login: login, email: email, name: name, role: role}
   end
 
   def ==(other)

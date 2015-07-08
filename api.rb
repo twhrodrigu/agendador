@@ -1,5 +1,6 @@
 require 'grape'
 require './lib/consultant_service'
+require './lib/consultant'
 require './lib/calendar'
 require 'json'
 
@@ -31,28 +32,25 @@ module Agendador
       end
       get :available do
         consultants = ConsultantService.consultants staffing_office: params[:office].tr('Ãã ', 'Aa+'), role: params[:role]
-        Calendar.availability token: params[:token], consultants: consultants, start: params[:start], hours: params[:hours]
+        available_consultants = Calendar.availability token: params[:token], consultants: consultants, start: params[:start], hours: params[:hours]
+        json_consultants = []
+        available_consultants.each do |consultant|
+          json_consultants.push(consultant.as_json)
+        end 
+        json_consultants
       end
 
     end
 
-    desc "Returns list of offices inside ThoughtWorks"
+    desc "Gets all supported offices"
     get :offices do
       ConsultantService.offices
     end
 
-    desc "Returns list of roles inside ThoughtWorks"
+    desc "Gets all supported roles"
     get :roles do
       ConsultantService.roles
     end
 
-    desc "Returns list of consultants based on the office and roles"
-    params do
-      requires :office, type: String, desc: "The office where they work"
-      requires :role, type: String, desc: "The role they belong"
-    end
-    get :consultants do
-      ConsultantService.consultants staffing_office: params[:office], role: params[:role]
-    end
   end
 end

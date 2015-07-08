@@ -69,7 +69,7 @@ module ConsultantService
     consultants_json = JSON.parse(response_body)
     consultants = []
     consultants_json.each do |json|
-      consultants.push(Consultant.from_json(json))
+      consultants.push(Consultant.from_jigsaw_json(json))
     end
     return consultants
   end

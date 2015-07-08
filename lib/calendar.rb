@@ -1,6 +1,6 @@
 require 'time'
 require 'net/https'
-
+require 'byebug'
 
 module Calendar
   TIMEZONE_OFFSET = "00:00:00"
@@ -37,7 +37,6 @@ module Calendar
       puts "Responses: #{json_data}"
     end
 
-
     emails_users_available = responses.map {|e| JSON.parse(e.body)["calendars"] }.
       reduce(&:merge).
       select { |email_key, user_info| user_info["busy"].empty? && user_info["errors"].nil? }.
@@ -67,5 +66,6 @@ module Calendar
     consultants.each do |consultant|
       converted_consultants.push({id: consultant.email})
     end
+    converted_consultants
   end
 end
