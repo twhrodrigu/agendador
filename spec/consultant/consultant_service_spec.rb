@@ -1,4 +1,4 @@
-require './lib/consultant_service.rb'
+require './consultant/consultant_service'
 
 describe 'offices and roles' do
   it 'should retrieve all supported offices' do

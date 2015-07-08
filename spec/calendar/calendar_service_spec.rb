@@ -1,5 +1,5 @@
-require './lib/calendar_service'
-require './lib/consultant_service'
+require './calendar/calendar_service'
+require './consultant/consultant_service'
 require 'webmock/rspec'
 
 describe 'calendar service' do

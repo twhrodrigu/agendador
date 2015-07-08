@@ -1,12 +1,12 @@
 require 'grape'
-require './lib/consultant_service'
-require './lib/consultant'
-require './lib/calendar_service'
+require './consultant/consultant_service'
+require './consultant/consultant'
+require './calendar/calendar_service'
 require 'json'
 
 module Agendador
 
-  class API < Grape::API
+  class CalendarAPI < Grape::API
     version 'v1', using: :path
     format :json
 
@@ -33,6 +33,7 @@ module Agendador
       get :available do
         consultants = ConsultantService.consultants staffing_office: params[:office].tr('Ãã ', 'Aa+'), role: params[:role]
         available_consultants = CalendarService.availability token: params[:token], consultants: consultants, start: params[:start], hours: params[:hours]
+        
         json_consultants = []
         available_consultants.each do |consultant|
           json_consultants.push(consultant.as_json)
@@ -41,16 +42,6 @@ module Agendador
       end
 
     end
-
-    desc "Gets all supported offices"
-    get :offices do
-      ConsultantService.offices
-    end
-
-    desc "Gets all supported roles"
-    get :roles do
-      ConsultantService.roles
-    end
-
+    
   end
 end

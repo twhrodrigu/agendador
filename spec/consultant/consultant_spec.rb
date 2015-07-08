@@ -1,4 +1,4 @@
-require './lib/consultant.rb'
+require './consultant/consultant'
 
 describe 'Consultant' do
 
@@ -33,7 +33,6 @@ describe 'Consultant' do
 
   it 'should serialize to json' do
     bob = Consultant.new login: 'bob', role: 'Dev', name: 'Bob'
-    # expect(bob.as_json).to eq('{"login":"bob","email":"bob@thoughtworks.com","name":"Bob","role":"Dev"}')
     expect(bob.as_json).to eq({login: bob.login, email: bob.email, name: bob.name, role: bob.role})
   end
 end

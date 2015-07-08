@@ -2,28 +2,16 @@ ENV['RACK_ENV'] = 'development'
 
 require 'webmock/rspec'
 require 'rack/test'
-require './api.rb'
-
 include Rack::Test::Methods
 
-def app
-  Agendador::API
-end
-
-describe 'consultant api' do
-
-  it 'should get all supported roles' do
-    get '/v1/roles'
-    expect(last_response.body).to eq(['BA', 'Dev', 'QA', 'UI Dev', 'XD', 'PM', 'DevOps'].to_json)
-  end
-
-  it 'should get all supported offices' do
-    get '/v1/offices'
-    expect(last_response.body).to eq(['São Paulo', 'Porto Alegre', 'Recife', 'Belo Horizonte'].to_json)
-  end
-end
+require './calendar/calendar_api'
+require './consultant/consultant'
 
 describe 'calendar api' do
+
+  def app
+    Agendador::CalendarAPI
+  end
 
   def to_json(consultant)
     return {
@@ -33,7 +21,7 @@ describe 'calendar api' do
     }
   end
 
-  it 'should return available consultants' do
+  it 'should get available consultants' do
     alice = Consultant.new(login: 'alice', name: 'Alice', role: 'Dev')
     bob = Consultant.new(login: 'bob', name: 'Bob', role: 'Dev')
     eve = Consultant.new(login: 'eve', name: 'Eve', role: 'BA')
@@ -67,7 +55,6 @@ describe 'calendar api' do
 
     get "/v1/calendar/available?token=#{token}&start=#{start}&role=#{role}&office=#{office}"
     expect(last_response.body).to eq([{login: alice.login, email: alice.email, name: alice.name, role: alice.role}].to_json)
-
   end
 
 end
