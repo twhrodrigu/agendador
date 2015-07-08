@@ -5,14 +5,13 @@ require 'net/https'
 module Calendar
   TIMEZONE_OFFSET = "00:00:00"
 
-  def self.availability(api_token, params, duration_in_hours=1)
-    consultants = ConsultantService.consultants(staffing_office: params[:office].tr('Ãã ', 'Aa+'), role: params[:role])
+  def self.availability(token:, consultants:, start:, hours: 1)
     all_consultants = consultants.dup
     requests = []
     while !consultants.empty? do
       requests << {
-        :timeMin => format(params[:start]),
-        :timeMax => format(params[:start], duration_in_hours),
+        :timeMin => format(start),
+        :timeMax => format(start, hours),
         :items => build_request_items(consultants.shift(10))
       }
     end
@@ -22,7 +21,7 @@ module Calendar
       uri = URI("https://www.googleapis.com/calendar/v3/freeBusy?key=#{ENV['GOOGLE_API_KEY']}&alt=json")
       req = Net::HTTP::Post.new(uri.path)
       req.add_field('content-type', 'application/json')
-      req['Authorization'] = "Bearer #{api_token}"
+      req['Authorization'] = "Bearer #{token}"
       req.body = JSON.dump(request)
       puts "Req Body: #{req.body}"
       responses << Net::HTTP.start(

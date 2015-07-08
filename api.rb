@@ -4,6 +4,7 @@ require './lib/calendar'
 require 'json'
 
 module Agendador
+
   class API < Grape::API
     version 'v1', using: :path
     format :json
@@ -25,11 +26,12 @@ module Agendador
         requires :token, type: String, desc: "Google Calendar Access Token"
         requires :start, type: DateTime, desc: "The start of the interval for the query"
         optional :hours, type: Integer, desc: "The number of hours should be available", default: 1
-        optional :role, type: String, desc: "The role of interest", default: 'Dev'
-        optional :office, type: String,  desc: "The office of interest", default: 'Porto Alegre'
+        requires :office, type: String,  desc: "The office of interest"
+        optional :role, type: String, desc: "The role of interest"
       end
       get :available do
-        Calendar.availability(params[:token], permitted_params)
+        consultants = ConsultantService.consultants staffing_office: params[:office].tr('Ãã ', 'Aa+'), role: params[:role]
+        Calendar.availability token: params[:token], consultants: consultants, start: params[:start], hours: params[:hours]
       end
 
     end
@@ -50,7 +52,7 @@ module Agendador
       requires :role, type: String, desc: "The role they belong"
     end
     get :consultants do
-      ConsultantService.all(permitted_params)
+      ConsultantService.consultants staffing_office: params[:office], role: params[:role]
     end
   end
 end
