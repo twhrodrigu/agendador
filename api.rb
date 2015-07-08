@@ -1,5 +1,5 @@
 require 'grape'
-require './lib/user'
+require './lib/consultant_service'
 require './lib/calendar'
 require 'json'
 
@@ -36,12 +36,12 @@ module Agendador
 
     desc "Returns list of offices inside ThoughtWorks"
     get :offices do
-      User.offices
+      ConsultantService.offices
     end
 
     desc "Returns list of roles inside ThoughtWorks"
     get :roles do
-      User.roles
+      ConsultantService.roles
     end
 
     desc "Returns list of consultants based on the office and roles"
@@ -50,7 +50,7 @@ module Agendador
       requires :role, type: String, desc: "The role they belong"
     end
     get :consultants do
-      User.all(permitted_params)
+      ConsultantService.all(permitted_params)
     end
   end
 end

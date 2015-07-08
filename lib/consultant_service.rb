@@ -1,6 +1,5 @@
 require 'json'
 require 'net/http'
-require 'byebug'
 
 module ConsultantService
 
@@ -70,7 +69,7 @@ module ConsultantService
     consultants_json = JSON.parse(response_body)
     consultants = []
     consultants_json.each do |json|
-      consultants.append(Consultant.from_json(json))
+      consultants.push(Consultant.from_json(json))
     end
     return consultants
   end
