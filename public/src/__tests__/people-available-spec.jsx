@@ -24,9 +24,15 @@ describe("People Available", function() {
 		expect(node.getAttribute('value')).toEqual(today);
 	});
 
-	it("should start with selectedTime equal to 07:00", function() {
+	it("should start with selectedStartTime equal to 07:00", function() {
 		var expectedTime = moment().startOf('day').add(7, 'hours').toString();
 
-		expect(_peopleAvailable.state.selectedTime.toString()).toEqual(expectedTime);
+		expect(_peopleAvailable.state.selectedStartTime.toString()).toEqual(expectedTime);
+	});
+
+	it("should start with selectedEndTime equal to 07:00", function() {
+		var expectedTime = moment().startOf('day').add(7, 'hours').toString();
+
+		expect(_peopleAvailable.state.selectedEndTime.toString()).toEqual(expectedTime);
 	});
 });

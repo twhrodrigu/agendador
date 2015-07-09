@@ -40,7 +40,8 @@ var PeopleAvailable = React.createClass({
   getInitialState: function() {
     return {
       selectedDate: DateInput.parseDate(DateInput.now()),
-      selectedTime: DateInput.parseTime(DateInput.now()),
+      selectedStartTime: null,
+      selectedEndTime: null,
       selectedRoleIndex: 0,
       selectedOfficeIndex: 0,
       roles: [],
@@ -53,14 +54,15 @@ var PeopleAvailable = React.createClass({
     return (
       <div className="tempo-livre-page">
         <div className="search-form">
-          <TextField hintText="Dia" className="dateTextField"
+          <TextField hintText="Dia"
               type="date"
               value={DateInput.formatDate(this.state.selectedDate)}
               floatingLabelText="Dia"
               onChange={this._handleDateChange}
               required/>
-          <InputTime ref={this._startTimeDidMount} onChange={this._handleTimeChange} />
-        </div>
+          <InputTime className="startTimeBox" ref={this._timeBoxDidMount} onChange={this._handleTimeChange} />
+          <InputTime className="endTimeBox" ref={this._timeBoxDidMount} onChange={this._handleTimeChange} />
+          </div>
         <Toolbar>
           <ToolbarGroup float="left">
             {this.state.roles.length > 0 &&
@@ -93,19 +95,21 @@ var PeopleAvailable = React.createClass({
   },
 
   _handleTimeChange: function(e, idx, item) {
-    this.setState({selectedTime: DateInput.parseTime(item.text)});
+    this.setState({selectedStartTime: DateInput.parseTime(item.text)});
   },
 
   _handleDateChange: function(e) {
     this.setState({selectedDate: DateInput.parseDate(e.target.value)});
   },
 
-  _startTimeDidMount:  function(e) {
-    this.setState({selectedTime: DateInput.parseTime(e.state.menuItems[0].text)});
+  _timeBoxDidMount:  function(component) {
+    component.props.className == 'startTimeBox'
+      ? this.setState({selectedStartTime: DateInput.parseTime(component.state.menuItems[0].text)})
+      : this.setState({selectedEndTime: DateInput.parseTime(component.state.menuItems[0].text)});
   },
 
   _handleTapSearch: function(e) {
-    var start = DateInput.setTime(this.state.selectedDate, this.state.selectedTime);
+    var start = DateInput.setTime(this.state.selectedDate, this.state.selectedStartTime);
     var token = Auth.getToken(),
         start_time_timezone = moment(start).format(),
         role = this.state.roles[this.state.selectedRoleIndex].text,
