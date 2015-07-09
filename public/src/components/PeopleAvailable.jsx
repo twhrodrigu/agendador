@@ -60,8 +60,8 @@ var PeopleAvailable = React.createClass({
               floatingLabelText="Dia"
               onChange={this._handleDateChange}
               required/>
-          <InputTime className="startTimeBox" ref={this._timeBoxDidMount} onChange={this._handleTimeChange} />
-          <InputTime className="endTimeBox" ref={this._timeBoxDidMount} onChange={this._handleTimeChange} />
+          <InputTime className="startTimeBox" ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'startTimeBox')} />
+          <InputTime className="endTimeBox" ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'endTimeBox')} />
           </div>
         <Toolbar>
           <ToolbarGroup float="left">
@@ -94,8 +94,10 @@ var PeopleAvailable = React.createClass({
     this.setState({selectedOfficeIndex: idx})
   },
 
-  _handleTimeChange: function(e, idx, item) {
-    this.setState({selectedStartTime: DateInput.parseTime(item.text)});
+  _handleTimeChange: function(name, e, idx, item) {
+    name == 'startTimeBox'
+      ? this.setState({selectedStartTime: DateInput.parseTime(item.text)})
+      : this.setState({selectedEndTime: DateInput.parseTime(item.text)});
   },
 
   _handleDateChange: function(e) {
@@ -110,8 +112,10 @@ var PeopleAvailable = React.createClass({
 
   _handleTapSearch: function(e) {
     var start = DateInput.setTime(this.state.selectedDate, this.state.selectedStartTime);
+    var end = DateInput.setTime(this.state.selectedDate, this.state.selectedEndTime);
     var token = Auth.getToken(),
         start_time_timezone = moment(start).format(),
+        end_time_timezone = moment(end).format(),
         role = this.state.roles[this.state.selectedRoleIndex].text,
         office = this.state.offices[this.state.selectedOfficeIndex].text;
 
@@ -120,6 +124,7 @@ var PeopleAvailable = React.createClass({
       .get('/v1/calendar/available')
       .query({ token: token })
       .query({ start: start_time_timezone })
+      .query({ end: end_time_timezone})
       .query({ role: role })
       .query({ office: office })
       .end(function (e, r) {
