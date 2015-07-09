@@ -2,10 +2,10 @@ class Consultant
 
   attr_accessor :login, :name, :role
 
-  def initialize(params)
-    @login = params[:login]
-    @name = params[:name]
-    @role = params[:role]
+  def initialize(login:, name:, role:)
+    @login = login
+    @name = name
+    @role = role
   end
 
   def email

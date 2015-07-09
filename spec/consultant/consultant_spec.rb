@@ -14,7 +14,7 @@ describe 'Consultant' do
   end
 
   it 'should get ThoughtWorks email' do
-    consultant = Consultant.new login: 'johndoe'
+    consultant = Consultant.new login: 'johndoe', name: 'John Doe', role: 'Dev'
     expect(consultant.email).to eq('johndoe@thoughtworks.com')
   end
 
