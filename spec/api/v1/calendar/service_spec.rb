@@ -1,7 +1,7 @@
 require 'webmock/rspec'
 
-require './api/v1/calendar/calendar_service'
-require './api/v1/consultants/consultant_service'
+require './api/v1/calendar/service'
+require './api/v1/consultants/service'
 
 describe 'calendar service' do
 
