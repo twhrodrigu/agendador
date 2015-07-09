@@ -1,4 +1,4 @@
-require './consultant/consultant'
+require './api/v1/consultant/consultant'
 
 describe 'Consultant' do
 

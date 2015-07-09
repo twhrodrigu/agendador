@@ -1,9 +1,9 @@
 require 'grape'
 require 'json'
 
-require './consultant/consultant_service'
-require './consultant/consultant'
-require './calendar/calendar_service'
+require './api/v1/consultant/consultant_service'
+require './api/v1/consultant/consultant'
+require './api/v1/calendar/calendar_service'
 
 module Agendador
 

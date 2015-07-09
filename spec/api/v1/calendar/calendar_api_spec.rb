@@ -4,8 +4,8 @@ require 'webmock/rspec'
 require 'rack/test'
 include Rack::Test::Methods
 
-require './calendar/calendar_api'
-require './consultant/consultant'
+require './api/v1/calendar/calendar_api'
+require './api/v1/consultant/consultant'
 
 describe 'calendar api' do
 
