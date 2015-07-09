@@ -3,10 +3,6 @@ require 'net/http'
 
 module ConsultantService
 
-  def self.roles
-    @@roles ||= JSON.parse(open('resources/roles.json').read)
-  end
-
   def self.consultants(params)
     staffing_office = params[:staffing_office]
     role = params[:role]

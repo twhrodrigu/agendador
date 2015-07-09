@@ -4,12 +4,12 @@ require 'webmock/rspec'
 require 'rack/test'
 include Rack::Test::Methods
 
-require './consultant/consultant_api'
+require './role/role_api'
 
-describe 'consultant api' do
+describe 'roles api' do
 
   def app
-    Agendador::ConsultantAPI
+    Agendador::RoleAPI
   end
 
   it 'should get all supported roles' do

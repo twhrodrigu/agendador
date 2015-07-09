@@ -1,10 +1,9 @@
 require 'grape'
 require 'json'
-require './consultant/consultant_service'
 
 module Agendador
 
-  class ConsultantAPI < Grape::API
+  class RoleAPI < Grape::API
     version 'v1', using: :path
     format :json
 
@@ -14,8 +13,7 @@ module Agendador
 
     desc "Gets all supported roles"
     get :roles do
-      ConsultantService.roles
+      @@roles ||= JSON.parse(open('role/roles.json').read)
     end
-
   end
 end

@@ -6,7 +6,7 @@ include Rack::Test::Methods
 
 require './office/office_api'
 
-describe 'office api' do
+describe 'offices api' do
 
   def app
     Agendador::OfficeAPI
