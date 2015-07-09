@@ -6,7 +6,7 @@ var gutil = require("gulp-util");
 var fs = require("fs")
 
 gulp.task('watch', function() {
-    gulp.watch(['src/**/*.jsx', 'src/**/*.js', 'less/**/*.less']).on('change', function(file) {
+    gulp.watch(['src/**/*.jsx', 'src/**/*.js', 'src/**/*.less']).on('change', function(file) {
         gulp.start('webpack');
     });
 });
