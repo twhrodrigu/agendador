@@ -1,18 +1,12 @@
 require 'grape'
-require './consultant/consultant_service'
 require 'json'
+require './consultant/consultant_service'
 
 module Agendador
 
   class ConsultantAPI < Grape::API
     version 'v1', using: :path
     format :json
-
-    helpers do
-      def permitted_params
-          @permitted_params ||= declared(params, include_missing: false)
-      end
-    end
 
     before do
       header "Access-Control-Allow-Origin", "*"
