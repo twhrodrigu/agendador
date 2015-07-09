@@ -3,10 +3,6 @@ require 'net/http'
 
 module ConsultantService
 
-  def self.offices
-    @@offices ||= JSON.parse(open('resources/offices.json').read)
-  end
-
   def self.roles
     @@roles ||= JSON.parse(open('resources/roles.json').read)
   end

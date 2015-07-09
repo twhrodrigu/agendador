@@ -1,15 +1,5 @@
 require './consultant/consultant_service'
 
-describe 'offices and roles' do
-  it 'should retrieve all supported offices' do
-    expect(ConsultantService.offices).to contain_exactly("São Paulo", "Porto Alegre", "Recife", "Belo Horizonte")
-  end
-
-  it 'should retrieve all supported roles' do
-    expect(ConsultantService.roles).to contain_exactly("BA", "Dev", "QA", "UI Dev", "XD", "PM", "DevOps")
-  end
-end
-
 describe 'consultants by staffing office and role' do
 
   def to_json(consultant)
