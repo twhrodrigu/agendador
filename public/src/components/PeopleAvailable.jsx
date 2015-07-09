@@ -53,7 +53,7 @@ var PeopleAvailable = React.createClass({
     return (
       <div className="tempo-livre-page">
         <div className="search-form">
-          <TextField hintText="Dia"
+          <TextField hintText="Dia" className="dateTextField"
               type="date"
               value={DateInput.formatDate(this.state.selectedDate)}
               floatingLabelText="Dia"
