@@ -1,6 +1,5 @@
 require 'time'
 require 'net/https'
-require 'byebug'
 
 module CalendarService
   TIMEZONE_OFFSET = "00:00:00"
