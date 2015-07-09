@@ -13,7 +13,7 @@ module Agendador
 
     desc "Gets all supported offices"
     get :offices do
-      @@offices ||= JSON.parse(open('./api/v1/office/offices.json').read)
+      @@offices ||= JSON.parse(open('./api/v1/offices/offices.json').read)
     end
   end
 end

@@ -13,7 +13,7 @@ module Agendador
 
     desc "Gets all supported roles"
     get :roles do
-      @@roles ||= JSON.parse(open('./api/v1/role/roles.json').read)
+      @@roles ||= JSON.parse(open('./api/v1/roles/roles.json').read)
     end
   end
 end

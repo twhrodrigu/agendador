@@ -1,4 +1,4 @@
-require './api/v1/consultant/consultant_service'
+require './api/v1/consultants/consultant_service'
 
 describe 'consultants by staffing office and role' do
 

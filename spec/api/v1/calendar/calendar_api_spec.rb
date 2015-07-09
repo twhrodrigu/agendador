@@ -5,7 +5,7 @@ require 'rack/test'
 include Rack::Test::Methods
 
 require './api/v1/calendar/calendar_api'
-require './api/v1/consultant/consultant'
+require './api/v1/consultants/consultant'
 
 describe 'calendar api' do
 

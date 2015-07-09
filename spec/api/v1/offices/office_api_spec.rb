@@ -4,7 +4,7 @@ require 'webmock/rspec'
 require 'rack/test'
 include Rack::Test::Methods
 
-require './api/v1/office/office_api'
+require './api/v1/offices/office_api'
 
 describe 'offices api' do
 

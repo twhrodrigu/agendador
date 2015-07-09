@@ -4,7 +4,7 @@ require 'webmock/rspec'
 require 'rack/test'
 include Rack::Test::Methods
 
-require './api/v1/role/role_api'
+require './api/v1/roles/role_api'
 
 describe 'roles api' do
 
