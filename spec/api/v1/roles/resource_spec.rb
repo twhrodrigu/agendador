@@ -4,16 +4,22 @@ require 'webmock/rspec'
 require 'rack/test'
 include Rack::Test::Methods
 
-require './api/v1/roles/resource'
+require './api/v1/root'
 
-describe 'roles api' do
+module API
+  module V1
 
-  def app
-    API::V1::Roles::Resource
-  end
+    describe 'roles api' do
 
-  it 'should get all supported roles' do
-    get '/v1/roles'
-    expect(last_response.body).to eq(['BA', 'Dev', 'QA', 'UI Dev', 'XD', 'PM', 'DevOps'].to_json)
+      def app
+        Roles::Resource
+      end
+
+      it 'should get all supported roles' do
+        get '/v1/roles'
+        expect(last_response.body).to eq(['BA', 'Dev', 'QA', 'UI Dev', 'XD', 'PM', 'DevOps'].to_json)
+      end
+    end
+
   end
 end
