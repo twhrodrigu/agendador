@@ -15,9 +15,9 @@ describe 'consultants by staffing office and role' do
   end
 
   before(:all) do
-    @alice = Consultant.new(login: 'alice', name: 'Alice', role: 'QA')
-    @bob = Consultant.new(login: 'bob', name: 'Bob', role: 'Dev')
-    @eve = Consultant.new(login: 'eve', name: 'Eve', role: 'BA')
+    @alice = API::V1::Consultants::Consultant.new(login: 'alice', name: 'Alice', role: 'QA')
+    @bob = API::V1::Consultants::Consultant.new(login: 'bob', name: 'Bob', role: 'Dev')
+    @eve = API::V1::Consultants::Consultant.new(login: 'eve', name: 'Eve', role: 'BA')
 
     @office = 'Belo Horizonte'
 
@@ -36,7 +36,7 @@ describe 'consultants by staffing office and role' do
         'X-Total-Pages'=>'1'
     })
 
-    expect((ConsultantService.consultants staffing_office: @office)).to contain_exactly(@alice, @bob)
+    expect((API::V1::Consultants::Service.consultants staffing_office: @office)).to contain_exactly(@alice, @bob)
   end
 
   it 'should retrieve all consultants by staffing office using pagination' do
@@ -52,7 +52,7 @@ describe 'consultants by staffing office and role' do
     WebMock.stub_request(:get, jigsaw_url(@office, 2)).
       with(:headers => @request_headers).to_return(:status => 200, :body => json_second_page, :headers => response_headers)
 
-    expect((ConsultantService.consultants staffing_office: @office)).to contain_exactly(@alice, @bob, @eve)
+    expect((API::V1::Consultants::Service.consultants staffing_office: @office)).to contain_exactly(@alice, @bob, @eve)
   end
 
   it 'should retrieve all consultants by staffing office and role' do
@@ -69,6 +69,6 @@ describe 'consultants by staffing office and role' do
       with(:headers => @request_headers).to_return(:status => 200, :body => json_second_page, :headers => response_headers)
 
     role = 'Dev'
-    expect((ConsultantService.consultants staffing_office: @office, role: role)).to contain_exactly(@bob)
+    expect((API::V1::Consultants::Service.consultants staffing_office: @office, role: role)).to contain_exactly(@bob)
   end
 end

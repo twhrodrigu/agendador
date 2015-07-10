@@ -4,12 +4,12 @@ require 'webmock/rspec'
 require 'rack/test'
 include Rack::Test::Methods
 
-require './api/v1/offices/api'
+require './api/v1/offices/resource'
 
 describe 'offices api' do
 
   def app
-    Agendador::OfficeAPI
+    API::V1::Offices::Resource
   end
 
   it 'should get all supported offices' do

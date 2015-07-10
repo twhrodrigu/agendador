@@ -4,13 +4,13 @@ require 'webmock/rspec'
 require 'rack/test'
 include Rack::Test::Methods
 
-require './api/v1/calendar/api'
+require './api/v1/root'
 require './api/v1/consultants/consultant'
 
 describe 'calendar api' do
 
   def app
-    Agendador::CalendarAPI
+    API::V1::Root
   end
 
   def to_json(consultant)
@@ -22,9 +22,9 @@ describe 'calendar api' do
   end
 
   it 'should get available consultants' do
-    alice = Consultant.new(login: 'alice', name: 'Alice', role: 'Dev')
-    bob = Consultant.new(login: 'bob', name: 'Bob', role: 'Dev')
-    eve = Consultant.new(login: 'eve', name: 'Eve', role: 'BA')
+    alice = API::V1::Consultants::Consultant.new(login: 'alice', name: 'Alice', role: 'Dev')
+    bob = API::V1::Consultants::Consultant.new(login: 'bob', name: 'Bob', role: 'Dev')
+    eve = API::V1::Consultants::Consultant.new(login: 'eve', name: 'Eve', role: 'BA')
 
     token = 'access-token-123'
     start = '2015-02-25T12:00:00'
