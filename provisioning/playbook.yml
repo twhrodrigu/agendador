@@ -3,7 +3,9 @@
   vars:
     base_path: /vagrant/agendador
     bashrc_path: /home/vagrant/.bashrc
+    rc_local_path: /etc/rc.local
   roles:
     - ruby
     - nodejs
     - app
+    - cucumber

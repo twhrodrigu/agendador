@@ -1,0 +1,11 @@
+- name: install firefox
+  apt: name=firefox state=present
+
+- name: install xvfb
+  apt: name=xvfb state=present
+
+- name: startup xvfb DISPLAY
+  lineinfile: dest={{ rc_local_path }} line='Xvfb :99 -ac -screen 0 1024x768x16 &' insertbefore='exit 0' regexp='export "DISPLAY"' state=present
+
+- name: declares DISPLAY
+  lineinfile: dest={{ bashrc_path }} line='export DISPLAY=:99' insertafter='EOF' regexp='export "DISPLAY"' state=present
