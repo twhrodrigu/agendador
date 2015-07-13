@@ -25,7 +25,7 @@ module API
           end
           get :available do
             consultants = Consultants::Service.consultants staffing_office: params[:office].tr('Ãã ', 'Aa+'), role: params[:role]
-            available_consultants = Service.availability token: params[:token], consultants: consultants, start: params[:start], hours: params[:hours]
+            available_consultants = Calendar::Service.availability token: params[:token], consultants: consultants, start: params[:start], hours: params[:hours]
             return available_consultants.map { |c| c.as_json }
           end
 
