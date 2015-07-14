@@ -39,14 +39,14 @@ module API
           {
             'calendars' => {
               @alice.email => {'busy' => [{'start'=>'2015-02-25T12:00:00Z', 'end'=>'2015-02-25T14:00:00Z'}]},
-              @bob.email   => {'busy' => [{'start'=>'2015-02-25T12:00:00Z', 'end'=>'2015-02-25T14:00:00Z'}]},
+              @bob.email   => {'busy' => [{'start'=>'2015-02-25T12:30:00Z', 'end'=>'2015-02-25T13:00:00Z'}, {'start'=>'2015-02-25T13:15:00Z', 'end'=>'2015-02-25T13:30:00Z'}]},
               @eve.email   => {'busy' => [{'start'=>'2015-02-25T10:00:00Z', 'end'=>'2015-02-25T12:30:00Z'}]}
             }
           }
         )
 
         WebMock.stub_request(:post, 'https://www.googleapis.com/calendar/v3/freeBusy').to_return({:body => calendar_response, :status => 200})
-        available = Calendar::Service.availability token: @token, start: '2015-02-25T12:00:00', hours: 1, consultants: [@alice, @bob, @eve]
+        available = Calendar::Service.availability token: @token, start: '2015-02-25T12:00:00', hours: 3, consultants: [@alice, @bob, @eve]
         expect(available).to eq([])
       end
     end
