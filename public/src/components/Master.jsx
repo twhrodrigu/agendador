@@ -16,11 +16,6 @@ var Master = React.createClass({
           {Auth.loggedIn() &&
             <div className="current-user-bar">
               <a href onTouchTap={this._handleTapLogout}>Logout</a>
-              <a href="https://git.thoughtworks.net/agendadorentrevistas/agenda-mvp/issues"
-                 target="_blank"
-                 style={{float: 'right'}}>
-                Feedback
-              </a>
             </div>
           }
           <Paper className="content-card" zDepth={1}>
