@@ -30,7 +30,6 @@ module API
         )
 
         WebMock.stub_request(:post, 'https://www.googleapis.com/calendar/v3/freeBusy').to_return({:body => calendar_response, :status => 200})
-
         available = Calendar::Service.availability token: @token, start: '2015-02-25T12:00:00', hours: 1, consultants: [@alice, @bob, @eve]
         expect(available).to eq([@bob])
       end
@@ -45,8 +44,8 @@ module API
             }
           }
         )
-        WebMock.stub_request(:post, 'https://www.googleapis.com/calendar/v3/freeBusy').to_return({:body => calendar_response, :status => 200})
 
+        WebMock.stub_request(:post, 'https://www.googleapis.com/calendar/v3/freeBusy').to_return({:body => calendar_response, :status => 200})
         available = Calendar::Service.availability token: @token, start: '2015-02-25T12:00:00', hours: 1, consultants: [@alice, @bob, @eve]
         expect(available).to eq([])
       end
