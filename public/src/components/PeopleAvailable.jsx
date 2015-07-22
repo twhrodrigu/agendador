@@ -60,8 +60,8 @@ var PeopleAvailable = React.createClass({
               floatingLabelText="Dia"
               onChange={this._handleDateChange}
               required/>
-          <InputTime className="startTimeBox" ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'startTimeBox')} />
-          <InputTime className="endTimeBox" ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'endTimeBox')} />
+          <InputTime className="start-time-box" ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'startTimeBox')} />
+          <InputTime className="end-time-box" ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'endTimeBox')} />
           </div>
         <Toolbar>
           <ToolbarGroup float="left">

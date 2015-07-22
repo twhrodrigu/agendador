@@ -39,12 +39,7 @@ body {
     background: @indigo-700;
     .mui-drop-down-menu {
       width: 150px;
-      .mui-menu {
-        max-height: 200px;
-        .mui-paper-container {
-          overflow: auto !important;
-        }
-      }
+      
     }
     .mui-menu-drop-down-icon,
     .mui-menu-label {
@@ -73,6 +68,14 @@ body {
     .mui-text-field-input {
       color: @white;
       display: block;
+    }
+  }
+  .start-time-box, .end-time-box {
+    .mui-menu {
+      max-height: 200px;
+      .mui-paper-container {
+        overflow: auto !important;
+      }
     }
   }
 }

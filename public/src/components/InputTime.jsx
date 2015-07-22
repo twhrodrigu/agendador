@@ -14,7 +14,7 @@ var InputTime = React.createClass({
   render: function(){
     return (
       <div>
-        <DropDownMenu id="drop-down-start" menuItems={this.state.menuItems} onChange={this.props.onChange} />
+        <DropDownMenu className={this.props.className} id="drop-down-start" menuItems={this.state.menuItems} onChange={this.props.onChange} />
       </div>
     )
   }
