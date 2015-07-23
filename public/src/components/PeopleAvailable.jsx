@@ -8,6 +8,7 @@ var React = require('react'),
     mui = require('material-ui'),
     InputTime = require('./InputTime'),
     TextField = mui.TextField,
+    DatePicker = mui.DatePicker,
     Toolbar = mui.Toolbar,
     ToolbarGroup = mui.ToolbarGroup,
     RaisedButton = mui.RaisedButton,
@@ -39,7 +40,7 @@ var PeopleAvailable = React.createClass({
 
   getInitialState: function() {
     return {
-      selectedDate: DateInput.parseDate(DateInput.now()),
+      selectedDate: DateInput.now(),
       selectedStartTime: null,
       selectedEndTime: null,
       selectedRoleIndex: 0,
@@ -50,16 +51,16 @@ var PeopleAvailable = React.createClass({
     }
   },
 
+  formatDate: function(value) {
+    return DateInput.formatDate(value)
+  },
+
   render: function () {
     return (
       <div className="tempo-livre-page">
         <div className="search-form">
-          <TextField hintText="Dia"
-              type="date"
-              value={DateInput.formatDate(this.state.selectedDate)}
-              floatingLabelText="Dia"
-              onChange={this._handleDateChange}
-              required/>
+          <DatePicker hintText="Choose the day" mode="landscape" defaultDate={this.state.selectedDate} formatDate={this.formatDate} onChange={this._handleDateChange} required/>
+
           <InputTime className="start-time-box" ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'startTimeBox')} />
           <InputTime className="end-time-box" ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'endTimeBox')} />
           </div>
@@ -100,12 +101,12 @@ var PeopleAvailable = React.createClass({
       : this.setState({selectedEndTime: DateInput.parseTime(item.text)});
   },
 
-  _handleDateChange: function(e) {
-    this.setState({selectedDate: DateInput.parseDate(e.target.value)});
+  _handleDateChange: function(e, date) {
+    this.setState({selectedDate: DateInput.parseDate(date)});
   },
 
   _timeBoxDidMount:  function(component) {
-    component.props.className == 'startTimeBox'
+    component.props.className == 'start-time-box'
       ? this.setState({selectedStartTime: DateInput.parseTime(component.state.menuItems[0].text)})
       : this.setState({selectedEndTime: DateInput.parseTime(component.state.menuItems[0].text)});
   },
