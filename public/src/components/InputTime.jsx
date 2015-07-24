@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 var React = require('react'),
     mui = require('material-ui'),
-    DropDownMenu = mui.DropDownMenu;
+    DropDownMenu = mui.DropDownMenu,
+    Colors = mui.Styles.Colors;
 
 var InputTime = React.createClass({
 
@@ -13,9 +14,7 @@ var InputTime = React.createClass({
 
   render: function(){
     return (
-      <div>
-        <DropDownMenu className={this.props.className} id="drop-down-start" menuItems={this.state.menuItems} onChange={this.props.onChange} />
-      </div>
+      <DropDownMenu className="time-box" menuItems={this.state.menuItems} onChange={this.props.onChange} />
     )
   }
 

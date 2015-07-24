@@ -26,7 +26,7 @@
   "dependencies": {
     "hellojs": "^1.5.0",
     "is-retina": "^1.0.3",
-    "material-ui": "^0.7",
+    "material-ui": "^0.10.1",
     "md5": "^1.0.0",
     "moment": "^2.9.0",
     "react": "^0.13.1",
