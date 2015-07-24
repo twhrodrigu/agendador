@@ -22,7 +22,7 @@ var React = require('react'),
 
 var PeopleAvailable = React.createClass({
   mixins: [ Authentication ],
-
+  
   getStyles: function() {
     return {
       freeTimePage: {
@@ -39,24 +39,6 @@ var PeopleAvailable = React.createClass({
     };
   },
 
-  componentDidMount: function() {
-    request
-      .get('/v1/roles')
-      .end(function (e, r) {
-        this.setState({
-          roles: r.body.map((role, idx) => ({payload: idx, text: role}))
-        });
-      }.bind(this));
-
-      request
-        .get('/v1/offices')
-        .end(function (e, r) {
-          this.setState({
-            offices: r.body.map((office, idx) => ({payload: idx, text: office}))
-          });
-        }.bind(this));
-  },
-
   getInitialState: function() {
     return {
       selectedDate: DateInput.now(),
@@ -64,9 +46,9 @@ var PeopleAvailable = React.createClass({
       selectedEndTime: null,
       selectedRoleIndex: 0,
       selectedOfficeIndex: 0,
-      roles: [],
+      roles: ["BA", "Dev", "QA", "UI Dev", "XD", "PM", "DevOps"],
       people: [],
-      offices:[]
+      offices:["São Paulo", "Porto Alegre", "Recife", "Belo Horizonte"]
     }
   },
 
