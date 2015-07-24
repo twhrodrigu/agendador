@@ -2,7 +2,7 @@
 var React = require('react'),
     Avatar = require('./Avatar');
 
-var Classable = require('../../node_modules/material-ui/lib/js/mixins/classable');
+var Classable = require('../../node_modules/material-ui/lib/mixins/classable');
 
 var PeopleList = React.createClass({
   mixins: [Classable],

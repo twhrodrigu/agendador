@@ -13,12 +13,31 @@ var React = require('react'),
     ToolbarGroup = mui.ToolbarGroup,
     RaisedButton = mui.RaisedButton,
     DropDownMenu = mui.DropDownMenu,
-    moment = require('moment');
+    moment = require('moment'),
+    ThemeManager = new mui.Styles.ThemeManager(),
+    Colors = mui.Styles.Colors,
+    Typography = mui.Styles.Typography;
 
 
 
 var PeopleAvailable = React.createClass({
   mixins: [ Authentication ],
+
+  getStyles: function() {
+    return {
+      freeTimePage: {
+        backgroundColor: Colors.indigo500,
+      },
+      searchForm: {
+        padding: 16
+      },
+      bottomToolbar: {
+        backgroundColor: Colors.indigo700,
+        height: 64,
+        padding: '0px 20px'
+      }
+    };
+  },
 
   componentDidMount: function() {
     request
@@ -56,23 +75,24 @@ var PeopleAvailable = React.createClass({
   },
 
   render: function () {
+    var styles = this.getStyles();
     return (
-      <div className="tempo-livre-page">
-        <div className="search-form">
-          <DatePicker hintText="Choose the day" mode="landscape" defaultDate={this.state.selectedDate} formatDate={this.formatDate} onChange={this._handleDateChange} required/>
+      <div style={styles.freeTimePage}>
+        <div style={styles.searchForm}>
+          <DatePicker className="date-picker" hintText="Choose the day" mode="landscape" defaultDate={this.state.selectedDate} formatDate={this.formatDate} onChange={this._handleDateChange} required/>
 
-          <InputTime className="start-time-box" ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'startTimeBox')} />
-          <InputTime className="end-time-box" ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'endTimeBox')} />
+          <InputTime ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'startTimeBox')} />
+          <InputTime ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'endTimeBox')} />
           </div>
-        <Toolbar>
+        <Toolbar style={styles.bottomToolbar}>
           <ToolbarGroup float="left">
             {this.state.roles.length > 0 &&
-              <DropDownMenu autoWidth={false} menuItems={this.state.roles} onChange={this._handleRoleChange} />
+              <DropDownMenu className="roles-box" autoWidth={true} menuItems={this.state.roles} onChange={this._handleRoleChange} />
             }
           </ToolbarGroup>
           <ToolbarGroup float="left">
             {this.state.offices.length > 0 &&
-              <DropDownMenu autoWidth={false} menuItems={this.state.offices} onChange={this._handleOfficeChange} />
+              <DropDownMenu className="offices-box" autoWidth={true} menuItems={this.state.offices} onChange={this._handleOfficeChange} />
             }
           </ToolbarGroup>
           <ToolbarGroup float="right">

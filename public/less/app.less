@@ -1,87 +1,35 @@
-@import "~material-ui/src/less/scaffolding.less";
-@toolbar-background-color: @cyan-100;
-@import "~material-ui/src/less/components.less";
+// @import "~material-ui/src/less/scaffolding.less";
+// @toolbar-background-color: @cyan-100;
+// @import "~material-ui/src/less/components.less";
 /* custom font icons */
 @import "font-icons/style.css";
 
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  height: auto;
-}
+@pink-A100: #ff80ab;
+@indigo-500: #3f51b5;
+@indigo-700: #303f9f;
+@white: white;
 
-.content {
-  height: auto;
-  width: 510px;
-  margin: auto;
+.time-box, .roles-box, .offices-box {
+  > div:first-child > div {
+    color: white !important;
+    font-weight: 300;
+  }
 }
-
-.page,
-.login-page {
-  padding: 16px;
-}
-
-.current-user-bar {
-  padding: 16px;
-  a {
-    text-decoration: none;
-    color: @pink-A100;
-    .mui-font-weight-normal;
+.time-box {
+  > div:last-child {
+    max-height: 200px !important;
+    overflow: auto !important;
   }
 }
 
-.tempo-livre-page {
-  .search-form {
-    padding: 16px;
-  }
-  background: @indigo-500;
-  .mui-toolbar {
-    background: @indigo-700;
-    .mui-drop-down-menu {
-      width: 150px;
-      
-    }
-    .mui-menu-drop-down-icon,
-    .mui-menu-label {
-      color: @white;
-      stroke: @white;
-    }
-    .mui-menu-control-bg {
-      background-color: @indigo-500 !important;
-    }
-  }
-  > .mui-paper-container {
-    .mui-text-field {
-      width: 180px;
-      position: relative;
-      top: -16px;
-    }
-  }
-  .mui-text-field {
-    .mui-text-field-focus-underline {
-      border-color: @pink-A100;
-    }
-    .mui-text-field-floating-label {
-      color: @pink-A100 !important;
-    }
-    .mui-font-style-title,
-    .mui-text-field-input {
-      color: @white;
-      display: block;
-    }
-  }
-  .start-time-box, .end-time-box {
-    .mui-menu {
-      max-height: 200px;
-      .mui-paper-container {
-        overflow: auto !important;
-      }
-    }
-  }
-}
+.date-picker {
+  margin-left: 24px;
+  width: 210px;
 
-.mui-date-picker-calendar-container {
-  overflow: hidden;
+  input {
+    color: white !important;
+    font-weight: 300 !important;
+  }
 }
 
 .people-list {
@@ -91,10 +39,17 @@ body {
   padding: 8px 0;
   max-height: 328px;
   overflow: auto;
+  margin-top: 0px;
 }
 
 .people-list-divider {
-  .mui-font-style-body-2;
+  font-size: 13px;
+  line-height: 24px;
+  padding-top: 4px;
+  margin-bottom: 12px;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
   margin-left: 16px;
 }
 
@@ -113,11 +68,5 @@ body {
     display: inline-block;
     vertical-align: middle;
     padding-left: 10px
-  }
-
-  .people-tile-email {
-  }
-
-  .people-tile-name {
   }
 }

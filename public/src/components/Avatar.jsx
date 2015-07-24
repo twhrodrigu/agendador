@@ -4,7 +4,7 @@ var React = require('react'),
     mui = require('material-ui'),
     Paper = mui.Paper;
 
-var Classable = require('../../node_modules/material-ui/lib/js/mixins/classable');
+var Classable = require('../../node_modules/material-ui/lib/mixins/classable');
 
 var Avatar = React.createClass({
   mixins: [Classable],
