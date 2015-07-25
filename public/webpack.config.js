@@ -1,6 +1,6 @@
 module.exports = {
   debug: true,
-  devtool: 'source-map',
+  devtool: 'cheap-eval-source-map',
   entry: './src/App.jsx',
   output: {
     path: __dirname + '/dist',
