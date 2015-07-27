@@ -50,6 +50,7 @@ module.exports = function (config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: ['PhantomJS'],
+    // browsers: ['Chrome'],
     reporters: ['progress'],
     captureTimeout: 60000,
     singleRun: true,
@@ -58,6 +59,7 @@ module.exports = function (config) {
       'karma-jasmine',
       'karma-jasmine-matchers',
       'karma-phantomjs-launcher',
+      // 'karma-chrome-launcher',
       ]
   });
 };

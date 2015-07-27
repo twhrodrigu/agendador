@@ -4,9 +4,11 @@
 
 var React = require('react/addons'),
     PeopleAvailable = require('../components/PeopleAvailable'),
-    ReactTestUtils = React.addons.TestUtils,
-    moment = require('moment');
+    setMuiTheme = require('./set-mui-theme'),
+    moment = require('moment'),
+    ReactTestUtils = React.addons.TestUtils;
 
+setMuiTheme(PeopleAvailable);
 
 describe("People Available", function() {
 
