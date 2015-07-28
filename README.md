@@ -11,34 +11,7 @@ O/A recruiter então é direcionado para uma página com uma lista de todas as p
   - Botão para esconder alguém da lista
   - Ordenar por maior nivel de skill
 
-
 ## Dev Setup
-
-### Environment Variables
-
-If you are using vagrant to set your keys, you only have to change the `~/.profile` file in your host machine and set your own values.
-
-#### Google Calendar API
-
-You should define the following environment variables to connect to the Google API:
-
-```
-export GOOGLE_API_CLIENT={{your google api client}}
-export GOOGLE_API_SECRET={{your google api secret}}
-export GOOGLE_API_KEY={{your google api key}}
-```
-
-Read [this guide](https://my.thoughtworks.com/docs/DOC-30275) on how to create the Google API tokens.
-
-#### Jigsaw API
-
-You should define the following environment variable to connect to the Jigsaw API:
-
-```
-export JIGSAW_API_SECRET={{your jigsaw api secret}}
-```
-
-The JIGSAW authorization token is unique for each environment/user and must be requested directly to the Staffing Team on `jigsaw-support@thoughtworks.com`.
 
 ### Provisioning
 
@@ -54,6 +27,47 @@ Extras:
 - `vagrant halt`: to stop the virtual machine after a vagrant ssh command
 - `vagrant destroy`: to destroy the virtual machine instance created by vagrant up
 - `vagrant provisioning`: once your machine is already up and you need to run new tasks, you don't need to destroy the virtual machine and up again.
+
+### Environment Variables
+
+If you are using vagrant to set your keys, you only have to change the `~/.profile` file in your host machine and set your own values.
+
+### Google Calendar API
+(Adapted from [this guide](https://my.thoughtworks.com/docs/DOC-30275))
+
+#### Creating a Google application
+
+* Go to https://console.developers.google.com/ (make sure you're using your ThoughtWorks account)
+* Click on "Create Project", pick a name (i.e., "agendador-1") and click on "Create"
+* Select "API & auth" on the sidebar on the left, and then "Consent screen"
+* Enter a product name under "Product name" (i.e., "agendador") and click on "Save"
+* Select "API & auth" on the sidebar on the left, and then "Credentials"
+* Click on "Create new Client ID", select "Web application", enter "http://localhost:9393" under "Authorized Javascript origins" and "http://localhost:9393/" under "Authorized redirect URIs"
+* Select "API & auth" on the sidebar on the left, and then "Credentials"
+* Click on "Create new key", then on "Server key", leave the "Accept requests from these server IPs addresses" textarea empty and click on "Create"
+* Select "API & auth" on the sidebar on the left, click on "APIs", then "Calendar APIs" and then on the "Enable API" button
+
+#### Configuring the application
+
+Go back to the "Credentials" page ("API &auth", then "Credentials"). In this page are a few identifiers that must be passed to the frontend and backend aplications: "Client ID", "Client secret" and "API key". To do so, we use environment variables.
+
+* Edit the `$HOME/.profile` file on your vagrant instance and append the following:
+
+```
+export GOOGLE_API_CLIENT="<Client ID>"
+export GOOGLE_API_SECRET="<Client secret>"
+export GOOGLE_API_KEY="<API keys>"
+```
+
+### Jigsaw API
+
+You should define the following environment variable to connect to the Jigsaw API:
+
+```
+export JIGSAW_API_SECRET="<Jigsaw api secret>"
+```
+
+The JIGSAW authorization token is unique for each environment/user and must be requested directly to the Staffing Team on `jigsaw-support@thoughtworks.com`.
 
 ### Frontend
 
@@ -91,6 +105,6 @@ Well done, the app is running here [http://localhost:9393/index.html](http://loc
 
 ## Frontend Tools
 
-[ReactJS](http://facebook.github.io/react/): Javascript Components Framework
-[WebPack](webpack.github.io): Javascript Module Loader
-[ReactJS MaterialUI](material-ui.com): Component Library based on Material Design
+* [ReactJS](http://facebook.github.io/react/): Javascript Components Framework
+* [WebPack](webpack.github.io): Javascript Module Loader
+* [ReactJS MaterialUI](material-ui.com): Component Library based on Material Design
