@@ -27,9 +27,9 @@ var PeopleAvailable = React.createClass({
       selectedEndTime: null,
       selectedRoleIndex: 0,
       selectedOfficeIndex: 0,
-      roles: ["BA", "Dev", "QA", "UI Dev", "XD", "PM", "DevOps"],
+      roles: ["All", "BA", "Dev", "QA", "UI Dev", "XD", "PM", "DevOps"].map((role, idx) => ({payload: idx, text: role})),
       people: [],
-      offices:["São Paulo", "Porto Alegre", "Recife", "Belo Horizonte"]
+      offices:["São Paulo", "Porto Alegre", "Recife", "Belo Horizonte"].map((role, idx) => ({payload: idx, text: role}))
     }
   },
 
