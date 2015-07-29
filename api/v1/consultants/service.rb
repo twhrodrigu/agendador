@@ -8,7 +8,7 @@ module API
 
         def self.consultants(params)
           staffing_office = params[:staffing_office]
-          role = params[:role]
+          role = params[:role] if params[:role] != 'All'
           if role
             consultants_by_staffing_office_and_role(staffing_office, role)
           else

@@ -73,6 +73,16 @@ module API
         role = 'Dev'
         expect((Consultants::Service.consultants staffing_office: @office, role: role)).to contain_exactly(@bob)
       end
+
+      it 'should retrieve all people when role is not specified' do
+        json_first_page = [to_json(@alice), to_json(@bob)].to_json
+        WebMock.stub_request(:get, jigsaw_url(@office, 1))
+          .with(:headers => @request_headers).to_return(:status => 200, :body => json_first_page, :headers => {
+            'X-Total-Pages'=>'1'
+        })
+
+          expect(Consultants::Service.consultants staffing_office: @office).to contain_exactly(@alice, @bob)
+      end
     end
 
   end
