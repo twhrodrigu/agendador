@@ -63,8 +63,8 @@ var PeopleAvailable = React.createClass({
         <div style={styles.searchForm}>
           <DatePicker className="date-picker" hintText="Choose the day" mode="landscape" defaultDate={this.state.selectedDate} formatDate={this.formatDate} onChange={this._handleDateChange} required/>
 
-          <InputTime className="start-time-box" ref={this._timeBoxDidMount} onChange={this._handleTimeChange} />
-          <InputTime className="end-time-box"   ref={this._timeBoxDidMount} onChange={this._handleTimeChange} />
+          <InputTime className="start-time-box" ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'start-time-box')} />
+          <InputTime className="end-time-box"   ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'end-time-box')} />
           </div>
         <Toolbar style={styles.bottomToolbar}>
           <ToolbarGroup float="left">
@@ -98,13 +98,13 @@ var PeopleAvailable = React.createClass({
   },
 
   _handleTimeChange: function(name, e, idx, item) {
-    this.props.className == 'start-time-box'
+    name == 'start-time-box'
       ? this.setState({selectedStartTime: DateInput.parseTime(item.text)})
       : this.setState({selectedEndTime: DateInput.parseTime(item.text)});
   },
 
   _handleDateChange: function(e, date) {
-    this.setState({selectedDate: DateInput.parseDate(date)});
+    this.setState({selectedDate: date});
   },
 
   _timeBoxDidMount:  function(component) {
