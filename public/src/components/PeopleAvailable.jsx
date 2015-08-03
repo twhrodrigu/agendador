@@ -108,9 +108,11 @@ var PeopleAvailable = React.createClass({
   },
 
   _timeBoxDidMount:  function(component) {
-    component.props.className == 'start-time-box'
-      ? this.setState({selectedStartTime: DateInput.parseTime(component.state.menuItems[0].text)})
-      : this.setState({selectedEndTime: DateInput.parseTime(component.state.menuItems[0].text)});
+    if (component) {
+      component.props.className == 'start-time-box'
+        ? this.setState({selectedStartTime: DateInput.parseTime(component.state.menuItems[0].text)})
+        : this.setState({selectedEndTime: DateInput.parseTime(component.state.menuItems[0].text)});
+    }
   },
 
   _handleTapSearch: function(e) {

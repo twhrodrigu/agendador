@@ -4,6 +4,7 @@ var React = require('react'),
     mui = require('material-ui'),
     Paper = mui.Paper,
     Router = require('react-router'),
+    PreventDefault = require('../utils/PreventDefault');
     RouteHandler = Router.RouteHandler,
     ThemeManager = new mui.Styles.ThemeManager(),
     Colors = mui.Styles.Colors,
@@ -54,7 +55,7 @@ var Master = React.createClass({
         <div style={styles.content}>
           {Auth.loggedIn() &&
             <div style={styles.currentUserBar}>
-              <a style={styles.logoutLink} href onTouchTap={this._handleTapLogout}>Logout</a>
+              <a style={styles.logoutLink} href onClick={PreventDefault} onTouchTap={this._handleTapLogout}>Logout</a>
             </div>
           }
           <Paper zDepth={1}>
@@ -66,8 +67,9 @@ var Master = React.createClass({
   },
   _handleTapLogout: function (e) {
     Auth.logout().then(function () {
-      this.transitionTo('/login', {}, {'nextPath': '/'});
+      this.transitionTo('login', {}, {nextPath: '/'});
     }.bind(this));
+    e.preventDefault();
   }
 });
 
