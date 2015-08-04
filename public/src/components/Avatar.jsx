@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react'),
     Gravatar = require('./Gravatar'),
     mui = require('material-ui'),

@@ -1,10 +1,9 @@
-/** @jsx React.DOM */
 var React = require('react'),
     Auth = require('../Auth'),
     mui = require('material-ui'),
     Paper = mui.Paper,
     Router = require('react-router'),
-    PreventDefault = require('../utils/PreventDefault');
+    PreventDefault = require('../utils/PreventDefault'),
     RouteHandler = Router.RouteHandler,
     ThemeManager = new mui.Styles.ThemeManager(),
     Colors = mui.Styles.Colors,

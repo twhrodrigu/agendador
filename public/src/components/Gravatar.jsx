@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react'),
     md5 = require('md5'),
     querystring = require('querystring'),

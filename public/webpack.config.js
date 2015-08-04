@@ -8,8 +8,15 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.jsx$/, loader: 'jsx-loader?insertPragma=React.DOM&harmony'},
-      {test: /\.less/, loader: 'style-loader!css-loader!less-loader'}
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel'
+      },
+      {
+        test: /\.less$/,
+        loader: 'style-loader!css-loader!less-loader'
+      }
     ]
   },
   resolve: {

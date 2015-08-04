@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react/addons'),
     PeopleAvailable = require('../components/PeopleAvailable'),
     setMuiTheme = require('./set-mui-theme'),
