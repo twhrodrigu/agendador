@@ -1,0 +1,7 @@
+---
+- name: Exporting aliases
+  lineinfile:
+    dest: /home/vagrant/.bashrc
+    line: "{{ item }}"
+  with_items:
+    - alias startapp="cd /vagrant/agendador && bundle exec shotgun -o 0.0.0.0"
