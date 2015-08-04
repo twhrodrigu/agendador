@@ -5,7 +5,7 @@ require('react-tap-event-plugin')();
 var React = require('react'),
     Router = require('react-router'),
     Route = Router.Route,
-    Redirect = Router.Redirect;
+    Redirect = Router.Redirect,
     DefaultRoute = Router.DefaultRoute,
     NotFoundRoute = Router.NotFoundRoute,
     Auth = require('./Auth'),

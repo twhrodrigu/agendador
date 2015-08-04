@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var React = require('react/addons'),
     mui = require('material-ui'),
     ThemeManager = new mui.Styles.ThemeManager();

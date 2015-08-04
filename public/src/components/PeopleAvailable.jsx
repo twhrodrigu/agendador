@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react'),
     PeopleList = require('./PeopleList'),
     Authentication = require('../mixins/Authentication'),
@@ -133,7 +132,7 @@ var PeopleAvailable = React.createClass({
       .query({ role: role })
       .query({ office: office })
       .end(function (e, r) {
-        people = r.body;
+        var people = r.body;
         this.setState({people: people, loading: false});
       }.bind(this));
 

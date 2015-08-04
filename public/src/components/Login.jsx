@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react'),
     Router = require('react-router'),
     Auth = require('../Auth'),

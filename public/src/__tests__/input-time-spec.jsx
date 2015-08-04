@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react/addons'),
     InputTime = require('../components/InputTime'),
     setMuiTheme = require('./set-mui-theme'),

@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require('react/addons'),
     PeopleList = require('../components/PeopleList'),
     ReactTestUtils = React.addons.TestUtils;
