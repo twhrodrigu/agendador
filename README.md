@@ -1,3 +1,5 @@
+[![Build Status](https://snap-ci.com/tw-agendador/agendador/branch/master/build_image)](https://snap-ci.com/tw-agendador/agendador/branch/master)
+
 # MVP Agendador de Entrevistas
 
 A idéia para o MVP é um campo onde o/a recruiter possa entrar o horário onde uma entrevista precisa ser agendada e clicar em "AGENDAR".
