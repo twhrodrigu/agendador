@@ -1,7 +1,10 @@
 var React = require('react'),
+    Reflux = require('reflux'),
     PeopleList = require('./PeopleList'),
+    PeopleAvailableStore = require('../stores/PeopleAvailableStore'),
     Authentication = require('../mixins/Authentication'),
     DateInput = require('../utils/DateInput'),
+    Actions = require('../actions/Actions'),
     Auth = require('../Auth'),
     request = require('superagent'),
     mui = require('material-ui'),
@@ -20,7 +23,7 @@ var React = require('react'),
 
 
 var PeopleAvailable = React.createClass({
-  mixins: [ Authentication ],
+  mixins: [ Authentication, Reflux.connect(PeopleAvailableStore) ],
 
   getStyles: function() {
     return {
@@ -38,19 +41,6 @@ var PeopleAvailable = React.createClass({
     };
   },
 
-  getInitialState: function() {
-    return {
-      selectedDate: DateInput.now(),
-      selectedStartTime: null,
-      selectedEndTime: null,
-      selectedRoleIndex: 0,
-      selectedOfficeIndex: 0,
-      roles: ["All", "BA", "Dev", "QA", "UI Dev", "XD", "PM", "DevOps"].map((role, idx) => ({payload: idx, text: role})),
-      people: [],
-      offices:["São Paulo", "Porto Alegre", "Recife", "Belo Horizonte"].map((office, idx) => ({payload: idx, text: office}))
-    }
-  },
-
   formatDate: function(value) {
     return DateInput.formatDate(value)
   },
@@ -60,26 +50,26 @@ var PeopleAvailable = React.createClass({
     return (
       <div style={styles.freeTimePage}>
         <div style={styles.searchForm}>
-          <DatePicker className="date-picker" hintText="Choose the day" mode="landscape" defaultDate={this.state.selectedDate} formatDate={this.formatDate} onChange={this._handleDateChange} required/>
+          <DatePicker className="date-picker" hintText="Choose the day" mode="landscape" defaultDate={this.state.selectedDate} formatDate={this.formatDate} onChange={Actions.selectDate} required/>
 
-          <InputTime className="start-time-box" ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'start-time-box')} />
-          <InputTime className="end-time-box"   ref={this._timeBoxDidMount} onChange={this._handleTimeChange.bind(this, 'end-time-box')} />
-          </div>
+          <InputTime className="start-time-box" selectedIndex={this.state.selectedStartTimeIndex} onChange={Actions.selectStartTime} />
+          <InputTime className="end-time-box"   selectedIndex={this.state.selectedEndTimeIndex}   onChange={Actions.selectEndTime} />
+        </div>
         <Toolbar style={styles.bottomToolbar}>
           <ToolbarGroup float="left">
             {this.state.roles.length > 0 &&
-              <DropDownMenu className="roles-box" autoWidth={true} menuItems={this.state.roles} onChange={this._handleRoleChange} />
+              <DropDownMenu className="roles-box" autoWidth={true} menuItems={this.state.roles} onChange={Actions.selectRole} />
             }
           </ToolbarGroup>
           <ToolbarGroup float="left">
             {this.state.offices.length > 0 &&
-              <DropDownMenu className="offices-box" autoWidth={true} menuItems={this.state.offices} onChange={this._handleOfficeChange} />
+              <DropDownMenu className="offices-box" autoWidth={true} menuItems={this.state.offices} onChange={Actions.selectOffice} />
             }
           </ToolbarGroup>
           <ToolbarGroup float="right">
           <RaisedButton label={this.state.loading? 'Buscando':'Buscar'}
                         primary={true}
-                        onTouchTap={this._handleTapSearch}/>
+                        onTouchTap={Actions.searchRequest}/>
           </ToolbarGroup>
         </Toolbar>
         {this.state.people.length > 0 &&
@@ -88,55 +78,6 @@ var PeopleAvailable = React.createClass({
       </div>
     )
   },
-
-  _handleRoleChange: function (e, idx, item) {
-    this.setState({selectedRoleIndex: idx})
-  },
-  _handleOfficeChange: function (e, idx, item) {
-    this.setState({selectedOfficeIndex: idx})
-  },
-
-  _handleTimeChange: function(name, e, idx, item) {
-    name == 'start-time-box'
-      ? this.setState({selectedStartTime: DateInput.parseTime(item.text)})
-      : this.setState({selectedEndTime: DateInput.parseTime(item.text)});
-  },
-
-  _handleDateChange: function(e, date) {
-    this.setState({selectedDate: date});
-  },
-
-  _timeBoxDidMount:  function(component) {
-    if (component) {
-      component.props.className == 'start-time-box'
-        ? this.setState({selectedStartTime: DateInput.parseTime(component.state.menuItems[0].text)})
-        : this.setState({selectedEndTime: DateInput.parseTime(component.state.menuItems[0].text)});
-    }
-  },
-
-  _handleTapSearch: function(e) {
-    var start = DateInput.setTime(this.state.selectedDate, this.state.selectedStartTime);
-    var end = DateInput.setTime(this.state.selectedDate, this.state.selectedEndTime);
-    var token = Auth.getToken(),
-        start_time_timezone = moment(start).format(),
-        end_time_timezone = moment(end).format(),
-        role = this.state.roles[this.state.selectedRoleIndex].text,
-        office = this.state.offices[this.state.selectedOfficeIndex].text;
-
-    this.setState({people: [], loading: true});
-    request
-      .get('/v1/calendar/available')
-      .query({ token: token })
-      .query({ start: start_time_timezone })
-      .query({ end: end_time_timezone})
-      .query({ role: role })
-      .query({ office: office })
-      .end(function (e, r) {
-        var people = r.body;
-        this.setState({people: people, loading: false});
-      }.bind(this));
-
-  }
 });
 
 module.exports = PeopleAvailable;
