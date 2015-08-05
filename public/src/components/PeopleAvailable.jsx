@@ -16,9 +16,34 @@ var React = require('react'),
     moment = require('moment'),
     ThemeManager = new mui.Styles.ThemeManager(),
     Colors = mui.Styles.Colors,
+    alt = require('../alt'),
     Typography = mui.Styles.Typography;
 
+var PeopleStore = function(){
+  var that = {};
 
+  that.getStyles = function(){
+    return {
+      freeTimePage: {
+        backgroundColor: Colors.indigo500,
+      },
+      searchForm: {
+        padding: 16
+      },
+      bottomToolbar: {
+        backgroundColor: Colors.indigo700,
+        height: 64,
+        padding: '0px 20px'
+      }
+    };
+  };
+
+  return that;
+};
+
+alt.createStore(PeopleStore, 'PeopleStore');
+
+console.log(PeopleStore);
 
 var PeopleAvailable = React.createClass({
   mixins: [ Authentication ],
