@@ -15,7 +15,7 @@ describe('InputTime', function() {
         expectedItems.push({payload : i, text: i + ':30' });
     }
 
-    result = ReactTestUtils.renderIntoDocument(<InputTime/>);
+    var result = ReactTestUtils.renderIntoDocument(<InputTime/>);
     
     expect(result.state.menuItems).toEqual(expectedItems);
  });

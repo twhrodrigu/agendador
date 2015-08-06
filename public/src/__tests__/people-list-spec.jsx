@@ -7,7 +7,7 @@ describe('PeopleAvailable', function() {
 
  it("Check Text Assignment", function () {
 
-    result = ReactTestUtils.renderIntoDocument(<PeopleList/>);
+    var result = ReactTestUtils.renderIntoDocument(<PeopleList/>);
     
     var items = ReactTestUtils.scryRenderedDOMComponentsWithClass(result, 'people-list');
     

@@ -17,7 +17,7 @@ module.exports = function (config) {
       context: __dirname + '/public/src',
       module: {
         loaders: [{ 
-          test: /\.jsx?$/, exclude: /node_modules/, loader: "jsx-loader?harmony"}
+          test: /\.jsx?$/, exclude: /node_modules/, loader: "babel"}
       ]}, 
       resolveLoader:{
         root: __dirname + "/node_modules/" 
