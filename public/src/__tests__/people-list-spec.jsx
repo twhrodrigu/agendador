@@ -10,8 +10,6 @@ describe('PeopleAvailable', function() {
     var result = ReactTestUtils.renderIntoDocument(<PeopleList/>);
     
     var items = ReactTestUtils.scryRenderedDOMComponentsWithClass(result, 'people-list');
-    
-    expect(1).toBe(1);
  });
 
 });

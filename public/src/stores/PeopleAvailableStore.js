@@ -6,26 +6,20 @@ var Reflux  = require('reflux'),
     moment  = require('moment');
 
 var store = Reflux.createStore({
-    init: function () {
-      this.listenTo(Actions.searchRequest, this.onSearchRequest);
-      this.listenTo(Actions.selectDate, this.onSelectDate);
-      this.listenTo(Actions.selectStartTime, this.onSelectStartTime);
-      this.listenTo(Actions.selectEndTime, this.onSelectEndTime);
-      this.listenTo(Actions.selectRole, this.onSelectRole);
-      this.listenTo(Actions.selectOffice, this.onSelectOffice);
-    },
+    listenables: Actions,
 
     getInitialState: function () {
-      return {
+      var obj = {
         selectedDate:           (this.selectedDate = new Date()),
-        selectedStartTimeIndex: 0,
-        selectedEndTimeIndex:   1,
+        selectedStartTimeIndex: (this.selectedStartTimeIndex = 0),
+        selectedEndTimeIndex:   (this.selectedEndTimeIndex = 1),
         selectedRoleIndex:      (this.selectedRoleIndex = 0),
         selectedOfficeIndex:    (this.selectedOfficeIndex = 0),
         roles:                  (this.roles = ["All", "BA", "Dev", "QA", "UI Dev", "XD", "PM", "DevOps"].map((role, idx) => ({payload: idx, text: role}))),
         people:                 (this.people = []),
         offices:                (this.offices = ["São Paulo", "Porto Alegre", "Recife", "Belo Horizonte"].map((office, idx) => ({payload: idx, text: office})))
       }
+      return obj;
     },
 
     onSearchRequest: function () {
@@ -56,7 +50,8 @@ var store = Reflux.createStore({
     },
 
     searchCompleted: function (response) {
-      this.trigger({ people: response });
+      this.people = response;
+      this.trigger({ people: this.people });
     },
 
     searchFailed: function (message) {

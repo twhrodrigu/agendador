@@ -5,7 +5,7 @@ var path = require('path');
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', 'jasmine-matchers'],
+    frameworks: ['jasmine'],
     files: [
       'node_modules/phantomjs-polyfill/bind-polyfill.js',
       'src/__tests__/**/*spec.jsx'
@@ -15,6 +15,8 @@ module.exports = function (config) {
     },
     webpack: {
       context: __dirname + '/public/src',
+      debug: true,
+      devtool: 'cheap-eval-source-map',
       module: {
         loaders: [{ 
           test: /\.jsx?$/, exclude: /node_modules/, loader: "babel"}
@@ -56,7 +58,6 @@ module.exports = function (config) {
      plugins: [
       'karma-webpack',
       'karma-jasmine',
-      'karma-jasmine-matchers',
       'karma-phantomjs-launcher',
       ]
   });
