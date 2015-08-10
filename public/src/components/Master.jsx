@@ -1,16 +1,17 @@
 var React = require('react'),
-    Auth = require('../Auth'),
-    mui = require('material-ui'),
-    Paper = mui.Paper,
-    Router = require('react-router'),
+    Reflux = require('reflux'),
     PreventDefault = require('../utils/PreventDefault'),
-    RouteHandler = Router.RouteHandler,
+    AuthStore = require('../stores/AuthStore'),
+    Actions = require('../actions/Actions'),
+    RouteHandler = require('react-router').RouteHandler,
+    mui = require('material-ui'),
     ThemeManager = new mui.Styles.ThemeManager(),
+    Paper = mui.Paper,
     Colors = mui.Styles.Colors,
     Typography = mui.Styles.Typography;
 
 var Master = React.createClass({
-  mixins: [ Router.Navigation ],
+  mixins: [ Reflux.connect(AuthStore) ],
 
   childContextTypes: {
     muiTheme: React.PropTypes.object
@@ -52,9 +53,9 @@ var Master = React.createClass({
     return (
       <div style={styles.root}>
         <div style={styles.content}>
-          {Auth.loggedIn() &&
+          {this.state.loggedIn &&
             <div style={styles.currentUserBar}>
-              <a style={styles.logoutLink} href onClick={PreventDefault} onTouchTap={this._handleTapLogout}>Logout</a>
+              <a style={styles.logoutLink} href ref='logout' onClick={PreventDefault} onTouchTap={Actions.logout}>Logout</a>
             </div>
           }
           <Paper zDepth={1}>
@@ -63,12 +64,6 @@ var Master = React.createClass({
         </div>
       </div>
     )
-  },
-  _handleTapLogout: function (e) {
-    Auth.logout().then(function () {
-      this.transitionTo('login', {}, {nextPath: '/'});
-    }.bind(this));
-    e.preventDefault();
   }
 });
 

@@ -5,7 +5,9 @@ var actions = Reflux.createActions([
     'selectStartTime',
     'selectEndTime',
     'selectRole',
-    'selectOffice'
+    'selectOffice',
+    'login',
+    'logout'
 ]);
 
 module.exports = actions;

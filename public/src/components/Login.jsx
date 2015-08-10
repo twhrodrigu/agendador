@@ -1,12 +1,9 @@
 var React = require('react'),
-    Router = require('react-router'),
-    Auth = require('../Auth'),
+    Actions = require('../actions/Actions'),
     mui = require('material-ui'),
     RaisedButton = mui.RaisedButton;
 
 var Login = React.createClass({
-  mixins: [Router.Navigation, Router.State],
-
   getStyles: function() {
     return {
       loginPage: {
@@ -24,22 +21,9 @@ var Login = React.createClass({
         Este é o agendador de entrevista da ThoughtWorks Brasil<br/>
         Você ainda não esta logado, clique abaixo para prosseguir
         </p>
-        <RaisedButton primary={true} label="Acessar" onTouchTap={this._handleTapLogin}/>
+        <RaisedButton ref='login' primary={true} label="Acessar" onTouchTap={Actions.login} />
       </div>
     )
-  },
-
-  _handleTapLogin: function (e) {
-    var nextPath = this.getQuery().nextPath;
-    Auth.login().then(function (loggedIn) {
-      if (Auth.loggedIn()) {
-        if (nextPath) {
-          this.transitionTo(nextPath);
-        } else {
-          this.replaceWith('/');
-        }
-      }
-    }.bind(this));
   }
 });
 

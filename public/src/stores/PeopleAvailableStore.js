@@ -1,7 +1,7 @@
 var Reflux  = require('reflux'),
     Actions = require('../actions/Actions'),
-    Auth    = require('../Auth'),
     DateInput = require('../utils/DateInput'),
+    AuthStore = require('./AuthStore'),
     request = require('superagent'),
     moment  = require('moment');
 
@@ -25,7 +25,7 @@ var store = Reflux.createStore({
     onSearchRequest: function () {
       var start = DateInput.setTime(this.selectedDate, this.selectedStartTime),
           end = DateInput.setTime(this.selectedDate, this.selectedEndTime),
-          token = Auth.getToken(),
+          token = AuthStore.getToken(),
           start_time_timezone = moment(start).format(),
           end_time_timezone = moment(end).format(),
           role = this.roles[this.selectedRoleIndex].text,

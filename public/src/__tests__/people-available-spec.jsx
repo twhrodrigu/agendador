@@ -72,7 +72,6 @@ describe("People Available", function() {
     });
 
     it('should trigger the Action.searchRequest when the search button is clicked', function () {
-        var refs = _peopleAvailable.refs;
         var Actions = require('../actions/Actions');
         spyOn(Actions, 'searchRequest');
         var component = ReactTestUtils.renderIntoDocument(<PeopleAvailable />);

@@ -1,11 +1,11 @@
 var React = require('react'),
-    Auth = require('../Auth');
+    AuthStore = require('../stores/AuthStore');
 
 var Authentication = {
   statics: {
     willTransitionTo: function (transition) {
       var nextPath = transition.path;
-      if (!Auth.loggedIn()) {
+      if (!AuthStore.isLoggedIn()) {
         transition.redirect('/login',{}, { 'nextPath' : nextPath });
       }
     }
