@@ -1,12 +1,12 @@
 var pedro_rocha = {
   id: 1,
   name: "Procha",
-  email: "procha@thoughworks.com"
+  email: "procha@thoughtworks.com"
 },
 patrick_prado = {
   id: 2,
   name: "Patrick Prado",
-  email: "pprado@thoughworks.com"
+  email: "pprado@thoughtworks.com"
 };
 
 module.exports = function(){
