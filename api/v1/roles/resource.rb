@@ -12,7 +12,6 @@ module API
         get :roles do
           @@roles ||= JSON.parse(open('./api/v1/roles/roles.json').read)
         end
-
       end
     end
   end

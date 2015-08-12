@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require_relative './api/v1/consultants/service'
+
+API::V1::Consultants::Service.save_jigsaw_consultants_to_redis
