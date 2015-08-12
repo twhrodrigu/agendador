@@ -27,6 +27,7 @@ module API
 
       def to_json(consultant)
         return {
+          'employeeId' => consultant.id,
           'loginName' => consultant.login,
           'preferredName' => consultant.name,
           'role' => {'name'=> consultant.role}
@@ -34,9 +35,9 @@ module API
       end
 
       it 'should get available consultants' do
-        alice = Consultants::Consultant.new(login: 'alice', name: 'Alice', role: 'Dev')
-        bob = Consultants::Consultant.new(login: 'bob', name: 'Bob', role: 'Dev')
-        eve = Consultants::Consultant.new(login: 'eve', name: 'Eve', role: 'BA')
+        alice = Consultants::Consultant.new(id: 1, login: 'alice', name: 'Alice', role: 'Dev')
+        bob = Consultants::Consultant.new(id: 2, login: 'bob', name: 'Bob', role: 'Dev')
+        eve = Consultants::Consultant.new(id: 3, login: 'eve', name: 'Eve', role: 'BA')
 
         start = '2015-02-25T12:00:00'
         role = 'Dev'
@@ -58,7 +59,7 @@ module API
         WebMock.stub_request(:post, 'https://www.googleapis.com/calendar/v3/freeBusy').to_return({:body => calendar_response, :status => 200})
 
         get "/v1/calendar/available?token=#{@token}&start=#{start}&role=#{role}&office=#{office}"
-        expect(last_response.body).to eq([{login: alice.login, email: alice.email, name: alice.name, role: alice.role}].to_json)
+        expect(last_response.body).to eq([{id: 1, login: alice.login, email: alice.email, name: alice.name, role: alice.role, p2: nil, p3: nil}].to_json)
       end
 
       it 'should return empty if no consultants match criteria' do

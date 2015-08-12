@@ -6,5 +6,6 @@
   roles:
     - ruby
     - nodejs
+    - redis
     - app
     - exports
