@@ -14,7 +14,7 @@ var PeopleInfo = function(){
   };
 
   that.getAll = function(){
-    return request.get("/people");
+    return request.get("people.json");
   };
 
   that.formatData = function (data) {

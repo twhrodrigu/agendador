@@ -1,11 +1,12 @@
 'use strict';
 
 var React = require('react'),
-    PeopleInfoItem = require('./PeopleInfoItem.jsx');
+    PeopleInfoItem = require('./PeopleInfoItem.jsx'),
+    _ = require('underscore');
 
 var PeopleInfoList = React.createClass({
   peopleItems: function(){
-    return this.props.people.map(function(person, id){
+    return _.map(this.props.people, function(person, id){
       return <PeopleInfoItem key={id} name={person.name} email={person.email} />;
     });
   },

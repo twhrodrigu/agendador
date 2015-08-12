@@ -6,6 +6,7 @@ var React = require('react'),
     NotFoundRoute = Router.NotFoundRoute,
     Master = require('./components/Master'),
     PeopleAvailable = require('./components/PeopleAvailable'),
+    PeopleInfo = require('./components/PeopleInfo'),
     Login = require('./components/Login');
 
 var router = Router.create({
@@ -13,6 +14,7 @@ var router = Router.create({
     <Route name="root" path="/" handler={Master}>
       <Route name="login" handler={Login} />
       <Route name="available" handler={PeopleAvailable} />
+      <Route name="info" handler={PeopleInfo} />
       <DefaultRoute handler={PeopleAvailable}/>
     </Route>
   )

@@ -14,7 +14,7 @@ var PeopleInfo = React.createClass({
 
   loadData: function(){
     PeopleInfoStore.getAll().end(function(error, response){
-      this.setState({people: response.people});
+      this.setState({people: response.body});
     }.bind(this));
   },
 

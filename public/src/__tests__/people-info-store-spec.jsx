@@ -11,7 +11,7 @@ describe("PeopleInfoStore", function(){
 
   it("should list all people", function(){
     store.getAll().end(function(error, response){
-      expect(response.people.length).toEqual(2);
+      expect(response.body.length).toEqual(2);
     });
   });
 

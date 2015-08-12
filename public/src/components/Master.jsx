@@ -4,6 +4,7 @@ var React = require('react'),
     AuthStore = require('../stores/AuthStore'),
     Actions = require('../actions/Actions'),
     RouteHandler = require('react-router').RouteHandler,
+    Link = require('react-router').Link,
     mui = require('material-ui'),
     ThemeManager = new mui.Styles.ThemeManager(),
     Paper = mui.Paper,
@@ -56,6 +57,7 @@ var Master = React.createClass({
           {this.state.loggedIn &&
             <div style={styles.currentUserBar}>
               <a style={styles.logoutLink} href ref='logout' onClick={PreventDefault} onTouchTap={Actions.logout}>Logout</a>
+              <Link to="info">search people</Link>
             </div>
           }
           <Paper zDepth={1}>
