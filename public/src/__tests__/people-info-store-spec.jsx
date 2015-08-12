@@ -25,4 +25,8 @@ describe("PeopleInfoStore", function(){
     expect(formattedData[0].name).toEqual("Procha");
     expect(formattedData[1].name).toEqual("Patrick Prado");
   });
+
+  it("should set initial state", function(){
+    expect(store.getInitialState()).toEqual({people: []});
+  });
 });

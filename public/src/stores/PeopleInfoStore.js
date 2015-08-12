@@ -7,6 +7,12 @@ var Reflux  = require('reflux'),
 var PeopleInfo = function(){
   var that = {};
 
+  that.getInitialState = function (argument) {
+    return {
+      people: []
+    };
+  };
+
   that.getAll = function(){
     return request.get("/people");
   };
