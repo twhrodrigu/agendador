@@ -1,6 +1,6 @@
 var pedro_rocha = {
   id: 1,
-  name: "Procha",
+  name: "Pedro Rocha",
   email: "procha@thoughtworks.com"
 },
 patrick_prado = {

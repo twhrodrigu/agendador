@@ -22,7 +22,7 @@ describe("PeopleInfoStore", function(){
     var formattedData = store.formatData(myData);
 
     expect(formattedData.length).toEqual(2);
-    expect(formattedData[0].name).toEqual("Procha");
+    expect(formattedData[0].name).toEqual("Pedro Rocha");
     expect(formattedData[1].name).toEqual("Patrick Prado");
   });
 

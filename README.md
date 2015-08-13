@@ -34,7 +34,7 @@ Extras:
 
 - `vagrant halt`: to stop the virtual machine after a vagrant ssh command
 - `vagrant destroy`: to destroy the virtual machine instance created by vagrant up
-- `vagrant provisioning`: once your machine is already up and you need to run new tasks, you don't need to destroy the virtual machine and up again.
+- `vagrant provision`: once your machine is already up and you need to run new tasks, you don't need to destroy the virtual machine and up again.
 
 ### Environment Variables
 
