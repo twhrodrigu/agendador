@@ -6,7 +6,7 @@ var Reflux  = require('reflux'),
 
 var PeopleInfo = function(){
   var that         = {},
-      requiredKeys = ["id", "name", "email"];
+      requiredKeys = ["name", "email"];
 
   that.getInitialState = function (argument) {
     return {
