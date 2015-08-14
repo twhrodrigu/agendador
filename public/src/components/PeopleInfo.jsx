@@ -21,7 +21,7 @@ var PeopleInfo = React.createClass({
 
   render: function(){
     return (
-      <div id="people-info">
+      <div id="people-info" className="people-list">
         <PeopleInfoList people={this.state.people} />
       </div>
     );

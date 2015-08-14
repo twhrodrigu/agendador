@@ -55,9 +55,10 @@ var Master = React.createClass({
       <div style={styles.root}>
         <div style={styles.content}>
           {this.state.loggedIn &&
-            <div style={styles.currentUserBar}>
+            <div style={styles.currentUserBar} className="action-links-bar">
               <a style={styles.logoutLink} href ref='logout' onClick={PreventDefault} onTouchTap={Actions.logout}>Logout</a>
-              <Link to="info">search people</Link>
+              <Link to="info" style={styles.logoutLink} className="people-info-link">People Info</Link>
+              <Link to="available" style={styles.logoutLink} className="people-available-link">Find Available People</Link>
             </div>
           }
           <Paper zDepth={1}>
