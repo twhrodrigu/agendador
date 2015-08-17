@@ -20,3 +20,16 @@
 
 - name: declares JIGSAW_API_SECRET
   lineinfile: dest={{ bashrc_path }} line='export JIGSAW_API_SECRET={{ lookup("env", "JIGSAW_API_SECRET") }}' insertafter='EOF' regexp='export JIGSAW_API_SECRET' state=present
+
+- name: declares REDIS_PASSWORD
+  lineinfile: dest={{ bashrc_path }} line='export REDIS_PASSWORD={{ lookup("env", "REDIS_PASSWORD") }}' insertafter='EOF' regexp='export REDIS_PASSWORD' state=present
+
+- name: declares REDIS_URL
+  lineinfile: dest={{ bashrc_path }} line='export REDIS_URL={{ lookup("env", "REDIS_URL") }}' insertafter='EOF' regexp='export REDIS_URL' state=present
+
+- name: populate REDIS_URL
+  command: bash -lc '/vagrant/agendador/bin/sync_with_jigsaw'
+  environment:
+    REDIS_URL: '{{ lookup("env", "REDIS_URL") }}'
+    JIGSAW_API_SECRET: '{{ lookup("env", "JIGSAW_API_SECRET") }}'
+  sudo_user: vagrant
