@@ -15,7 +15,7 @@ var PeopleInfo = function(){
   };
 
   that.getAll = function(){
-    return request.get("people.json");
+    return request.get("/people.json");
   };
 
   that.rejectData = function (data) {
