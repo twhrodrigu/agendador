@@ -8,7 +8,7 @@ module API
       class Resource < Grape::API
         include API::V1::Defaults
 
-        JSON_FILE = './api/v1/offices/offices.json'
+        JSON_FILE = File.expand_path('../offices.json', __FILE__)
 
         desc "Gets all supported offices"
         get :offices do
