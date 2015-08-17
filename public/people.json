@@ -1,1 +1,1 @@
-[{"name":"Pedro Rocha", "email":"procha@thoughtworks.com", "team":"agendador"},{"name":"Patrick Prado","email":"pprado@thoughtworks.com"}]
+[{"name":"Pedro Rocha", "email":"procha@thoughtworks.com", "team":"agendador", "p3": "Lead", "tech_pairing": "Pair"},{"name":"Patrick Prado","email":"pprado@thoughtworks.com", "p3": "Not Allowed", "tech_pairing": "Not Allowed"}]

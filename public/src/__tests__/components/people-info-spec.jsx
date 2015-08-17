@@ -4,8 +4,10 @@ var request = require('superagent');
 
 describe("PeopleInfo", function(){
   var React = require('react/addons'),
-      TestUtils = React.addons.TestUtils;
-  var PeopleInfo, component, renderedComponent;
+      TestUtils = React.addons.TestUtils,
+      setMuiTheme = require('../set-mui-theme');
+
+  var PeopleInfo, renderedComponent;
 
   it("should load data into component", function(){
     mockRequest(function(){ return require('../mock-config.js')});
@@ -24,7 +26,7 @@ describe("PeopleInfo", function(){
     var PeopleInfoItem = require('../../components/PeopleInfoItem'),
         _ = require('underscore'),
         peopleItems = TestUtils.scryRenderedComponentsWithType(renderedComponent, PeopleInfoItem),
-        requiredProperties = ["name", "email"];
+        requiredProperties = ["name", "email", "p3", "tech_pairing"];
 
     expect(peopleItems.length).toBe(1);
     expect(_.keys(peopleItems[0].props)).toEqual(requiredProperties);
@@ -35,7 +37,7 @@ describe("PeopleInfo", function(){
     require('superagent-mock')(request, config);
 
     PeopleInfo = require("../../components/PeopleInfo.jsx");
-    component = React.createElement(PeopleInfo);
-    renderedComponent = TestUtils.renderIntoDocument(component);
+    setMuiTheme(PeopleInfo);
+    renderedComponent = TestUtils.renderIntoDocument(<PeopleInfo/>);
   };
 });

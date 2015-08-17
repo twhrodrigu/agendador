@@ -22,6 +22,19 @@ var PeopleInfo = React.createClass({
   render: function(){
     return (
       <div id="people-info" className="people-list">
+        <div className="container">
+          <ul className="people-items titles">
+            <li className="people-list-tile">
+              <div className="people-tile-text">
+                <div className="people-info-name">Name and email</div>
+              </div>
+              <div className="people-skills">
+                <div className="people-info-p3">P3</div>
+                <div className="people-info-tech-pairing">Technical</div>
+              </div>
+            </li>
+          </ul>
+        </div>
         <PeopleInfoList people={this.state.people} />
       </div>
     );

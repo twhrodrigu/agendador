@@ -2,11 +2,15 @@
 
 describe('PeopleInfoList', function(){
   var React = require('react/addons'),
-      TestUtils = React.addons.TestUtils;
-  var PeopleInfoList, component, renderedComponent, people;
+      TestUtils = React.addons.TestUtils,
+      setMuiTheme = require('../set-mui-theme'),
+      PeopleInfoList = require('../../components/PeopleInfoList.jsx');
+
+  var component, renderedComponent, people;
+
+  setMuiTheme(PeopleInfoList);
 
   beforeEach(function(){
-    PeopleInfoList = require('../../components/PeopleInfoList.jsx');
     people = require('../fixtures/people.js')();
     component = React.createElement(PeopleInfoList, { people: people });
     renderedComponent = TestUtils.renderIntoDocument(component);

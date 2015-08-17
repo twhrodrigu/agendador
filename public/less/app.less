@@ -61,14 +61,53 @@
 
 #people-info{
   padding: 0 15px;
-  ul.people-items{
+
+  ul.people-items.titles{
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    color: #999;
+    font-weight: bold;
+    .people-list-tile {
+      height: auto;
+      .people-tile-text {
+        margin-right: 50px;
+        padding: 0;
+      }
+      .people-info-name {
+        font-size: 12px;
+      }
+    }
+  }
+
+  ul.people-items {
     margin-top: 0;
     padding: 10px 0;
     list-style: none;
 
-    li{
+    li {
+      span {
+        text-align: center;
+        display: inline;
+      }
       padding: 10px 0;
       border-bottom: 1px solid #eee;
+      overflow: hidden;
+
+      .people-tile-text, .people-skills {
+        width: 250px;
+        display: inline-block;
+
+        .people-info-p3, .people-info-tech-pairing {
+          width: 50%;
+          display: inline-block;
+        }
+
+        .people-tile-text-email{
+          font-size: 12px;
+          color: #999;
+        }
+      }
     }
   }
 }
@@ -86,7 +125,6 @@
 
 .people-list-tile {
   position: relative;
-  height: 56px;
   padding: 10px;
 
   .people-tile-avatar {
