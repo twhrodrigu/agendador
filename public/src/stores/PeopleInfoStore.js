@@ -7,7 +7,7 @@ var Reflux  = require('reflux'),
 
 var PeopleInfo = function(){
   var that         = {},
-      requiredKeys = ["name", "email", "p3", "tech_pairing"];
+      requiredKeys = ["id", "name", "login", "email", "role", "p3", "p2"];
 
   that.listenables = Actions;
 
@@ -17,26 +17,24 @@ var PeopleInfo = function(){
     };
   };
 
-  that.onGetConsultants = function () {
-    console.log('PeopleInfoStore.onGetConsultants');
-    return request.get('/v1/consultants.json').end(function (error, response) {
-      console.log('PeopleInfoStore.onGetConsultants.end');
-      if (response.ok)
+  that.onGetConsultants = function (params) {
+    return request.get('/v1/consultants.json')
+                  .query(params)
+                  .end(function (error, response) {
+      if (response.ok) {
         Actions.getConsultants.completed(response.body);
-      else
+      } else
         Actions.getConsultants.failed(response.text);
     });
   };
 
   that.onGetConsultantsCompleted = function (data) {
-    console.log('PeopleInfoStore.onGetConsultantsCompleted');
     this.people = this.formatData(this.rejectData(data));
     this.trigger({ people: this.people });
   };
 
   that.onGetConsultantsFailed = function (error) {
-    console.log('PeopleInfoStore.onGetConsultantsFailed');
-    console.log('error: ', error);
+    console.log('PeopleInfoStore.onGetConsultantsFailed (error: %o)', error);
   };
 
   that.getAll = function(){

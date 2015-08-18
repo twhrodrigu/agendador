@@ -27,7 +27,7 @@ describe('PeopleInfoItem', function(){
     expect(component.props.name).toBe("Pedro Rocha");
     expect(component.props.email).toBe("procha@thoughtworks.com");
     expect(component.props.p3).toBe("Lead");
-    expect(component.props.tech_pairing).toBe("Pair");
+    expect(component.props.p2).toBe("Pair");
   });
 
   it("should render properties into component ", function(){

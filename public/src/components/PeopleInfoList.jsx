@@ -1,13 +1,16 @@
 'use strict';
 
 var React = require('react'),
+    Reflux = require('reflux'),
+    Actions = require('../actions/Actions'),
     PeopleInfoItem = require('./PeopleInfoItem.jsx'),
+    PeopleInfoStore = require('../stores/PeopleInfoStore'),
     _ = require('underscore');
 
 var PeopleInfoList = React.createClass({
-  peopleItems: function(){
-    return _.map(this.props.people, function(person, id){
-      return <PeopleInfoItem key={id} name={person.name} email={person.email} p3={person.p3} tech_pairing={person.tech_pairing}/>;
+  peopleItems: function() {
+    return _.map(this.props.people, function(person, id) {
+      return <PeopleInfoItem key={id} name={person.name} email={person.email} p3={person.p3} p2={person.p2}/>;
     });
   },
 

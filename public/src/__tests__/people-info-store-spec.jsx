@@ -1,18 +1,28 @@
-var request = require('superagent'),
-    config = require('./mock-config.js');
-require('superagent-mock')(request, config);
+var Actions = require('../actions/Actions'),
+    request = require('superagent');
 
 describe("PeopleInfoStore", function(){
   var store;
 
-  beforeEach(function(){
+  beforeEach(function() {
     store = require('../stores/PeopleInfoStore');
   });
 
-  it("should list all people", function(){
-    store.getAll().end(function(error, response){
-      expect(response.body.length).toEqual(2);
+  it("should retrieve all people on successful ajax request", function(done) {
+    require('superagent-mock')(request, require('./mock-config.js'));
+    Actions.getConsultants.completed.listen(function () {
+      expect(store.people.length).toEqual(2);
+      done();
     });
+    Actions.getConsultants();
+  });
+
+  it("should send params of getConsultants actions as a query string", function(done) {
+    spyOn(request.Request.prototype, 'end').and.callFake(function () {
+      expect(this._query).toEqual(['foo=bar']);
+      done();
+    });
+    Actions.getConsultants({ foo: 'bar' });
   });
 
   it("should remove person with incomplete data", function(){

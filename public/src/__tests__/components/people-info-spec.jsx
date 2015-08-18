@@ -17,18 +17,18 @@ describe("PeopleInfo", function(){
     });
   });
 
-  fit("should only display consistent data", function(done) {
+  it("should only display consistent data", function(done) {
     var component = mockRequest(function() { return require('../mock-config-inconsistent-data.js'); }),
-        requiredProperties = ["name", "email", "p3", "tech_pairing"];
+        properties = ["name", "email", "p3", "p2"];
     spyOn(component, 'componentDidUpdate').and.callFake(function () {
         var peopleItems = TestUtils.scryRenderedComponentsWithType(component, PeopleInfoItem);
         expect(peopleItems.length).toBe(1);
-        expect(Object.keys(peopleItems[0].props)).toEqual(requiredProperties);
+        expect(Object.keys(peopleItems[0].props)).toEqual(properties);
         done();
     });
   });
 
-  var mockRequest = function(mockConfig){
+  var mockRequest = function(mockConfig) {
     var config = mockConfig();
     require('superagent-mock')(request, config);
 

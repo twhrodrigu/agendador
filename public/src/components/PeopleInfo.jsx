@@ -10,22 +10,10 @@ var PeopleInfo = React.createClass({
   mixins: [ Reflux.connect(PeopleInfoStore) ],
 
   componentDidMount: function() {
-    console.log('PeopleInfo.jsx componentDidMount v3');
     Actions.getConsultants();
-    // this.loadData();
   },
 
-  loadData: function(){
-    console.log('PeopleInfo.jsx loadData');
-    PeopleInfoStore.getAll().end(function(error, response){
-      console.log('PeopleInfo.jsx getAll.end');
-      var data = PeopleInfoStore.formatData(PeopleInfoStore.rejectData(response.body));
-      this.setState({people: data});
-    }.bind(this));
-  },
-
-  render: function(){
-    console.log('PeopleInfo.jsx render');
+  render: function() {
     return (
       <div id="people-info" className="people-list">
         <div className="container">
@@ -36,7 +24,7 @@ var PeopleInfo = React.createClass({
               </div>
               <div className="people-skills">
                 <div className="people-info-p3">P3</div>
-                <div className="people-info-tech-pairing">Technical</div>
+                <div className="people-info-p2">Technical</div>
               </div>
             </li>
           </ul>

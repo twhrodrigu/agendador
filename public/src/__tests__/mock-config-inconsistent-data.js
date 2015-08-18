@@ -4,11 +4,13 @@ var inconsistentData = function(){
 
     {
       "id": 2,
+      "login": "pprado",
       "name":"Patrick Prado",
       "email":"pprado@thoughtworks.com",
       "team":"agendador",
+      "role": "Dev",
       "p3": "Not Allowed",
-      "tech_pairing": "Not Allowed",
+      "p2": "Not Allowed",
       "other_prop": "something"
     }
   ];
@@ -16,7 +18,7 @@ var inconsistentData = function(){
 
 module.exports = [
   {
-    pattern: 'people',
+    pattern: 'consultants',
     fixtures: inconsistentData,
     callback: function(match, data) {
       return { ok: true, body: data };
