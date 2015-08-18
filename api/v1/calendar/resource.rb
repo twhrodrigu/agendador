@@ -24,7 +24,7 @@ module API
             optional :role, type: String, desc: "The role of interest"
           end
           get :available do
-            consultants = Consultants::Service.consultants staffing_office: params[:office].tr('Ãã ', 'Aa+'), role: params[:role]
+            consultants = Consultants::Service.consultants staffing_office: params[:office].tr('Ãã', 'Aa'), role: params[:role]
             return [] if consultants.empty?
               
             available_consultants = Calendar::Service.availability token: params[:token], consultants: consultants, start: params[:start], hours: params[:hours]
