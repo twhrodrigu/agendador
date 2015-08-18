@@ -3,6 +3,7 @@
 var Reflux  = require('reflux'),
     Actions = require('../actions/Actions'),
     request = require('superagent'),
+    assign  = require('react/lib/Object.assign'),
     _ = require('underscore');
 
 var PeopleInfo = function(){
@@ -13,7 +14,7 @@ var PeopleInfo = function(){
 
   that.getInitialState = function (argument) {
     return {
-      people: []
+      people: (this.people = [])
     };
   };
 
@@ -35,6 +36,28 @@ var PeopleInfo = function(){
 
   that.onGetConsultantsFailed = function (error) {
     console.log('PeopleInfoStore.onGetConsultantsFailed (error: %o)', error);
+  };
+
+  that.onUpdateConsultant = function(login, attrs) {
+    return request.put('/v1/consultants/' + login + '.json')
+                .query(attrs)
+                .end(function (error, response) {
+    if (response.ok) {
+      Actions.updateConsultant.completed(login, response.body);
+    } else
+      Actions.updateConsultant.failed(response.text);
+    });
+  };
+
+  that.onUpdateConsultantCompleted = function (login, data) {
+    var person = _.findWhere(this.people, {login: login});
+    assign(person, data);
+    this.trigger({ people: this.people });
+  };
+
+  that.onUpdateConsultantFailed = function (error) {
+    console.log('PeopleInfoStore.onGetConsultantsFailed (error: %o)', error);
+    this.trigger({ people: this.people });
   };
 
   that.getAll = function(){

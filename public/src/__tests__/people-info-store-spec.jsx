@@ -1,11 +1,18 @@
 var Actions = require('../actions/Actions'),
-    request = require('superagent');
-
+    request = require('superagent'),
+    _       = require('underscore');
+    
 describe("PeopleInfoStore", function(){
   var store;
 
   beforeEach(function() {
     store = require('../stores/PeopleInfoStore');
+    store.emitter.removeAllListeners();
+    store.getInitialState();
+  });
+  
+  it("should set initial state", function(){
+    expect(store.getInitialState()).toEqual({people: []});
   });
 
   it("should retrieve all people on successful ajax request", function(done) {
@@ -17,7 +24,7 @@ describe("PeopleInfoStore", function(){
     Actions.getConsultants();
   });
 
-  it("should send params of getConsultants actions as a query string", function(done) {
+  it("should send params of getConsultants action as a query string", function(done) {
     spyOn(request.Request.prototype, 'end').and.callFake(function () {
       expect(this._query).toEqual(['foo=bar']);
       done();
@@ -47,7 +54,44 @@ describe("PeopleInfoStore", function(){
     expect(store.formatData(data)[0].test).toBeUndefined();
   });
 
-  it("should set initial state", function(){
-    expect(store.getInitialState()).toEqual({people: []});
+
+  it("should send id and attrs of updateConsultant action as request parameters", function(done) {
+    spyOn(request.Request.prototype, 'end').and.callFake(function () {
+      expect(this._query).toEqual(['foo=bar']);
+      expect(this.url).toMatch("/v1/consultants/pprado.json");
+      done();
+    });
+    Actions.updateConsultant("pprado", { foo: 'bar' });
   });
+
+  it("should update consultant attributes", function(done) {
+    store.people.push(
+      { 
+        "id": 1,
+        "login": "pprado",
+        "name": "Patrick Prado",
+        "email": "pprado@thoughtworks.com",
+        "p2": "Pair",
+        "role": "Dev",
+        "extra_attr": 1
+      }
+    );
+    var person = _.findWhere(store.people, {login: "pprado"});
+
+    require('superagent-mock')(request, require('./mock-config.js'));
+    
+    Actions.updateConsultant.completed.listen(function (login) {
+      expect(login).toBe("pprado");
+      expect(person.p2).toEqual("Lead");
+      expect(person.p3).toEqual("Lead");
+      expect(person.extra_attr).toEqual(1);
+      done();
+    });
+
+    expect(person.p2).toEqual("Pair");
+    expect(person.p3).toBeUndefined();
+    expect(person.extra_attr).toEqual(1);
+    Actions.updateConsultant("pprado", {});
+  });
+
 });

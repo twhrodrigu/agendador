@@ -19,7 +19,7 @@ describe("PeopleInfo", function(){
 
   it("should only display consistent data", function(done) {
     var component = mockRequest(function() { return require('../mock-config-inconsistent-data.js'); }),
-        properties = ["name", "email", "p3", "p2"];
+        properties = ["id", "login", "name", "email", "p3", "p2"];
     spyOn(component, 'componentDidUpdate').and.callFake(function () {
         var peopleItems = TestUtils.scryRenderedComponentsWithType(component, PeopleInfoItem);
         expect(peopleItems.length).toBe(1);

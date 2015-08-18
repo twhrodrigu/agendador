@@ -9,8 +9,8 @@ var React = require('react'),
 
 var PeopleInfoList = React.createClass({
   peopleItems: function() {
-    return _.map(this.props.people, function(person, id) {
-      return <PeopleInfoItem key={id} name={person.name} email={person.email} p3={person.p3} p2={person.p2}/>;
+    return _.map(this.props.people, function(person, idx) {
+      return <PeopleInfoItem key={idx} id={person.id} login={person.login} name={person.name} email={person.email} p3={person.p3} p2={person.p2}/>;
     });
   },
 

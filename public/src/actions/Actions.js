@@ -11,5 +11,6 @@ var actions = Reflux.createActions([
 ]);
 
 actions.getConsultants = Reflux.createAction({ asyncResult: true });
+actions.updateConsultant = Reflux.createAction({ asyncResult: true });
 
 module.exports = actions;
