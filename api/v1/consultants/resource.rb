@@ -47,7 +47,7 @@ module API
         put 'consultants/:login', requirements: { login: /[a-z]+/ } do
           consultant    = Consultant.from_redis(redis, params[:login]) or error!({ error: 'NOT FOUND' }, 404)
           consultant.p2 = params[:p2] if params[:p2]
-          consultant.p3 = params[:p3] if params[:p2]
+          consultant.p3 = params[:p3] if params[:p3]
           consultant.to_redis(redis)
           consultant
         end
