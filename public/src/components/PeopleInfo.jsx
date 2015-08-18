@@ -3,6 +3,7 @@
 var React = require('react'),
     Reflux = require('reflux'),
     Actions = require('../actions/Actions'),
+    PeopleSearch = require('./PeopleSearch'),
     PeopleInfoList = require('./PeopleInfoList'),
     PeopleInfoStore = require('../stores/PeopleInfoStore');
 
@@ -16,6 +17,7 @@ var PeopleInfo = React.createClass({
   render: function() {
     return (
       <div id="people-info" className="people-list">
+        <PeopleSearch />
         <div className="container">
           <ul className="people-items titles">
             <li className="people-list-tile">

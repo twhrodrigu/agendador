@@ -28,6 +28,12 @@ describe("PeopleInfo", function(){
     });
   });
 
+  it("should display search component", function(){
+    var component = mockRequest(function(){ return require('../mock-config.js'); }),
+        PeopleSearch = require('../../components/PeopleSearch');
+    expect(TestUtils.scryRenderedComponentsWithType(component, PeopleSearch).length).toBe(1);
+  });
+
   var mockRequest = function(mockConfig) {
     var config = mockConfig();
     require('superagent-mock')(request, config);

@@ -6,6 +6,7 @@ describe("PeopleSearch", function(){
       TestUtils = React.addons.TestUtils,
       setMuiTheme = require('../set-mui-theme'),
       PeopleSearch = require('../../components/PeopleSearch'),
+      TextField = require('material-ui').TextField,
       component, renderedComponent;
 
   setMuiTheme(PeopleSearch);
@@ -16,7 +17,11 @@ describe("PeopleSearch", function(){
   });
 
   it("should render text field into view", function(){
-    var TextField = require('material-ui').TextField;
     expect(TestUtils.scryRenderedComponentsWithType(renderedComponent, TextField).length).toBe(1);
+  });
+
+  it("should render text field with hint text", function(){
+    var searchTextField = TestUtils.findRenderedComponentWithType(renderedComponent, TextField);
+    expect(searchTextField.props.hintText).toBe("Search Thoughtworkers");
   });
 });
