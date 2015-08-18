@@ -29,6 +29,7 @@ module API
           redis.hgetall(REDIS_SCOPE).values
                                     .map{|value| new(JSON.parse(value)) }
                                     .reject{|consultant| consultant.not_found && consultant.not_found >= NOT_FOUND_THRESHOLD }
+                                    .sort
         end
 
         def set_attributes(attrs, overwrite: false)
@@ -90,6 +91,9 @@ module API
           self.p3    == other.p3
         end
 
+        def <=>(other)
+          self.name <=> other.name
+        end
       end
     end
   end

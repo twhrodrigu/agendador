@@ -11,7 +11,8 @@ module.exports = function (config) {
       'src/__tests__/**/*spec.jsx'
     ],
     preprocessors: {
-      'src/__tests__/**/*.jsx': ['webpack']
+      'src/__tests__/**/*.jsx': ['webpack'],
+      'src/__tests__/**/*.js': ['webpack'],
     },
     webpack: {
       context: __dirname + '/public/src',

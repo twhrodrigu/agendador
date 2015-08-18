@@ -10,4 +10,6 @@ var actions = Reflux.createActions([
     'logout'
 ]);
 
+actions.getConsultants = Reflux.createAction({ asyncResult: true });
+
 module.exports = actions;

@@ -18,8 +18,8 @@ module.exports = [
   {
     pattern: 'people',
     fixtures: inconsistentData,
-    callback: function(match, data){
-      return { body: data };
+    callback: function(match, data) {
+      return { ok: true, body: data };
     }
   }
 ];

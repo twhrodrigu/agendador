@@ -4,40 +4,36 @@ var request = require('superagent');
 
 describe("PeopleInfo", function(){
   var React = require('react/addons'),
-      TestUtils = React.addons.TestUtils,
-      setMuiTheme = require('../set-mui-theme');
+      PeopleInfoItem = require('../../components/PeopleInfoItem'),
+      setMuiTheme = require('../set-mui-theme'),
+      TestUtils = React.addons.TestUtils;
 
-  var PeopleInfo, renderedComponent;
-
-  it("should load data into component", function(){
-    mockRequest(function(){ return require('../mock-config.js')});
-
-    var PeopleInfoItem = require('../../components/PeopleInfoItem'),
-        countPeople = TestUtils.scryRenderedComponentsWithType(renderedComponent, PeopleInfoItem).length;
-
-    expect(countPeople).toBe(2);
+  it("should load data into component", function(done) {
+    var component = mockRequest(function(){ return require('../mock-config.js')});
+    spyOn(component, 'componentDidUpdate').and.callFake(function () {
+      var countPeople = TestUtils.scryRenderedComponentsWithType(component, PeopleInfoItem).length;
+      expect(countPeople).toBe(2);
+      done();
+    });
   });
 
-  it("should only display consistent data", function(){
-    mockRequest(function(){
-      return require('../mock-config-inconsistent-data.js');
-    });
-
-    var PeopleInfoItem = require('../../components/PeopleInfoItem'),
-        _ = require('underscore'),
-        peopleItems = TestUtils.scryRenderedComponentsWithType(renderedComponent, PeopleInfoItem),
+  fit("should only display consistent data", function(done) {
+    var component = mockRequest(function() { return require('../mock-config-inconsistent-data.js'); }),
         requiredProperties = ["name", "email", "p3", "tech_pairing"];
-
-    expect(peopleItems.length).toBe(1);
-    expect(_.keys(peopleItems[0].props)).toEqual(requiredProperties);
+    spyOn(component, 'componentDidUpdate').and.callFake(function () {
+        var peopleItems = TestUtils.scryRenderedComponentsWithType(component, PeopleInfoItem);
+        expect(peopleItems.length).toBe(1);
+        expect(Object.keys(peopleItems[0].props)).toEqual(requiredProperties);
+        done();
+    });
   });
 
   var mockRequest = function(mockConfig){
     var config = mockConfig();
     require('superagent-mock')(request, config);
 
-    PeopleInfo = require("../../components/PeopleInfo.jsx");
+    var PeopleInfo = require("../../components/PeopleInfo.jsx");
     setMuiTheme(PeopleInfo);
-    renderedComponent = TestUtils.renderIntoDocument(<PeopleInfo/>);
+    return TestUtils.renderIntoDocument(<PeopleInfo />);
   };
 });

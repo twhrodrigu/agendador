@@ -2,24 +2,30 @@
 
 var React = require('react'),
     Reflux = require('reflux'),
+    Actions = require('../actions/Actions'),
     PeopleInfoList = require('./PeopleInfoList'),
     PeopleInfoStore = require('../stores/PeopleInfoStore');
 
 var PeopleInfo = React.createClass({
   mixins: [ Reflux.connect(PeopleInfoStore) ],
 
-  componentDidMount: function(){
-    this.loadData();
+  componentDidMount: function() {
+    console.log('PeopleInfo.jsx componentDidMount v3');
+    Actions.getConsultants();
+    // this.loadData();
   },
 
   loadData: function(){
+    console.log('PeopleInfo.jsx loadData');
     PeopleInfoStore.getAll().end(function(error, response){
+      console.log('PeopleInfo.jsx getAll.end');
       var data = PeopleInfoStore.formatData(PeopleInfoStore.rejectData(response.body));
       this.setState({people: data});
     }.bind(this));
   },
 
   render: function(){
+    console.log('PeopleInfo.jsx render');
     return (
       <div id="people-info" className="people-list">
         <div className="container">

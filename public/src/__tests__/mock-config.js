@@ -1,9 +1,9 @@
 module.exports = [
   {
-    pattern: 'people',
+    pattern: 'consultants',
     fixtures: require('./fixtures/people.js'),
     callback: function(match, data){
-      return { body: data };
+      return { ok: true, body: data };
     }
   }
 ];
