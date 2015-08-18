@@ -11,19 +11,18 @@ module.exports = function (config) {
       'src/__tests__/**/*spec.jsx'
     ],
     preprocessors: {
-      'src/__tests__/**/*.jsx': ['webpack'],
-      'src/__tests__/**/*.js': ['webpack'],
+      'src/**/*.jsx': ['webpack', 'sourcemap'],
+      'src/**/*.js':  ['webpack', 'sourcemap']
     },
     webpack: {
       context: __dirname + '/public/src',
       debug: true,
-      devtool: 'cheap-eval-source-map',
+      devtool: 'inline-source-map',
       module: {
-        loaders: [{ 
-          test: /\.jsx?$/, exclude: /node_modules/, loader: "babel"}
-      ]}, 
+        loaders: [{ test: /\.jsx?$/, exclude: /node_modules/, loader: "babel"} ]
+      },
       resolveLoader:{
-        root: __dirname + "/node_modules/" 
+        root: __dirname + "/node_modules/"
       },
       resolve: {
         alias: {
@@ -60,6 +59,7 @@ module.exports = function (config) {
       'karma-webpack',
       'karma-jasmine',
       'karma-phantomjs-launcher',
+      'karma-sourcemap-loader'
       ]
   });
 };

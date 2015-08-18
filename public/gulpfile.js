@@ -41,15 +41,7 @@ gulp.task('test', function(done) {
     karma.start( {configFile: __dirname + "/karma.conf.js", singleRun: true }, done );
 });
 
-gulp.task('test2', function(done) {
-    // gulp('src/**/__tests__/*js')
-    //     .pipe(karma({
-    //         configFile: __dirname + "/karma.conf.js",
-    //         action: 'watch'
-    //     }))
-    //     .on('error', function (err) {
-    //         throw err;
-    //     });
+gulp.task('tdd', function(done) {
     karma.start( {configFile: __dirname + "/karma.conf.js", singleRun: false, autoWatch: true}, done );
 });
 
