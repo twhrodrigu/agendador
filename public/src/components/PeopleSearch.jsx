@@ -11,12 +11,23 @@ var PeopleSearch = React.createClass({
     }
   },
 
+  getStyles: function () {
+    return {
+      root: {
+        margin: '10px 0 25px 0',
+        width: '100%'
+      }
+    };
+  },
+
   render: function() {
+    var styles = this.getStyles();
     var message = "Search";
 
     return (
       <TextField id="people-search-field"
                  hintText="Search Thoughtworkers"
+                 style={styles.root} 
                  onKeyUp={this.types}/>
     );
   }
