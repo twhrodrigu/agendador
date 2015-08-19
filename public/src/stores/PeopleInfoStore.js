@@ -30,7 +30,7 @@ var PeopleInfo = function(){
   };
 
   that.onGetConsultantsCompleted = function (data) {
-    this.people = this.formatData(this.rejectData(data));
+    this.people = that.formatData(that.rejectData(data));
     this.trigger({ people: this.people });
   };
 
